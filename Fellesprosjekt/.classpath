@@ -5,5 +5,7 @@
 	<classpathentry kind="lib" path="jar/jlfgr-1_0.jar"/>
 	<classpathentry kind="lib" path="jar/junit.jar"/>
 	<classpathentry kind="lib" path="jar/xom-1.0b5.jar"/>
+	<classpathentry kind="lib" path="jar/jdom.jar"/>
+	<classpathentry kind="lib" path="jar/ktn_admin_and_a2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
