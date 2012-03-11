@@ -6,6 +6,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class DateCellTableModel extends DefaultTableModel {
 	private ArrayList<CalendarDate[]> dateMatrix = new ArrayList<CalendarDate[]>();
+	private boolean editable = true;
 	
 	public DateCellTableModel() {
 		
@@ -26,7 +27,7 @@ public class DateCellTableModel extends DefaultTableModel {
 		return 7; 
 	}
 	public boolean isCellEditable(int rowIndex, int columnIndex) { 
-		return true; 
+		return this.editable; 
 	}
 	public Object getValueAt(int rowIndex, int columnIndex) { 
 		return dateMatrix.get(rowIndex)[columnIndex]; 
@@ -34,6 +35,10 @@ public class DateCellTableModel extends DefaultTableModel {
 	public void addCalendarDateRow(CalendarDate[] row) {
 		this.dateMatrix.add(row);
 		super.addRow(row);
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
 	}
 
 }

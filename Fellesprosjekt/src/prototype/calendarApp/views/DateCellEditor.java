@@ -1,4 +1,4 @@
-package prototype.calendarApp.core;
+package prototype.calendarApp.views;
 
 import java.awt.Component;
 import java.util.EventObject;
@@ -8,9 +8,6 @@ import javax.swing.JTable;
 import javax.swing.event.CellEditorListener;
 import javax.swing.table.TableCellEditor;
 
-import prototype.calendarApp.views.CalendarDate;
-import prototype.calendarApp.views.CalendarView;
-import prototype.calendarApp.views.DateField;
 
 
 public class DateCellEditor extends AbstractCellEditor implements TableCellEditor {

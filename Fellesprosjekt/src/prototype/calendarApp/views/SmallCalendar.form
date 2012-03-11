@@ -1,0 +1,207 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+
+<Form version="1.6" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <Properties>
+    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+        <LineBorder>
+          <Property name="color" resourceKey="Form.border.lineColor"/>
+        </LineBorder>
+      </Border>
+    </Property>
+    <Property name="name" type="java.lang.String" value="Form" noResource="true"/>
+  </Properties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="2"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="calendarTable" alignment="0" pref="229" max="32767" attributes="0"/>
+                  <Component id="monthLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="prevMonthButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="179" max="32767" attributes="0"/>
+                      <Component id="nextMonthButton" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <Component id="monthLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="calendarTable" pref="115" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="prevMonthButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="nextMonthButton" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JButton" name="prevMonthButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="prevMonthButton.text"/>
+        <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+          <Insets value="[1, 4, 1, 4]"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="prevMonthButton" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTable" name="calendarTable">
+      <Properties>
+        <Property name="background" type="java.awt.Color" resourceKey="calendarTable.background"/>
+        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+          <Table columnCount="7" rowCount="7">
+            <Column editable="false" title="Mon" type="java.lang.Object">
+              <Data value="Mon"/>
+              <Data value="null"/>
+              <Data value="3"/>
+              <Data value="10"/>
+              <Data value="17"/>
+              <Data value="24"/>
+              <Data value="31"/>
+            </Column>
+            <Column editable="false" title="Tue" type="java.lang.Object">
+              <Data value="Tue"/>
+              <Data value="null"/>
+              <Data value="4"/>
+              <Data value="11"/>
+              <Data value="18"/>
+              <Data value="25"/>
+              <Data value="null"/>
+            </Column>
+            <Column editable="false" title="Wed" type="java.lang.Object">
+              <Data value="Wed"/>
+              <Data value=""/>
+              <Data value="5"/>
+              <Data value="12"/>
+              <Data value="19"/>
+              <Data value="26"/>
+              <Data value="null"/>
+            </Column>
+            <Column editable="false" title="Thu" type="java.lang.Object">
+              <Data value="Thu"/>
+              <Data value=""/>
+              <Data value="6"/>
+              <Data value="13"/>
+              <Data value="20"/>
+              <Data value="27"/>
+              <Data value="null"/>
+            </Column>
+            <Column editable="false" title="Fri" type="java.lang.Object">
+              <Data value="Fri"/>
+              <Data value=""/>
+              <Data value="7"/>
+              <Data value="14"/>
+              <Data value="21"/>
+              <Data value="28"/>
+              <Data value="null"/>
+            </Column>
+            <Column editable="false" title="Sat" type="java.lang.Object">
+              <Data value="Sat"/>
+              <Data value="1"/>
+              <Data value="8"/>
+              <Data value="15"/>
+              <Data value="22"/>
+              <Data value="29"/>
+              <Data value="null"/>
+            </Column>
+            <Column editable="false" title="Sun" type="java.lang.Object">
+              <Data value="Sun"/>
+              <Data value="2"/>
+              <Data value="9"/>
+              <Data value="16"/>
+              <Data value="23"/>
+              <Data value="30"/>
+              <Data value="null"/>
+            </Column>
+          </Table>
+        </Property>
+        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+          <TableColumnModel selectionModel="0">
+            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+              <Title resourceKey="calendarTable.columnModel.title0"/>
+              <Editor/>
+              <Renderer/>
+            </Column>
+            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+              <Title resourceKey="calendarTable.columnModel.title1"/>
+              <Editor/>
+              <Renderer/>
+            </Column>
+            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+              <Title resourceKey="calendarTable.columnModel.title2"/>
+              <Editor/>
+              <Renderer/>
+            </Column>
+            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+              <Title resourceKey="calendarTable.columnModel.title3"/>
+              <Editor/>
+              <Renderer/>
+            </Column>
+            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+              <Title resourceKey="calendarTable.columnModel.title4"/>
+              <Editor/>
+              <Renderer/>
+            </Column>
+            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+              <Title resourceKey="calendarTable.columnModel.title5"/>
+              <Editor/>
+              <Renderer/>
+            </Column>
+            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+              <Title resourceKey="calendarTable.columnModel.title6"/>
+              <Editor/>
+              <Renderer/>
+            </Column>
+          </TableColumnModel>
+        </Property>
+        <Property name="name" type="java.lang.String" value="calendarTable" noResource="true"/>
+        <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
+          <JTableSelectionModel selectionMode="0"/>
+        </Property>
+        <Property name="showHorizontalLines" type="boolean" value="false"/>
+        <Property name="showVerticalLines" type="boolean" value="false"/>
+        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="null" type="code"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="nextMonthButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="nextMonthButton.text"/>
+        <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+          <Insets value="[1, 4, 1, 4]"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="nextMonthButton" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="monthLabel">
+      <Properties>
+        <Property name="font" type="java.awt.Font" resourceKey="monthLabel.font"/>
+        <Property name="text" type="java.lang.String" resourceKey="monthLabel.text"/>
+        <Property name="name" type="java.lang.String" value="monthLabel" noResource="true"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>

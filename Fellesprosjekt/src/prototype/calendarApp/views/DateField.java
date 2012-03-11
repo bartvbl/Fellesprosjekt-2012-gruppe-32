@@ -55,14 +55,6 @@ public class DateField extends JPanel {
 		}
 	}
 	
-	public void validate() {
-		if(this.contains(MouseInfo.getPointerInfo().getLocation())) {
-			System.out.println("gray!");
-			this.setBackground(Color.gray);
-		} else {
-			this.setBackground(Color.white);
-		}
-		super.validate();
-	}
+
 
 }
