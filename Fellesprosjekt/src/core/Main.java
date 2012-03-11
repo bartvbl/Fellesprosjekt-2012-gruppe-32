@@ -1,5 +1,10 @@
 package core;
 
+import java.util.ArrayList;
+
+import no.ntnu.fp.net.cl.ClSocket;
+import no.ntnu.fp.net.cl.KtnDatagram;
+
 public class Main {
 
 	/**
@@ -7,6 +12,8 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		System.out.println("nothing here :(");
+//		ClSocket socket = new ClSocket();
+//		KtnDatagram datagram = new KtnDatagram();
 	}
 
 }
