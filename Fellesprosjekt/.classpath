@@ -8,5 +8,8 @@
 	<classpathentry kind="lib" path="jar/jdom.jar"/>
 	<classpathentry kind="lib" path="jar/ktn_admin_and_a2.jar"/>
 	<classpathentry kind="lib" path="jar/appframework-1.0.3.jar"/>
+	<classpathentry kind="lib" path="jar/AbsoluteLayout.jar"/>
+	<classpathentry kind="lib" path="jar/mysql-connector-java-5.1.17-bin.jar"/>
+	<classpathentry kind="lib" path="jar/swing-worker-1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

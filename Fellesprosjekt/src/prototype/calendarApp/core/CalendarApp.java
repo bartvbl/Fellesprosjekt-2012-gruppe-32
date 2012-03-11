@@ -2,10 +2,12 @@
  * CalendarApp.java
  */
 
-package prototype.calendarApp.views;
+package prototype.calendarApp.core;
 
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
+
+import prototype.calendarApp.views.CalendarView;
 
 /**
  * The main class of the application.

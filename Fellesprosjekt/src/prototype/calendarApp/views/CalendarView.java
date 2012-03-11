@@ -14,6 +14,7 @@ import org.jdesktop.application.SingleFrameApplication;
 import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 
+import prototype.calendarApp.core.CalendarApp;
 import prototype.calendarApp.core.Main;
 
 
@@ -100,11 +101,11 @@ public class CalendarView extends FrameView {
 
 		menuBar.setName("menuBar"); // NOI18N
 
-		org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(prototype.calendarApp.views.CalendarApp.class).getContext().getResourceMap(CalendarView.class);
+		org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(prototype.calendarApp.core.CalendarApp.class).getContext().getResourceMap(CalendarView.class);
 		fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
 		fileMenu.setName("fileMenu"); // NOI18N
 
-		javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(prototype.calendarApp.views.CalendarApp.class).getContext().getActionMap(CalendarView.class, this);
+		javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(prototype.calendarApp.core.CalendarApp.class).getContext().getActionMap(CalendarView.class, this);
 		exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
 		exitMenuItem.setName("exitMenuItem"); // NOI18N
 		fileMenu.add(exitMenuItem);
