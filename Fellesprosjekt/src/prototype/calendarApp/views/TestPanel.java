@@ -52,7 +52,7 @@ public class TestPanel extends JPanel implements ActionListener, MouseListener {
 		model.setEditable(!CalendarView.pendingInvitationsButton.isSelected());
 		this.setVisible(CalendarView.pendingInvitationsButton.isSelected());
 		Rectangle positionRect = this.owner.getBounds();
-		this.setBounds(positionRect.width-360, positionRect.height - 222, 290, 138);
+		this.setBounds(positionRect.width-310, positionRect.height - 222, 290, 138);
 	}
 
 	@Override

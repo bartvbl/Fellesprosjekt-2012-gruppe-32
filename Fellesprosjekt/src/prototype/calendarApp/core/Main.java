@@ -1,5 +1,7 @@
 package prototype.calendarApp.core;
 
+import java.awt.Font;
+
 import javax.swing.DefaultListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -46,5 +48,9 @@ public class Main {
 		((DefaultListModel) CalendarView.favouritePeopleList.getModel()).addElement("Darth Vader");
 		((DefaultListModel) CalendarView.favouritePeopleList.getModel()).addElement("Wall-E");
 		((DefaultListModel) CalendarView.favouritePeopleList.getModel()).addElement("Indiana Jones");
+	//	CalendarView.searchTextPane.addFocusListener(new SearchBoxFocusHandler());
+		CalendarView.searchTextPane.setText(SearchBoxFocusHandler.searchBoxMessage);
+		CalendarView.searchTextPane.setFont(new Font("Tahoma", Font.ITALIC, 12));
+//		CalendarView.s
 	}
 }

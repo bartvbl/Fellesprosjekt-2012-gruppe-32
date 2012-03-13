@@ -22,6 +22,11 @@ public class DateCellEditor extends AbstractCellEditor implements TableCellEdito
 		CalendarDate date = (CalendarDate) value;
 		field.setValues(date);
 		field.setVisuals(isSelected);
+		if(column == 4) {
+			field.addButton.setVisible(true);
+		} else {
+			field.addButton.setVisible(false);
+		}
 		return field;
 	}
 	

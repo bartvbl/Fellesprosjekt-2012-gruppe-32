@@ -18,15 +18,22 @@ public class DateField extends JPanel {
 	
 	private JLabel dateDayLabel;
 	private int dateDayNumber;
+	public JButton addButton;
+	private JPanel header;
 	private static final Color selectionColour = new Color(158, 181, 255);
 
 	public DateField() {
 		super(new BorderLayout());
 		this.dateDayLabel = new JLabel("");
 		this.dateDayLabel.setFont(new Font("Tohama", Font.BOLD, 14));
-		
-		this.add(this.dateDayLabel, BorderLayout.NORTH);
-		//this.add(new JButton(new ImageIcon("res/plus.png")), BorderLayout.EAST);
+		this.header = new JPanel(new BorderLayout());
+		header.setBackground(Color.white);
+		header.add(this.dateDayLabel, BorderLayout.WEST);
+		this.addButton = new JButton(new ImageIcon("res/plus.png"));
+		addButton.setContentAreaFilled(false);
+		addButton.setRolloverIcon(new ImageIcon("res/plus_hover.png"));
+		header.add(addButton, BorderLayout.EAST);
+		this.add(header, BorderLayout.NORTH);
 		this.setBackground(Color.white);
 	}
 	
@@ -50,7 +57,9 @@ public class DateField extends JPanel {
 	public void setVisuals(boolean isSelected) {
 		if(isSelected) {
 			this.setBackground(selectionColour);
+			this.header.setBackground(selectionColour);
 		} else {
+			this.header.setBackground(Color.white);
 			this.setBackground(Color.white);
 		}
 	}
