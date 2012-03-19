@@ -1,4 +1,4 @@
-package core;
+package fp.core;
 
 import java.util.ArrayList;
 
