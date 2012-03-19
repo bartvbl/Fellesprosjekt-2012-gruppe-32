@@ -7,6 +7,8 @@ package fp.views;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 
+import fp.core.Main;
+
 
 /**
  * The main class of the application.
@@ -18,6 +20,7 @@ public class CalendarApp extends SingleFrameApplication {
      */
     @Override protected void startup() {
         show(new CalendarView(this));
+        new Main();
     }
 
     /**

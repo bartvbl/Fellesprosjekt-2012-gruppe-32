@@ -34,7 +34,9 @@ import javax.swing.text.StyledDocument;
  */
 public class CalendarView extends FrameView {
 
-    public CalendarView(SingleFrameApplication app) {
+    private static JFrame jframe;
+
+	public CalendarView(SingleFrameApplication app) {
         super(app);
 
         initComponents();
@@ -47,7 +49,13 @@ public class CalendarView extends FrameView {
         searchIcon.setIcon(new ImageIcon("src/calendarapp/search.png"));
         searchIcon.setPreferredSize(new Dimension(18, 18));
         searchPanel.add(searchIcon, BorderLayout.EAST);
+        
+        this.jframe = this.getFrame();
     }
+	
+	public static JFrame getJFrame() {
+		return jframe;
+	}
 
     @Action
     public void showAboutBox() {
