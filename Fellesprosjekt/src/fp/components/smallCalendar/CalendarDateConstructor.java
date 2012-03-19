@@ -14,7 +14,7 @@ public class CalendarDateConstructor {
 	private static int getNumberOfRows(Calendar calendar) {
 		int daysInCurrentMonth = getDaysInCurrentMonth(calendar);
 		int dayOfWeek = getDayOfTheWeek(calendar);
-		return ((daysInCurrentMonth + dayOfWeek) / 7) + 1;
+		return ((daysInCurrentMonth + dayOfWeek - 2) / 7) + 1;
 	}
 	
 	private static int getDaysInCurrentMonth(Calendar calendar) {
