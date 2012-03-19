@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class EventDispatcher {
-	private final HashMap<String, ArrayList<EventHandler>> listeners = new HashMap<String, ArrayList<EventHandler>>();
+	private final HashMap<EventType, ArrayList<EventHandler>> listeners = new HashMap<EventType, ArrayList<EventHandler>>();
 
 	public void dispatchEvent(Event<?> event) {
 		if (!eventTypeExists(event.eventType)) {
@@ -21,20 +21,20 @@ public class EventDispatcher {
 		}
 	}
 
-	public void addEventListener(EventHandler listenerModule, String eventType) {
+	public void addEventListener(EventHandler listenerModule, EventType eventType) {
 		this.addEventTypeIfNotExistent(eventType);
 		ArrayList<EventHandler> listenerList = this.listeners.get(eventType);
 		listenerList.add(listenerModule);
 
 	}
 
-	private void addEventTypeIfNotExistent(String eventType) {
+	private void addEventTypeIfNotExistent(EventType eventType) {
 		if (!eventTypeExists(eventType)) {
 			this.listeners.put(eventType, new ArrayList<EventHandler>());
 		}
 	}
 
-	private boolean eventTypeExists(String eventType) {
+	private boolean eventTypeExists(EventType eventType) {
 		return this.listeners.containsKey(eventType);
 	}
 }
