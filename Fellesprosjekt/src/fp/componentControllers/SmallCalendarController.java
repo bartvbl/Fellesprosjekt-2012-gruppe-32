@@ -13,6 +13,7 @@ public class SmallCalendarController extends AbstractComponentController {
 
 	private SmallCalendarModel model;
 	
+	
 	public SmallCalendarController(EventDispatcher eventDispatcher) {
 		super(ComponentControllerType.CALENDAR_VIEW_SMALL_CALENDAR, eventDispatcher);
 		this.model = new SmallCalendarModel();

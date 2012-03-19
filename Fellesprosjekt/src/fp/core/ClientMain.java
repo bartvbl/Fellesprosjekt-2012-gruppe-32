@@ -6,10 +6,10 @@ import fp.componentHandlers.CalendarViewResizeHandler;
 import fp.componentHandlers.SmallCalendarHandler;
 import fp.events.EventDispatcher;
 
-public class Main {
+public class ClientMain {
 	private EventDispatcher eventDispatcher;
 	
-	public Main() {
+	public ClientMain() {
 		this.createEVentDispatcher();
 		this.createCalendarViewHandlers();
 		this.createCalendarViewControllers();
