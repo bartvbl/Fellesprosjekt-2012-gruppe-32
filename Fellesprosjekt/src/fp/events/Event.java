@@ -2,14 +2,14 @@ package fp.events;
 
 public class Event<EventParamsDataType> {
 	private final EventParamsDataType eventParameter;
-	public final String eventType;
+	public final EventType eventType;
 
-	public Event(String eventType) {
+	public Event(EventType eventType) {
 		this.eventType = eventType;
 		this.eventParameter = null;
 	}
 
-	public Event(String eventType, EventParamsDataType eventParameterObject) {
+	public Event(EventType eventType, EventParamsDataType eventParameterObject) {
 		this.eventType = eventType;
 		this.eventParameter = eventParameterObject;
 	}
