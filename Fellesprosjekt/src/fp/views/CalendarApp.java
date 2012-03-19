@@ -2,12 +2,11 @@
  * CalendarApp.java
  */
 
-package fp.core;
+package fp.views;
 
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 
-import fp.views.CalendarView;
 
 /**
  * The main class of the application.
