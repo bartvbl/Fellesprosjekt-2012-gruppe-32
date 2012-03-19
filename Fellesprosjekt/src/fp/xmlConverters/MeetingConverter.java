@@ -4,6 +4,7 @@ import nu.xom.Element;
 import fp.dataObjects.Meeting;
 import fp.dataObjects.Meeting.LocationType;
 import fp.dataObjects.Meeting.Status;
+import fp.dataObjects.Meeting;
 
 public class MeetingConverter {
 	
