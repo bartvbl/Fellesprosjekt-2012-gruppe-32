@@ -1,4 +1,4 @@
-package fp.messageParsers;
+package fp.messageHandlers;
 
 public interface MessageHandler {
 	
