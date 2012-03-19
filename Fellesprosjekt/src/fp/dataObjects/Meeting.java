@@ -7,13 +7,32 @@ public class Meeting {
 	public final String location;
 	public final LocationType locationType;
 	public enum LocationType{
-		meeting, appointment
+		meeting {
+			public String toString(){
+				return "meeting";
+			}
+		},
+		appointment{
+			public String toString(){
+				return "appointment";
+			}
+		}			
 	}
+
 	public final String startTime;
 	public final String endTime;
 	public final Status status;
 	public enum Status{
-		active, cancelled
+		active{
+			public String toString(){
+				return "active";
+			}
+		},
+		cancelled{
+			public String toString(){
+				return "cancelled";
+			}
+		}
 	}
 	
 	public Meeting(int meetingID, String description, String location,
