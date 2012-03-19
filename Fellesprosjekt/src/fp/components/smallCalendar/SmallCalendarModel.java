@@ -5,6 +5,8 @@ import java.util.Locale;
 
 import javax.swing.table.DefaultTableModel;
 
+import fp.views.SmallCalendarPanel;
+
 public class SmallCalendarModel {
 	private java.util.Calendar calendar;
 	

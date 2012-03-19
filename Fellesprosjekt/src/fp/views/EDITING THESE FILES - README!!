@@ -1,0 +1,6 @@
+You CAN NOT simply copy the updated .java file from netBeans into here if you changed anything in the GUI designer.
+I have for some of the files made changes that belong in that file.
+To update the file, copy everything after netBean's generated comment warning you about automatic code generation, 
+all the way to the bottom of the file. Then paste it in the corresponding location in the source file in eclipse.
+You'll get warnings about that CalendarApp is missing. To fix it, replace "calendarApp.CalendarApp" by "fp.views.CalendarApp".
+The .form and .resources files are fine (don't forget to update them too; they regenerate when you make changes in netBeans).
