@@ -1,5 +1,6 @@
 package fp.componentHandlers;
 
+import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
@@ -13,7 +14,7 @@ import fp.events.EventDispatcher;
 import fp.events.EventType;
 import fp.views.CalendarView;
 
-public class CalendarViewResizeHandler extends AbstractComponentHandler implements ComponentListener {
+public class CalendarViewResizeHandler extends AbstractComponentHandler {
 	public CalendarViewResizeHandler(EventDispatcher eventDispatcher) {
 		super(ComponentHandlerType.CALENDAR_VIEW_WINDOW_RESIZE, eventDispatcher);
 		this.addEventListeners();
@@ -21,14 +22,14 @@ public class CalendarViewResizeHandler extends AbstractComponentHandler implemen
 
 	private void addEventListeners() {
 		JFrame frame = CalendarView.getJFrame();
-		frame.addComponentListener(this);
+		frame.addComponentListener(new ComponentAdapter() {
+			public void componentResized(ComponentEvent e) {
+				resize();
+			}
+		});
 	}
 
-	public void componentResized(ComponentEvent arg0) {
+	public void resize() {
 		this.eventDispatcher.dispatchEvent(new Event<Object>(EventType.WINDOW_RESIZED));
 	}
-
-	public void componentHidden(ComponentEvent arg0) {}
-	public void componentMoved(ComponentEvent arg0) {}
-	public void componentShown(ComponentEvent arg0) {}
 }
