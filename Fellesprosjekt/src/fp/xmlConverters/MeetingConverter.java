@@ -1,8 +1,11 @@
 package fp.xmlConverters;
 
+import fp.dataObjects.Meeting;
+
 public class MeetingConverter {
 	
 	public static String convertMeetingToXML(Meeting meeting) {
+		return null;
 		
 	}
 	
