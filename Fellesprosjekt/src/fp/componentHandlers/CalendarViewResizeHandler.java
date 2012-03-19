@@ -5,18 +5,17 @@ import java.awt.event.ComponentListener;
 
 import javax.swing.JFrame;
 
+import org.dom4j.io.SAXReader;
+import org.jdom.Document;
+
 import fp.events.Event;
 import fp.events.EventDispatcher;
 import fp.events.EventType;
 import fp.views.CalendarView;
 
 public class CalendarViewResizeHandler extends AbstractComponentHandler implements ComponentListener {
-
-	private EventDispatcher eventDispatcher;
-
 	public CalendarViewResizeHandler(EventDispatcher eventDispatcher) {
-		super(ComponentHandlerType.CALENDAR_VIEW_WINDOW_RESIZE);
-		this.eventDispatcher = eventDispatcher;
+		super(ComponentHandlerType.CALENDAR_VIEW_WINDOW_RESIZE, eventDispatcher);
 		this.addEventListeners();
 	}
 

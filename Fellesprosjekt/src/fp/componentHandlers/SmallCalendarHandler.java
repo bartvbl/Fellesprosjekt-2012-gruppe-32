@@ -10,7 +10,7 @@ import fp.views.SmallCalendarPanel;
 public class SmallCalendarHandler extends AbstractComponentHandler implements ActionListener {
 
 	public SmallCalendarHandler(EventDispatcher eventDispatcher) {
-		super(ComponentHandlerType.CALENDAR_VIEW_SMALL_CALENDAR);
+		super(ComponentHandlerType.CALENDAR_VIEW_SMALL_CALENDAR, eventDispatcher);
 		this.addEventListeners();
 	}
 
