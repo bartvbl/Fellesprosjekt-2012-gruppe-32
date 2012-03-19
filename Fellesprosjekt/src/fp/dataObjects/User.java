@@ -22,4 +22,9 @@ public class User {
 		this.phoneNumber = phoneNumber;
 	}
 	
+	
+	public String toString(){
+		return "userID: " + userID + ", UserName: " + userName + ", password: " + password + ", firstName: " + firstName + 
+				", lastName: "+  lastName + ", email: " + email + ", phoneNumber: " + phoneNumber;
+	}
 }
