@@ -7,14 +7,14 @@ public class Meeting {
 	public final String location;
 	public final LocationType locationType;
 	public enum LocationType{
-		meeting {
+		meetingroom {
 			public String toString(){
-				return "meeting";
+				return "meetingroom";
 			}
 		},
-		appointment{
+		location {
 			public String toString(){
-				return "appointment";
+				return "location";
 			}
 		}			
 	}
