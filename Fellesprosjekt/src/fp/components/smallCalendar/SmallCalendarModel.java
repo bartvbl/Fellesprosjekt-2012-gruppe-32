@@ -9,10 +9,15 @@ import fp.views.SmallCalendarPanel;
 
 public class SmallCalendarModel {
 	private java.util.Calendar calendar;
+	private int selectedWeekNumber;
+	private int selectedYearNumber;
+	private int[] currentWeekNumberList;
 	
 	public SmallCalendarModel() {
 		this.calendar = java.util.Calendar.getInstance();
 		this.calendar.setFirstDayOfWeek(Calendar.MONDAY);
+		this.selectedWeekNumber = this.calendar.get(Calendar.WEEK_OF_YEAR);
+		this.selectedYearNumber = this.calendar.get(Calendar.YEAR);
 	}
 	
 	public void incrementMonth() {
@@ -45,5 +50,9 @@ public class SmallCalendarModel {
 	
 	public int getYear() {
 		return this.calendar.get(Calendar.YEAR);
+	}
+	
+	public int getSelectedWeekNumber() {
+		return this.selectedWeekNumber;
 	}
 }

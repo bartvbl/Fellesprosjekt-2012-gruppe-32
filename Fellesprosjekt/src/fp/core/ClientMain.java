@@ -1,9 +1,9 @@
 package fp.core;
 
 import fp.componentControllers.CalendarViewResizeController;
-import fp.componentControllers.SmallCalendarController;
 import fp.componentHandlers.CalendarViewResizeHandler;
-import fp.componentHandlers.SmallCalendarHandler;
+import fp.components.smallCalendar.SmallCalendarController;
+import fp.components.smallCalendar.SmallCalendarHandler;
 import fp.events.EventDispatcher;
 
 public class ClientMain {
