@@ -1,7 +1,11 @@
 package fp.xmlConverters;
 
+import java.io.IOException;
+import java.text.ParseException;
+
 import no.ntnu.fp.model.Person;
 import nu.xom.Element;
+import nu.xom.ParsingException;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -15,8 +19,6 @@ public class UserConverter {
 	public static void main(String[] args) {
 		User user = new User(123, "Neshyyy", "rumpeldunk", "Anders", "Bøe",
 				"rofl@foobar.com", "22225555");
-		
-
 	}
 	*/
 
@@ -25,7 +27,7 @@ public class UserConverter {
 
 		Element userID = new Element("userID");
 		userID.appendChild(user.userID + "");
-		
+
 		Element password = new Element("password");
 		password.appendChild(user.password);
 
@@ -37,10 +39,9 @@ public class UserConverter {
 
 		Element email = new Element("email");
 		email.appendChild(user.email);
-		
+
 		Element phoneNumber = new Element("phoneNumber");
 		phoneNumber.appendChild(user.phoneNumber);
-
 
 		element.appendChild(userID);
 		element.appendChild(firstName);
@@ -50,16 +51,22 @@ public class UserConverter {
 		element.appendChild(email);
 		return element;
 	}
-	
-	public User toUser(String xml) throws java.io.IOException, java.text.ParseException, nu.xom.ParsingException {
-		nu.xom.Builder parser = new nu.xom.Builder(false);
-		nu.xom.Document doc = parser.build(xml, "");
+
+	public static User toUser(String xml) throws java.io.IOException,
+			java.text.ParseException, nu.xom.ParsingException {
+		nu.xom.Document doc;
+		try {
+			nu.xom.Builder parser = new nu.xom.Builder(false);
+			doc = parser.build(xml, "");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 		return convertXMLToUser(doc.getRootElement());
-	    }
-	
+	}
+
 	public static User convertXMLToUser(Element userElement) {
-		String userID = null, userName = null, password = null, firstName = null, lastName = null,
-				email = null, phoneNumber = null;
+		String userID = null, userName = null, password = null, firstName = null, lastName = null, email = null, phoneNumber = null;
 		Element element = userElement.getFirstChildElement("userID");
 		if (element != null) {
 			userID = element.getValue();
@@ -88,8 +95,9 @@ public class UserConverter {
 		if (element != null) {
 			phoneNumber = element.getValue();
 		}
-		return new User(Integer.parseInt(userID), userName, password, firstName, lastName, email, phoneNumber);
-		
+		return new User(Integer.parseInt(userID), userName, password,
+				firstName, lastName, email, phoneNumber);
+
 	}
 
 }
