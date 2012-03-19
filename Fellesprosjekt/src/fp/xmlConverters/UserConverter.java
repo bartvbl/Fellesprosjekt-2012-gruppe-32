@@ -1,35 +1,33 @@
 package fp.xmlConverters;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.util.Date;
-
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.xml.sax.SAXException;
-
+import no.ntnu.fp.model.Person;
 import nu.xom.Element;
+
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+
 import fp.dataObjects.User;
 
 public class UserConverter {
 
+	/*
 	public static void main(String[] args) {
 		User user = new User(123, "Neshyyy", "rumpeldunk", "Anders", "Bøe",
 				"rofl@foobar.com", "22225555");
-		String userToXML = convertUserToXML(user);
-		System.out.println(convertUserToXML(user));
-		Element elem = convertXMLStringToElement(userToXML);
-		User user2 = convertXMLToUser(elem);
-		System.out.println(user2);
+		
 
 	}
+	*/
 
-	public static String convertUserToXML(User user) {
+	public static Element convertUserToXML(User user) {
 		Element element = new Element("user");
 
 		Element userID = new Element("userID");
 		userID.appendChild(user.userID + "");
+		
+		Element password = new Element("password");
+		password.appendChild(user.password);
 
 		Element firstName = new Element("firstName");
 		firstName.appendChild(user.firstName);
@@ -37,14 +35,12 @@ public class UserConverter {
 		Element lastName = new Element("lastName");
 		lastName.appendChild(user.lastName);
 
-		Element password = new Element("password");
-		password.appendChild(user.password);
-
+		Element email = new Element("email");
+		email.appendChild(user.email);
+		
 		Element phoneNumber = new Element("phoneNumber");
 		phoneNumber.appendChild(user.phoneNumber);
 
-		Element email = new Element("email");
-		email.appendChild(user.email);
 
 		element.appendChild(userID);
 		element.appendChild(firstName);
@@ -52,14 +48,15 @@ public class UserConverter {
 		element.appendChild(password);
 		element.appendChild(phoneNumber);
 		element.appendChild(email);
-		return element.toXML();
+		return element;
 	}
 	
-	public static Element convertXMLStringToElement(String xmlString){
-		
-		
-	}
-
+	public User toUser(String xml) throws java.io.IOException, java.text.ParseException, nu.xom.ParsingException {
+		nu.xom.Builder parser = new nu.xom.Builder(false);
+		nu.xom.Document doc = parser.build(xml, "");
+		return convertXMLToUser(doc.getRootElement());
+	    }
+	
 	public static User convertXMLToUser(Element userElement) {
 		String userID = null, userName = null, password = null, firstName = null, lastName = null,
 				email = null, phoneNumber = null;
@@ -94,4 +91,5 @@ public class UserConverter {
 		return new User(Integer.parseInt(userID), userName, password, firstName, lastName, email, phoneNumber);
 		
 	}
+
 }
