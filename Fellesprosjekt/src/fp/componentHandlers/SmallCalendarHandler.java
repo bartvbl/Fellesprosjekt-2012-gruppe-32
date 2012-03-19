@@ -4,12 +4,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
 
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import fp.componentControllers.SmallCalendarController;
+import fp.events.Event;
 import fp.events.EventDispatcher;
+import fp.events.EventType;
 import fp.views.CalendarView;
 import fp.views.SmallCalendarPanel;
 
-public class SmallCalendarHandler extends AbstractComponentHandler implements ActionListener {
+public class SmallCalendarHandler extends AbstractComponentHandler implements ActionListener, ListSelectionListener {
 
 	private SmallCalendarController smallCalendarController;
 
@@ -22,6 +27,7 @@ public class SmallCalendarHandler extends AbstractComponentHandler implements Ac
 	private void addEventListeners() {
 		SmallCalendarPanel.prevMonthButton.addActionListener(this);
 		SmallCalendarPanel.nextMonthButton.addActionListener(this);
+		SmallCalendarPanel.calendarTable.getSelectionModel().addListSelectionListener(this);
 	}
 
 	public void actionPerformed(ActionEvent event) {
@@ -30,6 +36,10 @@ public class SmallCalendarHandler extends AbstractComponentHandler implements Ac
 		} else if(event.getSource() == SmallCalendarPanel.prevMonthButton) {
 			this.smallCalendarController.previousMonth();
 		}
+	}
+
+	public void valueChanged(ListSelectionEvent event) {
+		this.eventDispatcher.dispatchEvent(new Event<Object>(EventType.SMALL_CALENDAR_WEEK_SELECTED));
 	}
 	
 }

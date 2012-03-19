@@ -29,6 +29,7 @@ public class SmallCalendarPanel extends javax.swing.JPanel {
 		SmallCalendarPanel.calendarTable.getTableHeader().setEnabled(false);
 		SmallCalendarPanel.calendarTable.setDefaultRenderer(Object.class, new SmallCalendarTableTableCellRenderer());
 		SmallCalendarPanel.calendarTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		SmallCalendarPanel.calendarTable.getParent().setBackground(Color.white);
 	}
 
 	/** This method is called from within the constructor to
