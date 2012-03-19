@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="jar/AbsoluteLayout.jar"/>
 	<classpathentry kind="lib" path="jar/mysql-connector-java-5.1.17-bin.jar"/>
 	<classpathentry kind="lib" path="jar/swing-worker-1.1.jar"/>
+	<classpathentry kind="lib" path="jar/dom4j.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
