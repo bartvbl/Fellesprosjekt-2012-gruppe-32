@@ -35,7 +35,7 @@ public class smallCalendarPanel extends javax.swing.JPanel {
         nextMonthButton = new javax.swing.JButton();
         monthLabel = new javax.swing.JLabel();
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(fp.views.CalendarApp.class).getContext().getResourceMap(smallCalendarPanel.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(fp.core.CalendarApp.class).getContext().getResourceMap(smallCalendarPanel.class);
         setBorder(javax.swing.BorderFactory.createLineBorder(resourceMap.getColor("Form.border.lineColor"))); // NOI18N
         setName("Form"); // NOI18N
 
