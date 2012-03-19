@@ -7,6 +7,8 @@ import fp.dataObjects.Notification.notificationType;
 import fp.dataObjects.User;
 
 public class NotificationConverter {
+	//blabla
+	
 	
 public static String convertNotificationToXML(Notification notification) {
 	
