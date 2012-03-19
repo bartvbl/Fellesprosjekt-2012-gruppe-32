@@ -81,7 +81,7 @@ public class CalendarView extends FrameView {
         searchPanel = new javax.swing.JPanel();
         pendingNotificationsButton = new javax.swing.JToggleButton();
         todayButton = new javax.swing.JButton();
-        smallCalendarPanel = new smallCalendarPanel();
+        smallCalendarPanel = new SmallCalendarPanel();
         favouritesPanel = new javax.swing.JPanel();
         favouritesTabbedPane = new javax.swing.JTabbedPane();
         peopleListScrollPane = new javax.swing.JScrollPane();
@@ -283,7 +283,7 @@ public class CalendarView extends FrameView {
     public static javax.swing.JScrollPane peopleListScrollPane;
     public static javax.swing.JButton previousMonthButton;
     public static javax.swing.JPanel searchPanel;
-    public static smallCalendarPanel smallCalendarPanel;
+    public static SmallCalendarPanel smallCalendarPanel;
     public static javax.swing.JButton todayButton;
     // End of variables declaration//GEN-END:variables
 

@@ -14,10 +14,10 @@ package fp.views;
  *
  * @author Bart
  */
-public class smallCalendarPanel extends javax.swing.JPanel {
+public class SmallCalendarPanel extends javax.swing.JPanel {
 
     /** Creates new form SmallCalendar */
-    public smallCalendarPanel() {
+    public SmallCalendarPanel() {
         initComponents();
     }
 
@@ -35,7 +35,7 @@ public class smallCalendarPanel extends javax.swing.JPanel {
         nextMonthButton = new javax.swing.JButton();
         monthLabel = new javax.swing.JLabel();
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(fp.views.CalendarApp.class).getContext().getResourceMap(smallCalendarPanel.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(fp.views.CalendarApp.class).getContext().getResourceMap(SmallCalendarPanel.class);
         setBorder(javax.swing.BorderFactory.createLineBorder(resourceMap.getColor("Form.border.lineColor"))); // NOI18N
         setName("Form"); // NOI18N
 
@@ -119,9 +119,9 @@ public class smallCalendarPanel extends javax.swing.JPanel {
         calendarTable.getColumnModel().getColumn(6).setHeaderValue(resourceMap.getString("calendarTable.columnModel.title6")); // NOI18N
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable calendarTable;
-    private javax.swing.JLabel monthLabel;
-    private javax.swing.JButton nextMonthButton;
-    private javax.swing.JButton prevMonthButton;
+    public static javax.swing.JTable calendarTable;
+    public static javax.swing.JLabel monthLabel;
+    public static javax.swing.JButton nextMonthButton;
+    public static javax.swing.JButton prevMonthButton;
     // End of variables declaration//GEN-END:variables
 }
