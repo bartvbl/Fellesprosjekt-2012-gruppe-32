@@ -10,6 +10,10 @@
  */
 package fp.views;
 
+import java.awt.Color;
+
+import javax.swing.ListSelectionModel;
+
 import fp.components.smallCalendar.SmallCalendarTableTableCellRenderer;
 
 /**
@@ -24,6 +28,7 @@ public class SmallCalendarPanel extends javax.swing.JPanel {
 		SmallCalendarPanel.calendarTable.getColumnModel().setColumnMargin(0);
 		SmallCalendarPanel.calendarTable.getTableHeader().setEnabled(false);
 		SmallCalendarPanel.calendarTable.setDefaultRenderer(Object.class, new SmallCalendarTableTableCellRenderer());
+		SmallCalendarPanel.calendarTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	}
 
 	/** This method is called from within the constructor to
