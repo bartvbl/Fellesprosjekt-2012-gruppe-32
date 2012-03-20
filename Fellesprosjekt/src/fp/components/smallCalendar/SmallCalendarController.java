@@ -1,17 +1,19 @@
-package fp.componentControllers;
+package fp.components.smallCalendar;
 
 import java.util.Calendar;
 import java.util.Locale;
 
 import javax.swing.table.DefaultTableModel;
 
-import fp.components.smallCalendar.SmallCalendarModel;
+import fp.componentControllers.AbstractComponentController;
+import fp.componentControllers.ComponentControllerType;
 import fp.events.EventDispatcher;
 import fp.views.SmallCalendarPanel;
 
 public class SmallCalendarController extends AbstractComponentController {
 
 	private SmallCalendarModel model;
+	
 	
 	public SmallCalendarController(EventDispatcher eventDispatcher) {
 		super(ComponentControllerType.CALENDAR_VIEW_SMALL_CALENDAR, eventDispatcher);
