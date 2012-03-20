@@ -30,7 +30,5 @@ public class MessageParser {
 	public static void parseMessage(Message message, ServerUserData userData) throws SQLException{
 		typeForHandlerMap.get(message.type).handleMessage(message, userData);
 	}
-	
-	
 
 }
