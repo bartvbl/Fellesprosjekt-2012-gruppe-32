@@ -43,7 +43,9 @@ public class SmallCalendarHandler extends AbstractComponentHandler implements Ac
 	public void valueChanged(ListSelectionEvent event) {
 		DefaultListSelectionModel model = (DefaultListSelectionModel)event.getSource();
 		if(model.getLeadSelectionIndex() != -1) {
-			this.eventDispatcher.dispatchEvent(new Event<Object>(EventType.SMALL_CALENDAR_WEEK_SELECTED));
+			this.smallCalendarController.updateSelectedWeek();
+			int newSelectedWeek = this.smallCalendarController.getCurrentWeekNumber();
+			this.eventDispatcher.dispatchEvent(new Event<Integer>(EventType.SMALL_CALENDAR_WEEK_SELECTED, new Integer(newSelectedWeek)));
 		}
 	}
 	

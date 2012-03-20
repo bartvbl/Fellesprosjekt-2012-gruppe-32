@@ -1,8 +1,6 @@
 package fp.components.smallCalendar;
 
-import java.util.Calendar;
-import java.util.Locale;
-
+import java.util.Arrays;
 import javax.swing.table.DefaultTableModel;
 
 import fp.componentControllers.AbstractComponentController;
@@ -13,7 +11,6 @@ import fp.views.SmallCalendarPanel;
 public class SmallCalendarController extends AbstractComponentController {
 
 	private SmallCalendarModel model;
-	
 	
 	public SmallCalendarController(EventDispatcher eventDispatcher) {
 		super(ComponentControllerType.CALENDAR_VIEW_SMALL_CALENDAR, eventDispatcher);
@@ -39,6 +36,29 @@ public class SmallCalendarController extends AbstractComponentController {
 		for(int[] row : rows) {
 			model.addRow(new Integer[]{new Integer(row[0]), new Integer(row[1]), new Integer(row[2]), new Integer(row[3]), new Integer(row[4]), new Integer(row[5]), new Integer(row[6])});
 		}
+		this.updateSelection();
+		
+	}
+
+	private void updateSelection() {
+		int[] currentWeekArray = this.model.getWeekNumbersOfCurrentMonth();
+		int currentSelectedWeekIndex = Arrays.binarySearch(currentWeekArray, this.model.getSelectedWeekNumber());
+		if(currentSelectedWeekIndex > -1) {
+			SmallCalendarPanel.calendarTable.getSelectionModel().setSelectionInterval(currentSelectedWeekIndex, currentSelectedWeekIndex);
+		}
+	}
+	
+	public void updateSelectedWeek() {
+		int selectedIndex = SmallCalendarPanel.calendarTable.getSelectionModel().getLeadSelectionIndex();
+		int numberOfRowsInCalendarTable = SmallCalendarPanel.calendarTable.getRowCount();
+		if((selectedIndex != -1) && (selectedIndex < numberOfRowsInCalendarTable)) {				
+			int[] currentWeekList = this.model.getWeekNumbersOfCurrentMonth();
+			this.model.setSelectedWeekNumber(currentWeekList[selectedIndex]);
+		}
+	}
+	
+	public int getCurrentWeekNumber() {
+		return this.model.getSelectedWeekNumber();
 	}
 
 }
