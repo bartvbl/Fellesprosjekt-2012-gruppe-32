@@ -10,6 +10,7 @@ import javax.management.Descriptor;
 import nu.xom.Element;
 
 import fp.dataObjects.Meeting;
+import fp.dataObjects.ServerUserData;
 import fp.dataObjects.User;
 import fp.dataObjects.Meeting.LocationType;
 import fp.dataObjects.Meeting.MeetingType;
@@ -22,7 +23,7 @@ import fp.xmlConverters.UserConverter;
 public class GetMeetingHandler implements MessageHandler{
 
 	@Override
-	public void handleMessage(Message message) throws SQLException {
+	public void handleMessage(Message message, ServerUserData userdata) throws SQLException {
 		User user;
 		String query;
 		ResultSet resultSet;
