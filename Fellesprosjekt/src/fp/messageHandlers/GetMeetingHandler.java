@@ -62,7 +62,7 @@ public class GetMeetingHandler implements MessageHandler{
 			
 		}
 		
-		meeting = new Meeting(meetingID, description, location, (LocationType) locationType, startTime, endTime, status, creatorID, roomID, meetingType);
+		meeting = new Meeting(meetingID, description, location, locationType, startTime, endTime, status, creatorID, roomID, meetingType);
 		data = MeetingConverter.convertMeetingToXML(meeting);
 	}
 
