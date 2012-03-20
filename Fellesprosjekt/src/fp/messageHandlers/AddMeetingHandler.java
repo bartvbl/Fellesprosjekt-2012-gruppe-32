@@ -14,8 +14,8 @@ public class AddMeetingHandler implements MessageHandler {
 	public void handleMessage(Message message) throws SQLException {
 		Meeting meeting = MeetingConverter.convertXMLToMeeting(message.getData());
 		
-		String sqlQurey = "INSERT INTO Meeting VALUES(NULL, " + meeting.description + ", " + meeting.location 
-						+ ", " + meeting.locationType + ", " + meeting.startTime + ", " + meeting.endTime + ", " + meeting.status + ");";
+		String sqlQurey = "INSERT INTO Meeting VALUES(NULL, " + meeting.description + ", " + meeting.status + "," + meeting.location 
+						+ ", " + meeting.locationType + ", " + meeting.roomID + ", " + meeting.startTime + ", " + meeting.endTime + ", " + meeting.creatorID + "," + meeting.meetingType + ");";
 		
 		DatabaseConnection.executeWriteQuery(sqlQurey);
 		
