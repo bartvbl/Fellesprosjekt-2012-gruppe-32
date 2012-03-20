@@ -3,6 +3,7 @@ package fp.messageParsers;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+import fp.dataObjects.ServerUserData;
 import fp.messageHandlers.AddFavouriteHandler;
 import fp.messageHandlers.AddMeetingHandler;
 import fp.messageHandlers.GetMeetingHandler;
@@ -25,8 +26,8 @@ public class MessageParser {
 		
 	}
 	
-	public static void parseMessage(Message message) throws SQLException{
-		typeForHandlerMap.get(message.type).handleMessage(message);
+	public static void parseMessage(Message message, ServerUserData userData) throws SQLException{
+		typeForHandlerMap.get(message.type).handleMessage(message, userData);
 	}
 	
 	

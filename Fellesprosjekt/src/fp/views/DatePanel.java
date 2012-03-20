@@ -10,6 +10,8 @@
  */
 package fp.views;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Bart
@@ -56,12 +58,12 @@ public class DatePanel extends javax.swing.JPanel {
         dayNameLabel.setText(resourceMap.getString("dayNameLabel.text")); // NOI18N
         dayNameLabel.setName("dayNameLabel"); // NOI18N
 
-        addNewMeetingButton.setIcon(resourceMap.getIcon("addNewMeetingButton.icon")); // NOI18N
+        addNewMeetingButton.setIcon(new ImageIcon("res/star.png")); // NOI18N
         addNewMeetingButton.setText(resourceMap.getString("addNewMeetingButton.text")); // NOI18N
         addNewMeetingButton.setContentAreaFilled(false);
         addNewMeetingButton.setMargin(new java.awt.Insets(0, 0, 0, 0));
         addNewMeetingButton.setName("addNewMeetingButton"); // NOI18N
-        addNewMeetingButton.setRolloverIcon(resourceMap.getIcon("addNewMeetingButton.rolloverIcon")); // NOI18N
+        addNewMeetingButton.setRolloverIcon(new ImageIcon("res/star2.png")); // NOI18N
 
         javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
         headerPanel.setLayout(headerPanelLayout);
@@ -104,10 +106,10 @@ public class DatePanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addNewMeetingButton;
-    private javax.swing.JLabel dateDayLabel;
-    private javax.swing.JLabel dayNameLabel;
-    private javax.swing.JPanel headerPanel;
-    private javax.swing.JLayeredPane meetingViewLayeredPane;
+    public static javax.swing.JButton addNewMeetingButton;
+    public static javax.swing.JLabel dateDayLabel;
+    public static javax.swing.JLabel dayNameLabel;
+    public static javax.swing.JPanel headerPanel;
+    public static javax.swing.JLayeredPane meetingViewLayeredPane;
     // End of variables declaration//GEN-END:variables
 }
