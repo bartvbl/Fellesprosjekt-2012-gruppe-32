@@ -3,7 +3,7 @@ package fp.messageParsers;
 import nu.xom.Element;
 
 public class Message {
-	
+	//hahahahahah
 	
 	private MessageType type;
 	private Element data;
