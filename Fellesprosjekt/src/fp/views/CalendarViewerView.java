@@ -11,7 +11,7 @@ import fp.components.calendarViewer.DatePanelHoverHandler;
 public class CalendarViewerView {
 	public static DatePanel[] dayDatePanels = new DatePanel[7];
 	private static String[] dayNames = new String[]{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
-	private static final int minimumPanelWidth = 140;
+	private static final int minimumPanelWidth = 142;
 	
 	public CalendarViewerView() {
 		CalendarView.calendarViewerLayeredPane.getParent().setBackground(Color.white);

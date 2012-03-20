@@ -24,6 +24,7 @@ public class DatePanel extends javax.swing.JPanel {
     }
 
 
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -37,8 +38,8 @@ public class DatePanel extends javax.swing.JPanel {
         headerPanel = new javax.swing.JPanel();
         dateDayLabel = new javax.swing.JLabel();
         dayNameLabel = new javax.swing.JLabel();
-        addNewMeetingButton = new javax.swing.JButton();
         panelBorder = new javax.swing.JSeparator();
+        addNewMeetingButton = new javax.swing.JButton();
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(fp.views.CalendarApp.class).getContext().getResourceMap(DatePanel.class);
         setBackground(resourceMap.getColor("Form.background")); // NOI18N
@@ -59,35 +60,22 @@ public class DatePanel extends javax.swing.JPanel {
         dayNameLabel.setText(resourceMap.getString("dayNameLabel.text")); // NOI18N
         dayNameLabel.setName("dayNameLabel"); // NOI18N
 
-        addNewMeetingButton.setIcon(new ImageIcon("res/plus_small.png")); // NOI18N
-        addNewMeetingButton.setText(resourceMap.getString("addNewMeetingButton.text")); // NOI18N
-        addNewMeetingButton.setContentAreaFilled(false);
-        addNewMeetingButton.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        addNewMeetingButton.setName("addNewMeetingButton"); // NOI18N
-        addNewMeetingButton.setRolloverIcon(new ImageIcon("res/plus_small2.png")); // NOI18N
-
         javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
         headerPanel.setLayout(headerPanelLayout);
         headerPanelLayout.setHorizontalGroup(
             headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerPanelLayout.createSequentialGroup()
                 .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(headerPanelLayout.createSequentialGroup()
-                        .addComponent(dayNameLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(addNewMeetingButton))
+                    .addComponent(dayNameLabel)
                     .addComponent(dateDayLabel))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         headerPanelLayout.setVerticalGroup(
             headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerPanelLayout.createSequentialGroup()
-                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(headerPanelLayout.createSequentialGroup()
-                        .addComponent(dayNameLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dateDayLabel))
-                    .addComponent(addNewMeetingButton))
+                .addComponent(dayNameLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dateDayLabel)
                 .addContainerGap(3, Short.MAX_VALUE))
         );
 
@@ -98,23 +86,35 @@ public class DatePanel extends javax.swing.JPanel {
         panelBorder.setName("jSeparator1"); // NOI18N
         panelBorder.setPreferredSize(new java.awt.Dimension(2, 10));
 
+        addNewMeetingButton.setIcon(new ImageIcon("res/plus_small.png")); // NOI18N
+        addNewMeetingButton.setText(resourceMap.getString("addNewMeetingButton.text")); // NOI18N
+        addNewMeetingButton.setContentAreaFilled(false);
+        addNewMeetingButton.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        addNewMeetingButton.setName("addNewMeetingButton"); // NOI18N
+        addNewMeetingButton.setRolloverIcon(new ImageIcon("res/plus_small2.png")); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(meetingViewLayeredPane, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                    .addComponent(headerPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(meetingViewLayeredPane, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addNewMeetingButton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelBorder, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(meetingViewLayeredPane, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addNewMeetingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(meetingViewLayeredPane, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE))
             .addComponent(panelBorder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
         );
     }// </editor-fold>
