@@ -15,8 +15,7 @@ public class AddFavouriteMeetingHandler implements MessageHandler {
 		
 		Meeting meeting = MeetingConverter.convertXMLToMeeting(message.getData());
 		
-		String sqlQurey = "INSERT INTO UserFavourites VALUES("+ userData.getUser().userID+" , appointment" +  + ", " + meeting.status + "," + meeting.location 
-						+ ", " + meeting.locationType + ", " + meeting.roomID + ", " + meeting.startTime + ", " + meeting.endTime + ", " + meeting.creatorID + "," + meeting.meetingType + ");";
+		String sqlQurey = "INSERT INTO UserFavourites VALUES("+ userData.getUser().userID+" , 'appointment', NULL, " + meeting.meetingID+");";
 		
 		DatabaseConnection.executeWriteQuery(sqlQurey);
 	}
