@@ -20,4 +20,5 @@ public class AddFavouriteMeetingHandler implements MessageHandler {
 		DatabaseConnection.executeWriteQuery(sqlQurey);
 	}
 
+	
 }
