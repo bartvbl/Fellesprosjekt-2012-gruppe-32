@@ -1,6 +1,6 @@
 package fp.net;
 
-public class Connection {
+public interface Connection {
 	
 	
 

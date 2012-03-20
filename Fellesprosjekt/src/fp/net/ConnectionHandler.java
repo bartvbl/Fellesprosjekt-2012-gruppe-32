@@ -1,5 +1,5 @@
 package fp.net;
 
-public class ConnectionHandler {
+public class ConnectionHandler implements Connection {
 
 }
