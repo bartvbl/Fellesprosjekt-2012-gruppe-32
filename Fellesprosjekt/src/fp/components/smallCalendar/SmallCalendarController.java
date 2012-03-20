@@ -43,7 +43,7 @@ public class SmallCalendarController extends AbstractComponentController {
 	private void updateSelection() {
 		int[] currentWeekArray = this.model.getWeekNumbersOfCurrentMonth();
 		int currentSelectedWeekIndex = Arrays.binarySearch(currentWeekArray, this.model.getSelectedWeekNumber());
-		if(currentSelectedWeekIndex > -1) {
+		if((currentSelectedWeekIndex > -1) && (this.model.getYear() == this.model.getSelectedYear())) {
 			SmallCalendarPanel.calendarTable.getSelectionModel().setSelectionInterval(currentSelectedWeekIndex, currentSelectedWeekIndex);
 		}
 	}
@@ -53,7 +53,7 @@ public class SmallCalendarController extends AbstractComponentController {
 		int numberOfRowsInCalendarTable = SmallCalendarPanel.calendarTable.getRowCount();
 		if((selectedIndex != -1) && (selectedIndex < numberOfRowsInCalendarTable)) {				
 			int[] currentWeekList = this.model.getWeekNumbersOfCurrentMonth();
-			this.model.setSelectedWeekNumber(currentWeekList[selectedIndex]);
+			this.model.setSelectedWeekNumber(currentWeekList[selectedIndex], this.model.getYear());
 		}
 	}
 	

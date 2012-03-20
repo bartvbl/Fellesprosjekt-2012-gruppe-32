@@ -7,6 +7,7 @@ import fp.components.calendarViewer.CalendarViewerHandler;
 import fp.components.smallCalendar.SmallCalendarController;
 import fp.components.smallCalendar.SmallCalendarHandler;
 import fp.events.EventDispatcher;
+import fp.views.CalendarViewerView;
 
 public class ClientMain {
 	private EventDispatcher eventDispatcher;
@@ -30,6 +31,7 @@ public class ClientMain {
 		
 		CalendarViewerController calendarViewerController = new CalendarViewerController(eventDispatcher);
 		new CalendarViewerHandler(eventDispatcher, calendarViewerController);
+		new CalendarViewerView();
 	}
 	
 	private void createCalendarViewControllers() {
