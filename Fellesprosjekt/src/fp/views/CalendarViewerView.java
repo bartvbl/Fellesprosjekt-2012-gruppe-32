@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 
+import fp.components.calendarViewer.DatePanelHoverHandler;
+
 public class CalendarViewerView {
 	private static CalendarViewHourIndicator hourIndicator;
 	private static String[] dayNames = new String[]{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
@@ -25,6 +27,7 @@ public class CalendarViewerView {
 			DatePanel currentPanel = new DatePanel();
 			dayDatePanels[i] = currentPanel;
 			currentPanel.dayNameLabel.setText(" " + dayNames[i]);
+			currentPanel.addMouseListener(new DatePanelHoverHandler(currentPanel));
 			CalendarView.calendarViewerLayeredPane.add(currentPanel, i+1);
 		}
 	}
