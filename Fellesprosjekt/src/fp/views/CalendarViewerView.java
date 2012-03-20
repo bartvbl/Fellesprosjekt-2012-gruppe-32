@@ -28,15 +28,18 @@ public class CalendarViewerView {
 
 	public static void handleRedraw() {
 		Rectangle scrollPaneBounds = CalendarView.calendarViewerScrollPane.getViewportBorderBounds();
-		double availableWidth = ((double)scrollPaneBounds.width) / 7;
+		double availableWidth = ((double)scrollPaneBounds.width + 1d) / 7;
 		if(availableWidth < minimumPanelWidth) {
 			availableWidth = minimumPanelWidth;
 		}
-		for(int i = 0; i < dayDatePanels.length; i++) {
+		int pixelsPerPanel = (int) availableWidth + 1;
+		int currentOffset = 0;
+		for(int i = 0; i < 7; i++) {
 			DatePanel panel = dayDatePanels[i];
-			panel.setBounds((int)(availableWidth*i) - 1, -1, (int)(availableWidth + 1.5d), scrollPaneBounds.height + 3);
+			panel.setBounds(currentOffset, -1, pixelsPerPanel, scrollPaneBounds.height + 20);
+			currentOffset += pixelsPerPanel;
 		}
-		CalendarView.calendarViewerLayeredPane.setPreferredSize(new Dimension((int)(availableWidth * 7), scrollPaneBounds.height));
+		CalendarView.calendarViewerLayeredPane.setPreferredSize(new Dimension((int)(availableWidth * 7) - 2, scrollPaneBounds.height));
 		CalendarView.mainLayeredPane.validate();
 	}
 }
