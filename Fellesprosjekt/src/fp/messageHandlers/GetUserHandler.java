@@ -30,9 +30,7 @@ public class GetUserHandler implements MessageHandler{
 	public void handleMessage(Message message) throws SQLException {
 		user = UserConverter.convertXMLToUser(message.getData());
 		query = "SELECT * FROM USER WHERE UserName="+user.userName;
-		DatabaseConnection.connect();
 		rs = DatabaseConnection.executeReadQuery(query);
-		DatabaseConnection.disconnect();
 		while(rs.next()){
 			userID = rs.getInt("UserID");
 			userName = rs.getString("UserName");
