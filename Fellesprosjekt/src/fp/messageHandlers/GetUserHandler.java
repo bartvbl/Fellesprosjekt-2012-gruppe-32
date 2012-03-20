@@ -12,23 +12,20 @@ import fp.messageParsers.Message;
 import fp.xmlConverters.UserConverter;
 
 public class GetUserHandler implements MessageHandler{
-
-	private User user;
-	private String query;
-	private ResultSet rs;
-	private Element data;
-
-	private int userID;
-	private String userName;
-	private String password;
-	private String firstName;
-	private String lastName;
-	private String email;
-	private String phoneNumber;
 	
 	@Override
 	public void handleMessage(Message message) throws SQLException {
-		user = UserConverter.convertXMLToUser(message.getData());
+		User user = UserConverter.convertXMLToUser(message.getData());
+		String query;
+		ResultSet rs;
+		Element data;
+		int userID = 0;
+		String userName = user.userName;
+		String password = null;
+		String firstName = null;
+		String lastName = null;
+		String email = null;
+		String phoneNumber = null;
 		query = "SELECT * FROM USER WHERE UserName="+user.userName;
 		rs = DatabaseConnection.executeReadQuery(query);
 		while(rs.next()){
