@@ -25,9 +25,7 @@ public class MessageParser {
 	}
 	
 	public static void parseMessage(Message message){
-
-		
-		
+		typeForHandlerMap.get(message.getType()).handleMessage(message);
 	}
 	
 	
