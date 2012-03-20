@@ -13,14 +13,6 @@ public class MessageParser {
 	
 	private static HashMap<MessageType, MessageHandler> typeForHandlerMap = new HashMap<MessageType, MessageHandler>();
 	
-	/*
-	addMeeting, 
-	removeMeeting, 
-	updateMeeting, 
-	getMeeting, 
-	getUser, 
-	addFavourite
-	*/
 	
 	public MessageParser(){
 		typeForHandlerMap.put(MessageType.addMeeting, new AddMeetingHandler());
