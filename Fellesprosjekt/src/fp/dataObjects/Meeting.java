@@ -34,10 +34,25 @@ public class Meeting {
 			}
 		}
 	}
+	public final int creatorID;
+	public final int roomID;
+	public final MeetingType meetingType;
+	public enum MeetingType{
+		meeting{
+			 public String toString(){
+				 return "meeting";
+			 }
+		},
+		appointment{
+			public String toString(){
+				return "appointment";
+			}
+		}
+	}
 	
 	public Meeting(int meetingID, String description, String location,
 			LocationType locationType, String startTime, String endTime,
-			Status status) {
+			Status status, int creatorID, int roomID, MeetingType meetingtype) {
 		this.meetingID = meetingID;
 		this.description = description;
 		this.location = location;
@@ -45,5 +60,8 @@ public class Meeting {
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.status = status;
+		this.creatorID = creatorID;
+		this.roomID = roomID;
+		this.meetingType = meetingtype;
 	}	
 }

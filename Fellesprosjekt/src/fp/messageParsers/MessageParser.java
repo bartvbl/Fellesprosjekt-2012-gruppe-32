@@ -4,7 +4,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 import fp.dataObjects.ServerUserData;
-import fp.messageHandlers.AddFavouriteHandler;
+import fp.messageHandlers.AddFavouriteMeetingHandler;
+
 import fp.messageHandlers.AddMeetingHandler;
 import fp.messageHandlers.GetMeetingHandler;
 import fp.messageHandlers.GetUserHandler;
@@ -22,7 +23,7 @@ public class MessageParser {
 		typeForHandlerMap.put(MessageType.updateMeeting, new UpdateMeetingHandler());
 		typeForHandlerMap.put(MessageType.getMeeting, new GetMeetingHandler());
 		typeForHandlerMap.put(MessageType.getUser, new GetUserHandler());
-		typeForHandlerMap.put(MessageType.addFavourite, new AddFavouriteHandler());
+		typeForHandlerMap.put(MessageType.addFavourite, new AddFavouriteMeetingHandler());
 		
 	}
 	
