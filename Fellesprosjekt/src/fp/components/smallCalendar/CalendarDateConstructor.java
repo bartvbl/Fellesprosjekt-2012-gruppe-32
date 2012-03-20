@@ -60,5 +60,7 @@ public class CalendarDateConstructor {
 		}
 		return matrix;
 	}
+	
+	//public static int[] getWeekDayDates
 
 }

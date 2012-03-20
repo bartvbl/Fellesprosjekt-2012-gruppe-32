@@ -12,16 +12,19 @@ public class DatePanelHoverHandler implements MouseListener {
 	public DatePanelHoverHandler(DatePanel target) {
 		this.datePanel = target;
 		this.datePanel.addNewMeetingButton.addMouseListener(this);
+		this.datePanel.addNewMeetingButton.setVisible(false);
 	}
 
 	public void mouseEntered(MouseEvent arg0) {
 		this.datePanel.setBackground(new Color(240, 240, 240));
 		this.datePanel.headerPanel.setBackground(new Color(240, 240, 240));
+		this.datePanel.addNewMeetingButton.setVisible(true);
 	}
 
 	public void mouseExited(MouseEvent arg0) {
 		this.datePanel.setBackground(Color.white);
 		this.datePanel.headerPanel.setBackground(Color.white);
+		this.datePanel.addNewMeetingButton.setVisible(false);
 	}
 
 	public void mouseClicked(MouseEvent arg0) {}

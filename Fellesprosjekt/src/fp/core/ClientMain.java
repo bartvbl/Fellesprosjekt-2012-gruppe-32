@@ -31,7 +31,7 @@ public class ClientMain {
 		SmallCalendarController smallCalendar = new SmallCalendarController(eventDispatcher, dateSelectionModel);
 		new SmallCalendarHandler(this.eventDispatcher, smallCalendar);
 		
-		CalendarViewerController calendarViewerController = new CalendarViewerController(eventDispatcher);
+		CalendarViewerController calendarViewerController = new CalendarViewerController(eventDispatcher, dateSelectionModel);
 		new CalendarViewerHandler(eventDispatcher, calendarViewerController);
 		new CalendarViewerView();
 	}
