@@ -1,7 +1,6 @@
 
 package fp.messageHandlers;
 
-import java.awt.font.NumericShaper.Range;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -33,7 +32,7 @@ public class GetMeetingHandler implements MessageHandler{
 		int meetingID=0;
 		String description=null;
 		String location=null;
-		Enum locationType=null;
+		LocationType locationType=null;
 		String startTime=null;
 		String endTime=null;
 		Status status=null;
@@ -63,7 +62,7 @@ public class GetMeetingHandler implements MessageHandler{
 			
 		}
 		
-		meeting = new Meeting(meetingID, description, location, (LocationType) locationType, startTime, endTime, status, creatorID, roomID, meetingType);
+		meeting = new Meeting(meetingID, description, location, locationType, startTime, endTime, status, creatorID, roomID, meetingType);
 		data = MeetingConverter.convertMeetingToXML(meeting);
 	}
 
