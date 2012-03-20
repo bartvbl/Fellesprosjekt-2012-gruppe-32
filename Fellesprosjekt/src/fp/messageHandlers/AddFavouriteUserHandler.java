@@ -21,5 +21,4 @@ public class AddFavouriteUserHandler implements MessageHandler {
 	
 	}
 	
-	
 }
