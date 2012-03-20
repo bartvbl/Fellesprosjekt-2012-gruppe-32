@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import nu.xom.Element;
 
+import fp.dataObjects.ServerUserData;
 import fp.dataObjects.User;
 import fp.database.DatabaseConnection;
 import fp.messageParsers.Message;
@@ -14,7 +15,7 @@ import fp.xmlConverters.UserConverter;
 public class GetUserHandler implements MessageHandler{
 	
 	@Override
-	public void handleMessage(Message message) throws SQLException {
+	public void handleMessage(Message message, ServerUserData userData) throws SQLException {
 		User user = UserConverter.convertXMLToUser(message.getData());
 		String query;
 		ResultSet rs;
