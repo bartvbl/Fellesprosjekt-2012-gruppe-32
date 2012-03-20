@@ -14,7 +14,8 @@ public class GetMeetingHandler implements MessageHandler{
 	public void handleMessage(Message message) throws SQLException {
 		Meeting meeting = MeetingConverter.convertXMLToMeeting(message.getData());
 		// skal hente møte basert på meetingID
-		String sqlQurey = "SELECT Meeting FROM MEETING WHERE" + meeting.meetingID + ");";
+		
+		String sqlQurey = "SELECT Meeting FROM MEETING WHERE MeetindID =" + meeting.meetingID + ");";
 		
 		DatabaseConnection.executeWriteQuery(sqlQurey);
 
