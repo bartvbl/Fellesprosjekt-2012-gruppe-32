@@ -46,9 +46,11 @@ public class CalendarView extends FrameView {
         searchTextPane.setPreferredSize(new Dimension(230, 10));
         searchPanel.add(searchTextPane, BorderLayout.CENTER);
         JLabel searchIcon = new JLabel();
-        searchIcon.setIcon(new ImageIcon("src/calendarapp/search.png"));
+        searchIcon.setIcon(new ImageIcon("res/search.png"));
         searchIcon.setPreferredSize(new Dimension(18, 18));
         searchPanel.add(searchIcon, BorderLayout.EAST);
+        peopleListScrollPane.setBorder(null);
+        appointmentsScrollPane.setBorder(null);
         
         this.jframe = this.getFrame();
     }
