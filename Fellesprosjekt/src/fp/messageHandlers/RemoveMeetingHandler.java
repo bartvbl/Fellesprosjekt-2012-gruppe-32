@@ -2,7 +2,7 @@ package fp.messageHandlers;
 
 import fp.messageParsers.Message;
 
-public class updateMeetingHandler implements MessageHandler {
+public class RemoveMeetingHandler implements MessageHandler {
 
 	@Override
 	public void handleMessage(Message message) {

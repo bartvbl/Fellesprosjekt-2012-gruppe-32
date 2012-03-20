@@ -4,7 +4,7 @@ import fp.dataObjects.Meeting;
 import fp.database.DatabaseConnection;
 import fp.messageParsers.Message;
 
-public class addMeetingHandler implements MessageHandler {
+public class AddMeetingHandler implements MessageHandler {
 
 	private Meeting meeting;
 	
