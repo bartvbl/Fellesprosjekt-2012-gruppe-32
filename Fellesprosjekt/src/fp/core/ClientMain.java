@@ -2,6 +2,8 @@ package fp.core;
 
 import fp.componentControllers.CalendarViewResizeController;
 import fp.componentHandlers.CalendarViewResizeHandler;
+import fp.components.calendarViewer.CalendarViewerController;
+import fp.components.calendarViewer.CalendarViewerHandler;
 import fp.components.smallCalendar.SmallCalendarController;
 import fp.components.smallCalendar.SmallCalendarHandler;
 import fp.events.EventDispatcher;
@@ -21,10 +23,13 @@ public class ClientMain {
 
 	private void createCalendarViewHandlers() {
 		new CalendarViewResizeController(this.eventDispatcher);
+		new CalendarViewResizeHandler(this.eventDispatcher);
+		
 		SmallCalendarController smallCalendar = new SmallCalendarController(eventDispatcher);
 		new SmallCalendarHandler(this.eventDispatcher, smallCalendar);
 		
-		new CalendarViewResizeHandler(this.eventDispatcher);
+		CalendarViewerController calendarViewerController = new CalendarViewerController(eventDispatcher);
+		new CalendarViewerHandler(eventDispatcher, calendarViewerController);
 	}
 	
 	private void createCalendarViewControllers() {
