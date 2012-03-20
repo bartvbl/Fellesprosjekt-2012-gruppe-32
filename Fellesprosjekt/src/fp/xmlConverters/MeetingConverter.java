@@ -3,6 +3,7 @@ package fp.xmlConverters;
 import nu.xom.Element;
 import fp.dataObjects.Meeting;
 import fp.dataObjects.Meeting.LocationType;
+import fp.dataObjects.Meeting.MeetingType;
 import fp.dataObjects.Meeting.Status;
 
 public class MeetingConverter {
@@ -31,6 +32,15 @@ public class MeetingConverter {
 		Element status = new Element("status");
 		status.appendChild(meeting.status.toString());
 		
+		Element creatorID = new Element("creatorID");
+		creatorID.appendChild(meeting.creatorID + "");
+		
+		Element roomID = new Element("roomID");
+		roomID.appendChild(meeting.roomID + "");
+		
+		Element meetingType = new Element("meetingType");
+		meetingType.appendChild(meeting.meetingType.toString());
+		
 		
 		element.appendChild(meetingID);
 		element.appendChild(description);
@@ -48,9 +58,10 @@ public class MeetingConverter {
 	    }
 	
 	public static Meeting convertXMLToMeeting(Element meetingElement) {
-		String meetingID = null, description = null, location = null, startTime = null, endTime = null, locType = null, stat = null;
+		String meetingID = null, description = null, location = null, startTime = null, endTime = null, locType = null, meetType = null, stat = null, creatorID = null, roomID = null;
 		LocationType locationType = null;
 		Status status = null;
+		MeetingType meetingType = null;
 		
 		Element element = meetingElement.getFirstChildElement("meetingID");
 		if (element != null) {
@@ -72,6 +83,28 @@ public class MeetingConverter {
 		if (element != null) {
 			endTime = element.getValue();
 		}
+		
+		
+		element = meetingElement.getFirstChildElement("creatorID");
+		if (element != null) {
+			creatorID = element.getValue();
+		}
+		element = meetingElement.getFirstChildElement("roomID");
+		if (element != null) {
+			roomID = element.getValue();
+		}
+		element = meetingElement.getFirstChildElement("meetingType");
+		if (element != null) {
+			meetType = element.getValue();
+			if(meetType.equals("meeting")){
+				meetingType = MeetingType.meeting;
+			}
+			else{
+				meetingType = MeetingType.appointment;
+			}
+		}	
+			
+			
 		element = meetingElement.getFirstChildElement("locationType");
 		if (element != null) {
 			locType = element.getValue();
@@ -93,7 +126,7 @@ public class MeetingConverter {
 				status = Status.cancelled;
 			}
 		}
-		return new Meeting(Integer.parseInt(meetingID), description, location, locationType, startTime, endTime, status);
+		return new Meeting(Integer.parseInt(meetingID), description, location, locationType, startTime, endTime, status, Integer.parseInt(creatorID), Integer.parseInt(roomID), meetingType);
 		
 	}
 

@@ -1,5 +1,6 @@
 package fp.messageParsers;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 
 import fp.messageHandlers.AddFavouriteHandler;
@@ -24,8 +25,8 @@ public class MessageParser {
 		
 	}
 	
-	public static void parseMessage(Message message){
-		typeForHandlerMap.get(message.getType()).handleMessage(message);
+	public static void parseMessage(Message message) throws SQLException{
+		typeForHandlerMap.get(message.type).handleMessage(message);
 	}
 	
 	
