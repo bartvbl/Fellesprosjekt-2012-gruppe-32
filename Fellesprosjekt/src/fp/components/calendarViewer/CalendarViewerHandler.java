@@ -29,7 +29,7 @@ public class CalendarViewerHandler extends AbstractComponentHandler implements E
 			case WINDOW_RESIZED:
 				break;
 			case SMALL_CALENDAR_WEEK_SELECTED:
-				this.controller.updateWeek((Date)event.getEventParameterObject());
+				//this.controller.updateWeek((Date)event.getEventParameterObject());
 		}
 	}
 
