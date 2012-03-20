@@ -5,17 +5,19 @@ import java.util.Date;
 import fp.componentControllers.AbstractComponentController;
 import fp.componentControllers.ComponentControllerType;
 import fp.events.EventDispatcher;
+import fp.models.DateSelectionModel;
 
 public class CalendarViewerController extends AbstractComponentController {
 
-	public CalendarViewerController(EventDispatcher eventDispatcher) {
+	private DateSelectionModel model;
+
+	public CalendarViewerController(EventDispatcher eventDispatcher, DateSelectionModel model) {
 		super(ComponentControllerType.CALENDAR_VIEW_CALENDAR_VIEWER, eventDispatcher);
-		
+		this.model = model;
 	}
 
-	public void updateWeek(Date startOfWeek) {
-		// TODO Auto-generated method stub
-		
+	public void updateWeek() {
+		//this.model.
 	}
 
 }

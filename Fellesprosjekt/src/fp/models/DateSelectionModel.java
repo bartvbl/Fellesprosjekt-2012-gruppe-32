@@ -24,5 +24,6 @@ public class DateSelectionModel {
 	
 	public void setSelectedWeekNumber(int newWeekNumber, int yearNumber) {
 		this.selectedWeekNumber = newWeekNumber;
+		this.selectedYearNumber = yearNumber;
 	}
 }

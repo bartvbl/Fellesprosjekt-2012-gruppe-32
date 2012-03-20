@@ -20,7 +20,7 @@ public class CalendarViewerHandler extends AbstractComponentHandler implements E
 	}
 
 	private void addEventListeners() {
-		this.eventDispatcher.addEventListener(this, EventType.SMALL_CALENDAR_WEEK_SELECTED);
+		this.eventDispatcher.addEventListener(this, EventType.SELECTED_WEEK_CHANGED);
 		this.eventDispatcher.addEventListener(this, EventType.WINDOW_RESIZED);
 	}
 
@@ -28,8 +28,8 @@ public class CalendarViewerHandler extends AbstractComponentHandler implements E
 		switch(event.eventType) {
 			case WINDOW_RESIZED:
 				break;
-			case SMALL_CALENDAR_WEEK_SELECTED:
-				//this.controller.updateWeek((Date)event.getEventParameterObject());
+			case SELECTED_WEEK_CHANGED:
+				this.controller.updateWeek();
 		}
 	}
 
