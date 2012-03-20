@@ -15,7 +15,6 @@ public class GetMeetingsInWeekHandler implements MessageHandler {
 
 	@Override
 	public void handleMessage(Message message) throws SQLException {
-		Meeting meeting = MeetingConverter.convertXMLToMeeting(message.getData());
 		// skal hente møte basert på starttime og endtime
 		
 		String[] fromDateToDate = extractDatesFromMessageData(message).split("+");
