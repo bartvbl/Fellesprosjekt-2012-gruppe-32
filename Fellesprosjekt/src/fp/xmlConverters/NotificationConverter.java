@@ -8,9 +8,15 @@ import fp.dataObjects.User;
 
 public class NotificationConverter {
 	//blabla
+
+	
+	public static void main(String[] args) {
+		Notification not = new Notification(1, 3, acceptedMeeting.Yes, notificationType.newMeeting);
+		System.out.println(convertNotificationToXML(not));
+	}
 	
 	
-public static String convertNotificationToXML(Notification notification) {
+public static Element convertNotificationToXML(Notification notification) {
 	
 	Element element = new Element("notification");
 	
@@ -31,7 +37,7 @@ public static String convertNotificationToXML(Notification notification) {
 	element.appendChild(acceptedMeeting);
 	element.appendChild(notificationType);
 
-	return element.toXML();
+	return element;
 }
 
 	
