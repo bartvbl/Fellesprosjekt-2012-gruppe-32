@@ -58,12 +58,12 @@ public class DatePanel extends javax.swing.JPanel {
         dayNameLabel.setText(resourceMap.getString("dayNameLabel.text")); // NOI18N
         dayNameLabel.setName("dayNameLabel"); // NOI18N
 
-        addNewMeetingButton.setIcon(new ImageIcon("res/star.png")); // NOI18N
+        addNewMeetingButton.setIcon(new ImageIcon("res/plus_small.png")); // NOI18N
         addNewMeetingButton.setText(resourceMap.getString("addNewMeetingButton.text")); // NOI18N
         addNewMeetingButton.setContentAreaFilled(false);
         addNewMeetingButton.setMargin(new java.awt.Insets(0, 0, 0, 0));
         addNewMeetingButton.setName("addNewMeetingButton"); // NOI18N
-        addNewMeetingButton.setRolloverIcon(new ImageIcon("res/star2.png")); // NOI18N
+        addNewMeetingButton.setRolloverIcon(new ImageIcon("res/plus_small.png")); // NOI18N
 
         javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
         headerPanel.setLayout(headerPanelLayout);

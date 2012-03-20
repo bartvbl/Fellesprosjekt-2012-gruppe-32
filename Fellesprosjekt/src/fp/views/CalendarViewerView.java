@@ -24,14 +24,19 @@ public class CalendarViewerView {
 		for(int i = 0; i < 7; i++) {
 			DatePanel currentPanel = new DatePanel();
 			dayDatePanels[i] = currentPanel;
-			currentPanel.dayNameLabel.setText(dayNames[i]);
-			
+			currentPanel.dayNameLabel.setText(" " + dayNames[i]);
+			CalendarView.calendarViewerLayeredPane.add(currentPanel, i+1);
 		}
 	}
 
 	public static void handleRedraw() {
 		Rectangle scrollPaneBounds = CalendarView.calendarViewerScrollPane.getViewportBorderBounds();
-		hourIndicator.setBounds(0, 30, 50, scrollPaneBounds.height - 30);
+		hourIndicator.setBounds(0, 40, 50, scrollPaneBounds.height - 40);
+		for(int i = 0; i < dayDatePanels.length; i++) {
+			DatePanel panel = dayDatePanels[i];
+			int availableWidth = (scrollPaneBounds.width - 50) / 7;
+			panel.setBounds(availableWidth*i + 50, -1, availableWidth + 1, scrollPaneBounds.height + 3);
+		}
 		CalendarView.calendarViewerLayeredPane.setPreferredSize(new Dimension(1000, 300));
 		CalendarView.mainLayeredPane.validate();
 	}
