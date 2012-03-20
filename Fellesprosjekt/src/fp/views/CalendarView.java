@@ -7,27 +7,14 @@ package fp.views;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import org.jdesktop.application.Action;
-import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
 import org.jdesktop.application.FrameView;
-import org.jdesktop.application.TaskMonitor;
-
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
-import javax.swing.Timer;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Style;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledDocument;
 
 /**
  * The application's main frame.
@@ -52,7 +39,7 @@ public class CalendarView extends FrameView {
         peopleListScrollPane.setBorder(null);
         appointmentsScrollPane.setBorder(null);
         
-        this.jframe = this.getFrame();
+        CalendarView.jframe = this.getFrame();
     }
 	
 	public static JFrame getJFrame() {
@@ -99,6 +86,8 @@ public class CalendarView extends FrameView {
         appointmentsScrollPane = new javax.swing.JScrollPane();
         favouriteAppointmentsScrollPane = new javax.swing.JList();
         favouritesLabel = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        calendarViewHourIndicator1 = new CalendarViewHourIndicator();
         calendarViewerScrollPane = new javax.swing.JScrollPane();
         calendarViewerLayeredPane = new javax.swing.JLayeredPane();
 
@@ -204,14 +193,27 @@ public class CalendarView extends FrameView {
             .addGroup(favouritesPanelLayout.createSequentialGroup()
                 .addComponent(favouritesLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(favouritesTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))
+                .addComponent(favouritesTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE))
         );
 
+        jPanel1.setBackground(resourceMap.getColor("jPanel1.background")); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(resourceMap.getColor("jPanel1.border.lineColor"))); // NOI18N
+        jPanel1.setName("jPanel1"); // NOI18N
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        calendarViewHourIndicator1.setName("calendarViewHourIndicator1"); // NOI18N
+        jPanel1.add(calendarViewHourIndicator1, java.awt.BorderLayout.WEST);
+
+        calendarViewerScrollPane.setBackground(resourceMap.getColor("calendarViewerScrollPane.background")); // NOI18N
+        calendarViewerScrollPane.setBorder(null);
         calendarViewerScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         calendarViewerScrollPane.setName("calendarViewerScrollPane"); // NOI18N
 
+        calendarViewerLayeredPane.setBackground(resourceMap.getColor("calendarViewerLayeredPane.background")); // NOI18N
         calendarViewerLayeredPane.setName("calendarViewerLayeredPane"); // NOI18N
         calendarViewerScrollPane.setViewportView(calendarViewerLayeredPane);
+
+        jPanel1.add(calendarViewerScrollPane, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -223,7 +225,6 @@ public class CalendarView extends FrameView {
                     .addComponent(favouritesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(calendarViewerScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(monthNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,7 +237,8 @@ public class CalendarView extends FrameView {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(nextMonthButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 309, Short.MAX_VALUE)
-                        .addComponent(pendingNotificationsButton)))
+                        .addComponent(pendingNotificationsButton))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE))
                 .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
@@ -253,13 +255,13 @@ public class CalendarView extends FrameView {
                         .addComponent(smallCalendarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(favouritesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(calendarViewerScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(previousMonthButton)
+                    .addComponent(pendingNotificationsButton)
                     .addComponent(todayButton)
-                    .addComponent(nextMonthButton)
-                    .addComponent(pendingNotificationsButton))
+                    .addComponent(nextMonthButton))
                 .addContainerGap())
         );
 
@@ -272,6 +274,7 @@ public class CalendarView extends FrameView {
 
     // Variables declaration - do not modify
     public static javax.swing.JScrollPane appointmentsScrollPane;
+    public static CalendarViewHourIndicator calendarViewHourIndicator1;
     public static javax.swing.JLayeredPane calendarViewerLayeredPane;
     public static javax.swing.JScrollPane calendarViewerScrollPane;
     public static javax.swing.JList favouriteAppointmentsScrollPane;
@@ -279,6 +282,7 @@ public class CalendarView extends FrameView {
     public static javax.swing.JLabel favouritesLabel;
     public static javax.swing.JPanel favouritesPanel;
     public static javax.swing.JTabbedPane favouritesTabbedPane;
+    public static javax.swing.JPanel jPanel1;
     public static javax.swing.JLayeredPane mainLayeredPane;
     public static javax.swing.JPanel mainPanel;
     public static javax.swing.JMenuBar menuBar;
@@ -295,4 +299,5 @@ public class CalendarView extends FrameView {
 
     private JDialog aboutBox;
 }
+
 

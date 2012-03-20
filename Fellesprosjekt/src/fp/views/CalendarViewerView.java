@@ -7,19 +7,13 @@ import java.awt.Rectangle;
 import fp.components.calendarViewer.DatePanelHoverHandler;
 
 public class CalendarViewerView {
-	private static CalendarViewHourIndicator hourIndicator;
 	private static String[] dayNames = new String[]{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
 	public static DatePanel[] dayDatePanels = new DatePanel[7];
+	private static final int minimumPanelWidth = 140;
 	
 	public CalendarViewerView() {
 		CalendarView.calendarViewerLayeredPane.getParent().setBackground(Color.white);
-		this.createHourIndicator();
 		this.createDayPanels();
-	}
-	
-	private void createHourIndicator() {
-		hourIndicator = new CalendarViewHourIndicator();
-		CalendarView.calendarViewerLayeredPane.add(hourIndicator, 0);
 	}
 	
 	private void createDayPanels() {
@@ -34,13 +28,15 @@ public class CalendarViewerView {
 
 	public static void handleRedraw() {
 		Rectangle scrollPaneBounds = CalendarView.calendarViewerScrollPane.getViewportBorderBounds();
-		hourIndicator.setBounds(0, 40, 50, scrollPaneBounds.height - 40);
+		double availableWidth = ((double)scrollPaneBounds.width) / 7;
+		if(availableWidth < minimumPanelWidth) {
+			availableWidth = minimumPanelWidth;
+		}
 		for(int i = 0; i < dayDatePanels.length; i++) {
 			DatePanel panel = dayDatePanels[i];
-			int availableWidth = (scrollPaneBounds.width - 50) / 7;
-			panel.setBounds(availableWidth*i + 50, -1, availableWidth + 1, scrollPaneBounds.height + 3);
+			panel.setBounds((int)(availableWidth*i) - 1, -1, (int)(availableWidth + 1.5d), scrollPaneBounds.height + 3);
 		}
-		CalendarView.calendarViewerLayeredPane.setPreferredSize(new Dimension(1000, 300));
+		CalendarView.calendarViewerLayeredPane.setPreferredSize(new Dimension((int)(availableWidth * 7), scrollPaneBounds.height));
 		CalendarView.mainLayeredPane.validate();
 	}
 }
