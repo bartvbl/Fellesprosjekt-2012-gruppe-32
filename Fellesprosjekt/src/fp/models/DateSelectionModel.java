@@ -1,6 +1,9 @@
 package fp.models;
 
 import java.util.Calendar;
+import java.util.Locale;
+
+import fp.components.smallCalendar.CalendarDateConstructor;
 
 public class DateSelectionModel {
 	private java.util.Calendar calendar;
@@ -22,8 +25,14 @@ public class DateSelectionModel {
 		return this.selectedWeekNumber;
 	}
 	
+	public String getSelectedMonthString() {
+		return CalendarDateConstructor.generateMonthString(calendar);
+	}
+	
 	public void setSelectedWeekNumber(int newWeekNumber, int yearNumber) {
 		this.selectedWeekNumber = newWeekNumber;
 		this.selectedYearNumber = yearNumber;
+		this.calendar.set(Calendar.WEEK_OF_YEAR, newWeekNumber);
+		this.calendar.set(Calendar.YEAR, yearNumber);
 	}
 }

@@ -14,12 +14,12 @@ public class ClientMain {
 	private EventDispatcher eventDispatcher;
 	
 	public ClientMain() {
-		this.createEVentDispatcher();
+		this.createEventDispatcher();
 		this.createCalendarViewHandlers();
 		this.createCalendarViewControllers();
 	}
 
-	private void createEVentDispatcher() {
+	private void createEventDispatcher() {
 		this.eventDispatcher = new EventDispatcher();
 	}
 
@@ -31,9 +31,9 @@ public class ClientMain {
 		SmallCalendarController smallCalendar = new SmallCalendarController(eventDispatcher, dateSelectionModel);
 		new SmallCalendarHandler(this.eventDispatcher, smallCalendar);
 		
+		new CalendarViewerView();
 		CalendarViewerController calendarViewerController = new CalendarViewerController(eventDispatcher, dateSelectionModel);
 		new CalendarViewerHandler(eventDispatcher, calendarViewerController);
-		new CalendarViewerView();
 	}
 	
 	private void createCalendarViewControllers() {

@@ -4,11 +4,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 
+import javax.swing.JScrollPane;
+
 import fp.components.calendarViewer.DatePanelHoverHandler;
 
 public class CalendarViewerView {
-	private static String[] dayNames = new String[]{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
 	public static DatePanel[] dayDatePanels = new DatePanel[7];
+	private static String[] dayNames = new String[]{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
 	private static final int minimumPanelWidth = 140;
 	
 	public CalendarViewerView() {
@@ -28,18 +30,35 @@ public class CalendarViewerView {
 
 	public static void handleRedraw() {
 		Rectangle scrollPaneBounds = CalendarView.calendarViewerScrollPane.getViewportBorderBounds();
+		int pixelsPerPanel = getAvailablePixelsPerPanel(scrollPaneBounds);
+		enableScrollBars(pixelsPerPanel);
+		updateDatePanelBounds(pixelsPerPanel, scrollPaneBounds);
+		CalendarView.calendarViewerLayeredPane.setPreferredSize(new Dimension(7*pixelsPerPanel - 1, scrollPaneBounds.height));
+		CalendarView.mainLayeredPane.validate();
+	}
+	
+	private static int getAvailablePixelsPerPanel(Rectangle scrollPaneBounds) {
 		double availableWidth = ((double)scrollPaneBounds.width + 1d) / 7;
 		if(availableWidth < minimumPanelWidth) {
 			availableWidth = minimumPanelWidth;
 		}
-		int pixelsPerPanel = (int) availableWidth + 1;
+		return (int) Math.ceil(availableWidth);
+	}
+	
+	private static void enableScrollBars(int availableWidth) {
+		if(availableWidth <= minimumPanelWidth) {
+			CalendarView.calendarViewerScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		} else {
+			CalendarView.calendarViewerScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		}
+	}
+	
+	private static void updateDatePanelBounds(int pixelsPerPanel, Rectangle scrollPaneBounds) {
 		int currentOffset = 0;
 		for(int i = 0; i < 7; i++) {
 			DatePanel panel = dayDatePanels[i];
 			panel.setBounds(currentOffset, -1, pixelsPerPanel, scrollPaneBounds.height + 20);
 			currentOffset += pixelsPerPanel;
 		}
-		CalendarView.calendarViewerLayeredPane.setPreferredSize(new Dimension((int)(availableWidth * 7) - 2, scrollPaneBounds.height));
-		CalendarView.mainLayeredPane.validate();
 	}
 }

@@ -16,6 +16,7 @@ public class CalendarViewerHandler extends AbstractComponentHandler implements E
 	public CalendarViewerHandler(EventDispatcher eventDispatcher, CalendarViewerController calendarViewerController) {
 		super(ComponentHandlerType.CALENDAR_VIEW_CALENDAR_VIEWER, eventDispatcher);
 		this.controller = calendarViewerController;
+		this.controller.updateWeek();
 		this.addEventListeners();
 	}
 
