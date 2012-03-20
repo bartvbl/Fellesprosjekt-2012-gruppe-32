@@ -6,7 +6,7 @@ import fp.dataObjects.User;
 
 public class MeetingRoomConverter {
 	
-	public static Element convertUserToXML(MeetingRoom meetingRoom) {
+	public static Element convertMeetingRoomToXML(MeetingRoom meetingRoom) {
 		Element element = new Element("meetingRoom");
 
 		Element roomID = new Element("roomID");

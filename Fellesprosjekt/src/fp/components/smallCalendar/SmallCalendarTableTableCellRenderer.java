@@ -8,7 +8,6 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableCellRenderer;
 
 public class SmallCalendarTableTableCellRenderer extends DefaultTableCellRenderer {
 	private static final Integer ZERO = new Integer(0);
