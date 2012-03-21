@@ -1,7 +1,5 @@
 package fp.components.calendarViewer;
 
-import java.util.Date;
-
 import fp.componentControllers.AbstractComponentController;
 import fp.componentControllers.ComponentControllerType;
 import fp.components.smallCalendar.CalendarDateConstructor;
@@ -35,7 +33,11 @@ public class CalendarViewerController extends AbstractComponentController {
 	}
 	
 	public void decrementSelectedWeek() {
-		
+		this.model.decrementWeek();
+	}
+	
+	public void today(){
+		this.model.setCalendarToToday();
 	}
 
 }

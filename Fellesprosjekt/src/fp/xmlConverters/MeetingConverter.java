@@ -7,6 +7,25 @@ import fp.dataObjects.Meeting.MeetingType;
 import fp.dataObjects.Meeting.Status;
 
 public class MeetingConverter {
+
+	
+	public static void main (String args[]){
+		
+		Meeting mote = new Meeting(12,"haha", "her", LocationType.meetingroom, "12:00", "13:00", Status.active, 123, 321, MeetingType.meeting );
+		
+		System.out.println(mote);
+		Element el1 = convertMeetingToXML(mote);
+		System.out.println(el1);
+		
+		System.out.println(mote.meetingID + " asdasd " + mote.creatorID + " asdasd " + mote.roomID);
+		System.out.println(el1.toXML());
+		
+		
+		Meeting mote2 = convertXMLToMeeting(el1);
+		System.out.println(mote2);
+		
+		
+	}
 	
 	public static Element convertMeetingToXML(Meeting meeting) {
 		Element element = new Element("meeting");
@@ -44,10 +63,15 @@ public class MeetingConverter {
 		
 		element.appendChild(meetingID);
 		element.appendChild(description);
+		element.appendChild(status);
 		element.appendChild(location);
 		element.appendChild(locationType);
+		element.appendChild(roomID);
 		element.appendChild(startTime);
 		element.appendChild(endTime);
+		element.appendChild(creatorID);
+		element.appendChild(meetingType);
+		
 		return element;
 	}
 	
