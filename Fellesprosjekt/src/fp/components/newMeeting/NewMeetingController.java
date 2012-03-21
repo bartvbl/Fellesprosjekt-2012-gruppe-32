@@ -20,5 +20,21 @@ public class NewMeetingController extends AbstractComponentController {
 	public void cancel(){
 		
 	}
+	
+	public void searchForMeetingRoom(){
+		
+	}
+	
+	public void searchForUsers(){
+		
+	}
+	
+	public void addUser(){
+		
+	}
+	
+	public void selectMeetingRoom(){
+		
+	}
 
 }
