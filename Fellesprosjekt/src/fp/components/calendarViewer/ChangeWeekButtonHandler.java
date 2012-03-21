@@ -13,7 +13,7 @@ public class ChangeWeekButtonHandler extends AbstractComponentHandler implements
 	private CalendarViewerController controller;
 	
 	public ChangeWeekButtonHandler(EventDispatcher eventDispatcher, CalendarViewerController controller) {
-		super(ComponentHandlerType.CALENDAR_VIEW_CALENDAR_VIEWER, eventDispatcher);
+		super(ComponentHandlerType.CHANGE_WEEK_BUTTON, eventDispatcher);
 		this.controller = controller;
 		this.addEventListeners();
 	}
