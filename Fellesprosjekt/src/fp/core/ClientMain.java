@@ -4,6 +4,7 @@ import fp.componentControllers.CalendarViewResizeController;
 import fp.componentHandlers.CalendarViewResizeHandler;
 import fp.components.calendarViewer.CalendarViewerController;
 import fp.components.calendarViewer.CalendarViewerHandler;
+import fp.components.calendarViewer.ChangeWeekButtonHandler;
 import fp.components.smallCalendar.SmallCalendarController;
 import fp.components.smallCalendar.SmallCalendarHandler;
 import fp.events.EventDispatcher;
@@ -35,6 +36,7 @@ public class ClientMain {
 		new CalendarViewerView();
 		CalendarViewerController calendarViewerController = new CalendarViewerController(eventDispatcher, dateSelectionModel);
 		new CalendarViewerHandler(eventDispatcher, calendarViewerController);
+		new ChangeWeekButtonHandler(eventDispatcher, calendarViewerController);
 		
 		new FavouritesView();
 	}
