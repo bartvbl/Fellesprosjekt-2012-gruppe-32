@@ -9,6 +9,7 @@ import fp.components.smallCalendar.SmallCalendarHandler;
 import fp.events.EventDispatcher;
 import fp.models.DateSelectionModel;
 import fp.views.CalendarViewerView;
+import fp.views.FavouritesView;
 
 public class ClientMain {
 	private EventDispatcher eventDispatcher;
@@ -34,6 +35,8 @@ public class ClientMain {
 		new CalendarViewerView();
 		CalendarViewerController calendarViewerController = new CalendarViewerController(eventDispatcher, dateSelectionModel);
 		new CalendarViewerHandler(eventDispatcher, calendarViewerController);
+		
+		new FavouritesView();
 	}
 	
 	private void createCalendarViewControllers() {
