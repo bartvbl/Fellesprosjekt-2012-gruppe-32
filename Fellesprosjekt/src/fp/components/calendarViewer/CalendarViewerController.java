@@ -1,8 +1,5 @@
 package fp.components.calendarViewer;
 
-import java.util.Calendar;
-import java.util.Date;
-
 import fp.componentControllers.AbstractComponentController;
 import fp.componentControllers.ComponentControllerType;
 import fp.components.smallCalendar.CalendarDateConstructor;
@@ -40,7 +37,7 @@ public class CalendarViewerController extends AbstractComponentController {
 	}
 	
 	public void today(){
-		Calendar CurrentDate = Calendar.getInstance();
+		this.model.setCalendarToToday();
 	}
 
 }

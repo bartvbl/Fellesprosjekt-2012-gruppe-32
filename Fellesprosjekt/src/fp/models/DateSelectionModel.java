@@ -43,4 +43,8 @@ public class DateSelectionModel {
 		this.calendar.set(Calendar.WEEK_OF_YEAR, newWeekNumber);
 		this.calendar.set(Calendar.YEAR, yearNumber);
 	}
+	
+	public void setCalendarToToday(){
+		this.calendar = Calendar.getInstance();
+	}
 }
