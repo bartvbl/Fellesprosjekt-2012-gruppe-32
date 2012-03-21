@@ -25,6 +25,14 @@ public class DateSelectionModel {
 		return this.selectedWeekNumber;
 	}
 	
+	public void incrementWeek() {
+		this.calendar.add(Calendar.WEEK_OF_YEAR, 1);
+	}
+	
+	public void decrementMonth() {
+		this.calendar.add(Calendar.WEEK_OF_YEAR, -1);
+	}
+	
 	public String getSelectedMonthString() {
 		return CalendarDateConstructor.generateMonthString(calendar);
 	}
