@@ -19,10 +19,12 @@ import fp.views.SmallCalendarPanel;
 public class SmallCalendarHandler extends AbstractComponentHandler implements ActionListener, ListSelectionListener {
 
 	private SmallCalendarController smallCalendarController;
+	private SmallCalendarSelectionController selectionController;
 
-	public SmallCalendarHandler(EventDispatcher eventDispatcher, SmallCalendarController smallCalendarController) {
+	public SmallCalendarHandler(EventDispatcher eventDispatcher, SmallCalendarController smallCalendarController, SmallCalendarSelectionController smallCalendarSelectionController) {
 		super(ComponentHandlerType.CALENDAR_VIEW_SMALL_CALENDAR, eventDispatcher);
 		this.smallCalendarController = smallCalendarController;
+		this.selectionController = smallCalendarSelectionController;
 		this.addEventListeners();
 	}
 
@@ -43,12 +45,7 @@ public class SmallCalendarHandler extends AbstractComponentHandler implements Ac
 	public void valueChanged(ListSelectionEvent event) {
 		DefaultListSelectionModel model = (DefaultListSelectionModel)event.getSource();
 		if(model.getLeadSelectionIndex() != -1) {
-			int oldSelectedWeek = this.smallCalendarController.getCurrentWeekNumber();
-			this.smallCalendarController.updateSelectedWeek();
-			int newSelectedWeek = this.smallCalendarController.getCurrentWeekNumber();
-			if(oldSelectedWeek != newSelectedWeek) {
-				this.eventDispatcher.dispatchEvent(new Event<Integer>(EventType.SELECTED_WEEK_CHANGED, new Integer(newSelectedWeek)));
-			}
+			this.selectionController.updateSelection();
 		}
 	}
 	

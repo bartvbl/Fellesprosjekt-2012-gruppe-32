@@ -35,7 +35,7 @@ public class CalendarViewerController extends AbstractComponentController {
 	}
 	
 	public void decrementSelectedWeek() {
-		
+		this.model.decrementWeek();
 	}
 
 }

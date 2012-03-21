@@ -6,6 +6,7 @@ import fp.components.calendarViewer.CalendarViewerController;
 import fp.components.calendarViewer.CalendarViewerHandler;
 import fp.components.smallCalendar.SmallCalendarController;
 import fp.components.smallCalendar.SmallCalendarHandler;
+import fp.components.smallCalendar.SmallCalendarSelectionController;
 import fp.events.EventDispatcher;
 import fp.models.DateSelectionModel;
 import fp.views.CalendarViewerView;
@@ -28,9 +29,10 @@ public class ClientMain {
 		new CalendarViewResizeController(this.eventDispatcher);
 		new CalendarViewResizeHandler(this.eventDispatcher);
 		
-		DateSelectionModel dateSelectionModel = new DateSelectionModel();
+		DateSelectionModel dateSelectionModel = new DateSelectionModel(eventDispatcher);
 		SmallCalendarController smallCalendar = new SmallCalendarController(eventDispatcher, dateSelectionModel);
-		new SmallCalendarHandler(this.eventDispatcher, smallCalendar);
+		SmallCalendarSelectionController smallCalendarSelectionController = new SmallCalendarSelectionController(dateSelectionModel);
+		new SmallCalendarHandler(this.eventDispatcher, smallCalendar, smallCalendarSelectionController);
 		
 		new CalendarViewerView();
 		CalendarViewerController calendarViewerController = new CalendarViewerController(eventDispatcher, dateSelectionModel);

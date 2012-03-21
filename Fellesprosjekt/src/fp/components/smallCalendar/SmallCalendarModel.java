@@ -1,5 +1,6 @@
 package fp.components.smallCalendar;
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -9,6 +10,7 @@ import fp.views.SmallCalendarPanel;
 
 public class SmallCalendarModel {
 	private java.util.Calendar calendar;
+	private int[] currentWeekList;
 	
 	public SmallCalendarModel() {
 		this.calendar = java.util.Calendar.getInstance();
@@ -16,38 +18,41 @@ public class SmallCalendarModel {
 	}
 	
 	public void incrementMonth() {
-		int currentMonth = this.calendar.get(Calendar.MONTH);
-		currentMonth++;
-		if(currentMonth > 11) {
-			currentMonth = 0;
-			this.calendar.set(Calendar.YEAR, this.calendar.get(Calendar.YEAR) + 1);
-		}
-		this.calendar.set(Calendar.MONTH, currentMonth);
+		this.calendar.add(Calendar.MONTH, 1);
 	}
 	
 	public void decrementMonth() {
-		int currentMonth = this.calendar.get(Calendar.MONTH);
-		currentMonth--;
-		if(currentMonth < 0) {
-			currentMonth = 11;
-			this.calendar.set(Calendar.YEAR, this.calendar.get(Calendar.YEAR) - 1);
-		}
-		this.calendar.set(Calendar.MONTH, currentMonth);
-	}
-	
-	public int[][] getDateRows() {
-		return CalendarDateConstructor.getDateMatrix(this.calendar);
-	}
-	
-	public String getMonthName() {
-		return this.calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.UK);
+		this.calendar.add(Calendar.MONTH, -1);
 	}
 	
 	public int getYear() {
 		return this.calendar.get(Calendar.YEAR);
 	}
 	
-	public int[] getWeekNumbersOfCurrentMonth() {
-		return CalendarDateConstructor.getWeekListOfCurrentMonth(calendar);
+	public String getMonthName() {
+		return this.calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.UK);
+	}
+	
+	public int[][] generateDateRowsOfSmallCalendarTable() {
+		this.currentWeekList = CalendarDateConstructor.getWeekListOfCurrentMonth(calendar);
+		return CalendarDateConstructor.getDateMatrix(this.calendar);
+	}
+	
+	public int getWeekBySmallCalendarTableRowID(int rowIndex) {
+		return this.currentWeekList[rowIndex];
+	}
+	
+	public boolean isWeekCurrentlyDisplayed(int selectedWeek, int selectedYear) {
+		int currentSelectedWeekIndex = Arrays.binarySearch(this.currentWeekList, selectedWeek);
+		int currentDisplayedYear = this.calendar.get(Calendar.YEAR);
+		if((currentSelectedWeekIndex > -1) && (selectedWeek == currentDisplayedYear)){
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public int getweekIndexByWeekNumber(int selectedWeek) {
+		return Arrays.binarySearch(this.currentWeekList, selectedWeek);
 	}
 }
