@@ -1,8 +1,12 @@
 package fp.components.newMeeting;
 
+import nu.xom.Element;
 import fp.componentControllers.AbstractComponentController;
 import fp.componentControllers.ComponentControllerType;
 import fp.events.EventDispatcher;
+import fp.messageParsers.Message;
+import fp.messageParsers.MessageType;
+import fp.xmlConverters.MeetingConverter;
 
 public class NewMeetingController extends AbstractComponentController {
 
@@ -14,6 +18,8 @@ public class NewMeetingController extends AbstractComponentController {
 	}
 	
 	public void create(){
+		meeting.createMeeting();
+		Message message1 = new Message(MessageType.addMeeting, MeetingConverter.convertMeetingToXML(meeting.getMeeting()));
 		
 	}
 	
