@@ -29,7 +29,7 @@ public class DateSelectionModel {
 		this.calendar.add(Calendar.WEEK_OF_YEAR, 1);
 	}
 	
-	public void decrementMonth() {
+	public void decrementWeek() {
 		this.calendar.add(Calendar.WEEK_OF_YEAR, -1);
 	}
 	
@@ -42,5 +42,9 @@ public class DateSelectionModel {
 		this.selectedYearNumber = yearNumber;
 		this.calendar.set(Calendar.WEEK_OF_YEAR, newWeekNumber);
 		this.calendar.set(Calendar.YEAR, yearNumber);
+	}
+	
+	public void setCalendarToToday(){
+		this.calendar = Calendar.getInstance();
 	}
 }
