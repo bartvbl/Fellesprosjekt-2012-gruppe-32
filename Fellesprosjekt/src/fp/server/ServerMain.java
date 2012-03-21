@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import fp.database.DatabaseConnection;
+
 public class ServerMain implements Runnable{
 	private ServerSocket serverSocket = null;
 	private ServerWindow window;
@@ -20,6 +22,7 @@ public class ServerMain implements Runnable{
 
 	public void initialize()
 	{
+		DatabaseConnection.connect();
 		this.window = new ServerWindow(this);
 		this.handlers = new ArrayList<ClientHandler>();
 		this.threadpool = Executors.newCachedThreadPool();
