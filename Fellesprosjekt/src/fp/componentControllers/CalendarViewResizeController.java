@@ -7,6 +7,7 @@ import fp.events.EventDispatcher;
 import fp.events.EventHandler;
 import fp.events.EventType;
 import fp.views.CalendarView;
+import fp.views.CalendarViewerView;
 
 public class CalendarViewResizeController extends AbstractComponentController implements EventHandler {
 
@@ -29,6 +30,8 @@ public class CalendarViewResizeController extends AbstractComponentController im
 			int width = this.mainWindowFrame.getWidth();
 			int height = this.mainWindowFrame.getHeight();
 			CalendarView.mainPanel.setBounds(5, 5, width + horizontal_offset, height + vertical_offset);
+			this.mainWindowFrame.validate();
+			CalendarViewerView.handleRedraw();
 			this.mainWindowFrame.validate();
 		}
 	}

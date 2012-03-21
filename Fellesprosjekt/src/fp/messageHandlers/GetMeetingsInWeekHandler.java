@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import nu.xom.Element;
 
 import fp.dataObjects.Meeting;
+import fp.dataObjects.ServerUserData;
 import fp.dataObjects.Meeting.LocationType;
 import fp.dataObjects.Meeting.Status;
 import fp.database.DatabaseConnection;
@@ -14,16 +15,16 @@ import fp.xmlConverters.MeetingConverter;
 public class GetMeetingsInWeekHandler implements MessageHandler {
 
 	@Override
-	public void handleMessage(Message message) throws SQLException {
+	public void handleMessage(Message message, ServerUserData userdata) throws SQLException {
 		// skal hente møte basert på starttime og endtime
 		
 		String[] fromDateToDate = extractDatesFromMessageData(message).split("+");
 		String fromDate = fromDateToDate[0];
 		String toDate = fromDateToDate[1];
 		
-		String sqlQurey = "SELECT Meeting FROM MEETING WHERE" + fromDate + "" + toDate + ");";
+		String sqlQurey = "SELECT Meeting FROM MEETING WHERE starttime > " + fromDate + " AND endtime < " + toDate + ");";
 		
-		DatabaseConnection.executeWriteQuery(sqlQurey);		
+		DatabaseConnection.executeWriteQuery(sqlQurey);
 	}
 	
 	public String extractDatesFromMessageData(Message message){

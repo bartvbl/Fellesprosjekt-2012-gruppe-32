@@ -1,5 +1,7 @@
 package fp.components.calendarViewer;
 
+import java.util.Date;
+
 import fp.componentHandlers.AbstractComponentHandler;
 import fp.componentHandlers.ComponentHandlerType;
 import fp.events.Event;
@@ -14,17 +16,21 @@ public class CalendarViewerHandler extends AbstractComponentHandler implements E
 	public CalendarViewerHandler(EventDispatcher eventDispatcher, CalendarViewerController calendarViewerController) {
 		super(ComponentHandlerType.CALENDAR_VIEW_CALENDAR_VIEWER, eventDispatcher);
 		this.controller = calendarViewerController;
+		this.controller.updateWeek();
 		this.addEventListeners();
 	}
 
 	private void addEventListeners() {
-		this.eventDispatcher.addEventListener(this, EventType.SMALL_CALENDAR_WEEK_SELECTED);
+		this.eventDispatcher.addEventListener(this, EventType.SELECTED_WEEK_CHANGED);
 		this.eventDispatcher.addEventListener(this, EventType.WINDOW_RESIZED);
 	}
 
 	public void handleEvent(Event<?> event) {
-		if(event.eventType == EventType.WINDOW_RESIZED) {
-			
+		switch(event.eventType) {
+			case WINDOW_RESIZED:
+				break;
+			case SELECTED_WEEK_CHANGED:
+				this.controller.updateWeek();
 		}
 	}
 
