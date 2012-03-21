@@ -47,7 +47,7 @@ public class SmallCalendarHandler extends AbstractComponentHandler implements Ac
 			this.smallCalendarController.updateSelectedWeek();
 			int newSelectedWeek = this.smallCalendarController.getCurrentWeekNumber();
 			if(oldSelectedWeek != newSelectedWeek) {
-				this.eventDispatcher.dispatchEvent(new Event<Integer>(EventType.SMALL_CALENDAR_WEEK_SELECTED, new Integer(newSelectedWeek)));
+				this.eventDispatcher.dispatchEvent(new Event<Integer>(EventType.SELECTED_WEEK_CHANGED, new Integer(newSelectedWeek)));
 			}
 		}
 	}
