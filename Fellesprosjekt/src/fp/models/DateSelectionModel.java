@@ -29,7 +29,7 @@ public class DateSelectionModel {
 		this.calendar.add(Calendar.WEEK_OF_YEAR, 1);
 	}
 	
-	public void decrementMonth() {
+	public void decrementWeek() {
 		this.calendar.add(Calendar.WEEK_OF_YEAR, -1);
 	}
 	

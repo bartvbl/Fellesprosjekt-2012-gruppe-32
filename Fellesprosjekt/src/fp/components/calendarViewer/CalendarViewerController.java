@@ -29,5 +29,13 @@ public class CalendarViewerController extends AbstractComponentController {
 		String monthString = this.model.getSelectedMonthString();
 		CalendarView.monthNameLabel.setText(monthString + " (week " + weekNumber + ")");
 	}
+	
+	public void incrementSelectedWeek() {
+		this.model.incrementWeek();
+	}
+	
+	public void decrementSelectedWeek() {
+		
+	}
 
 }
