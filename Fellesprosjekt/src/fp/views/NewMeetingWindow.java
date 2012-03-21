@@ -243,11 +243,10 @@ public class NewMeetingWindow extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(endDateCalendarIcon)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(endTimeTextPane)))))
-                .addContainerGap(113, Short.MAX_VALUE))
-            .addGroup(appointmentTimeSectionPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(selectDateTimeSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
+                                .addComponent(endTimeTextPane))))
+                    .addGroup(appointmentTimeSectionPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(selectDateTimeSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         appointmentTimeSectionPanelLayout.setVerticalGroup(
@@ -390,18 +389,15 @@ public class NewMeetingWindow extends javax.swing.JFrame {
                     .addGroup(appointmentLocationSectionPanelLayout.createSequentialGroup()
                         .addComponent(enterManualLocationLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(manualLocationScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(appointmentLocationSectionPanelLayout.createSequentialGroup()
-                        .addGroup(appointmentLocationSectionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(meetingLocationVerticalDivider, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, appointmentLocationSectionPanelLayout.createSequentialGroup()
-                                .addComponent(selectAvailableRoomLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(locationSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(meetingRoomSearchResultScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(manualLocationScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(appointmentLocationSectionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(meetingLocationVerticalDivider, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, appointmentLocationSectionPanelLayout.createSequentialGroup()
+                            .addComponent(selectAvailableRoomLabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(locationSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(meetingRoomSearchResultScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(appointmentLocationSectionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(selectedLocationDescriptionLabel)
@@ -569,54 +565,54 @@ public class NewMeetingWindow extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel appointmentDetailsSectionLabel;
-    private javax.swing.JPanel appointmentDetailsSectionPanel;
-    private javax.swing.JSeparator appointmentDetailsSeparator;
-    private javax.swing.JLabel appointmentDetailsTitleLabel;
-    private javax.swing.JPanel appointmentLocationSectionPanel;
-    private javax.swing.JPanel appointmentTimeSectionPanel;
-    private javax.swing.JTextPane appointmentTitleTextPane;
-    private javax.swing.JLabel appointmentTypeLabel;
-    private javax.swing.JPanel appointmentTypeSectionPanel;
-    private javax.swing.JSeparator appointmentTypeSeparator;
-    private javax.swing.JPanel appoiontmentParticipantsSectionPanel;
-    private javax.swing.JButton cancelButton;
-    private javax.swing.JButton createButton;
-    private javax.swing.JLabel endDateCalendarIcon;
-    private javax.swing.JLabel endDateLabel;
-    private javax.swing.JTextPane endDateTextPane;
-    private javax.swing.JTextPane endTimeTextPane;
-    private javax.swing.JLabel enterManualLocationLabel;
-    private javax.swing.JLabel inviteParticipantsSectionLabel;
-    private javax.swing.JSeparator inviteParticipantsSectionSeparator;
-    private javax.swing.JLabel invitedParticipantsLabel;
-    private javax.swing.JList invitedParticipantsList;
-    private javax.swing.JScrollPane invitedParticipantsScrollPane;
-    private javax.swing.JLabel locationSearchMagnifyingGlassIcon;
-    private javax.swing.JPanel locationSearchPanel;
-    private javax.swing.JTextPane locationSearchTextPane;
-    private javax.swing.JScrollPane manualLocationScrollPane;
-    private javax.swing.JTextPane manualLocationTextPane;
-    private javax.swing.JLabel meetingLocationDivisionOrLabel;
-    private javax.swing.JLabel meetingLocationLabel;
-    private javax.swing.JSeparator meetingLocationVerticalDivider;
-    private javax.swing.JList meetingRoomSearchResultList;
-    private javax.swing.JScrollPane meetingRoomSearchResultScrollPane;
-    private javax.swing.JToggleButton newAppointmentButton;
-    private javax.swing.JToggleButton newMeetingButton;
-    private javax.swing.JList participantSearchResultList;
-    private javax.swing.JScrollPane participantSearchResultScrollPane;
-    private javax.swing.JTextPane participantSearchTextPane;
-    private javax.swing.JLabel participantsSearchMagnifyingGlassIcon;
-    private javax.swing.JPanel participantsSearchPanel;
-    private javax.swing.JLabel selectAvailableRoomLabel;
-    private javax.swing.JLabel selectDateTimeSectionLabel;
-    private javax.swing.JSeparator selectDateTimeSeparator;
-    private javax.swing.JLabel selectedLocationDescriptionLabel;
-    private javax.swing.JLabel selectedLocationLabel;
-    private javax.swing.JLabel startDateCalendarIcon;
-    private javax.swing.JTextPane startDateTextPane;
-    private javax.swing.JLabel startTimeLabel;
-    private javax.swing.JTextPane startTimeTextPane;
+    public static javax.swing.JLabel appointmentDetailsSectionLabel;
+    public static javax.swing.JPanel appointmentDetailsSectionPanel;
+    public static javax.swing.JSeparator appointmentDetailsSeparator;
+    public static javax.swing.JLabel appointmentDetailsTitleLabel;
+    public static javax.swing.JPanel appointmentLocationSectionPanel;
+    public static javax.swing.JPanel appointmentTimeSectionPanel;
+    public static javax.swing.JTextPane appointmentTitleTextPane;
+    public static javax.swing.JLabel appointmentTypeLabel;
+    public static javax.swing.JPanel appointmentTypeSectionPanel;
+    public static javax.swing.JSeparator appointmentTypeSeparator;
+    public static javax.swing.JPanel appoiontmentParticipantsSectionPanel;
+    public static javax.swing.JButton cancelButton;
+    public static javax.swing.JButton createButton;
+    public static javax.swing.JLabel endDateCalendarIcon;
+    public static javax.swing.JLabel endDateLabel;
+    public static javax.swing.JTextPane endDateTextPane;
+    public static javax.swing.JTextPane endTimeTextPane;
+    public static javax.swing.JLabel enterManualLocationLabel;
+    public static javax.swing.JLabel inviteParticipantsSectionLabel;
+    public static javax.swing.JSeparator inviteParticipantsSectionSeparator;
+    public static javax.swing.JLabel invitedParticipantsLabel;
+    public static javax.swing.JList invitedParticipantsList;
+    public static javax.swing.JScrollPane invitedParticipantsScrollPane;
+    public static javax.swing.JLabel locationSearchMagnifyingGlassIcon;
+    public static javax.swing.JPanel locationSearchPanel;
+    public static javax.swing.JTextPane locationSearchTextPane;
+    public static javax.swing.JScrollPane manualLocationScrollPane;
+    public static javax.swing.JTextPane manualLocationTextPane;
+    public static javax.swing.JLabel meetingLocationDivisionOrLabel;
+    public static javax.swing.JLabel meetingLocationLabel;
+    public static javax.swing.JSeparator meetingLocationVerticalDivider;
+    public static javax.swing.JList meetingRoomSearchResultList;
+    public static javax.swing.JScrollPane meetingRoomSearchResultScrollPane;
+    public static javax.swing.JToggleButton newAppointmentButton;
+    public static javax.swing.JToggleButton newMeetingButton;
+    public static javax.swing.JList participantSearchResultList;
+    public static javax.swing.JScrollPane participantSearchResultScrollPane;
+    public static javax.swing.JTextPane participantSearchTextPane;
+    public static javax.swing.JLabel participantsSearchMagnifyingGlassIcon;
+    public static javax.swing.JPanel participantsSearchPanel;
+    public static javax.swing.JLabel selectAvailableRoomLabel;
+    public static javax.swing.JLabel selectDateTimeSectionLabel;
+    public static javax.swing.JSeparator selectDateTimeSeparator;
+    public static javax.swing.JLabel selectedLocationDescriptionLabel;
+    public static javax.swing.JLabel selectedLocationLabel;
+    public static javax.swing.JLabel startDateCalendarIcon;
+    public static javax.swing.JTextPane startDateTextPane;
+    public static javax.swing.JLabel startTimeLabel;
+    public static javax.swing.JTextPane startTimeTextPane;
     // End of variables declaration//GEN-END:variables
 }
