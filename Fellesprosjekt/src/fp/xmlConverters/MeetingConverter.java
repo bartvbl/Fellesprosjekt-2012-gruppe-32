@@ -9,7 +9,7 @@ import fp.dataObjects.Meeting.Status;
 public class MeetingConverter {
 
 	
-	public static void main (String args[]){
+	public static void main (String[] args){
 		
 		Meeting mote = new Meeting(12,"haha", "her", LocationType.meetingroom, "12:00", "13:00", Status.active, 123, 321, MeetingType.meeting );
 		
