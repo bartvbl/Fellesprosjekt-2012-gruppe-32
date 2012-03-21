@@ -27,7 +27,7 @@ public class GetUserHandler implements MessageHandler{
 		String lastName = null;
 		String email = null;
 		String phoneNumber = null;
-		query = "SELECT * FROM USER WHERE UserName="+user.userName;
+		query = "SELECT * FROM USER WHERE UserName="+user.userName + ";";
 		rs = DatabaseConnection.executeReadQuery(query);
 		while(rs.next()){
 			userID = rs.getInt("UserID");
