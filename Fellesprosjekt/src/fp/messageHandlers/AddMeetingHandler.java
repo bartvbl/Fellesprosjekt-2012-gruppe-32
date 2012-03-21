@@ -19,8 +19,9 @@ public class AddMeetingHandler implements MessageHandler {
 		System.out.println("Konvertert til XML fil...");
 		System.out.println("Oppretter SQL streng");
 		
-		String sqlQurey = "INSERT INTO Meeting VALUES(null, " 	+ meeting.description + ", " + meeting.status + "," + meeting.location + ", " 
-																+ meeting.locationType + ", " + meeting.roomID + ", " + meeting.startTime + ", " 
+		String sqlQurey = "INSERT INTO Meeting VALUES(NULL, " 	+ meeting.status + "," + meeting.description + ", " + meeting.locationType + ", "
+																+ meeting.location + ", " 
+																 + meeting.roomID + ", " + meeting.startTime + ", " 
 																+ meeting.endTime + ", " + meeting.creatorID + "," + meeting.meetingType + ");";
 		
 		System.out.println("Setter inn i database");
