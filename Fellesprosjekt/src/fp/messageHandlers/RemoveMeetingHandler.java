@@ -13,7 +13,7 @@ public class RemoveMeetingHandler implements MessageHandler {
 	public void handleMessage(Message message, ServerUserData userdata) throws SQLException {
 		Meeting meeting = MeetingConverter.convertXMLToMeeting(message.getData());
 		
-		String queryString = "REMOVE MEETING FROM MEETING WHERE MeetingID = " + meeting.meetingID + ";";
+		String queryString = "REMOVE MEETING FROM MEETING WHERE MeetingID = '" + meeting.meetingID + "';";
 	}
 	
 }
