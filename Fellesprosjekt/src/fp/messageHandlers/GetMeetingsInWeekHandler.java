@@ -22,9 +22,9 @@ public class GetMeetingsInWeekHandler implements MessageHandler {
 		String fromDate = fromDateToDate[0];
 		String toDate = fromDateToDate[1];
 		
-		String sqlQurey = "SELECT Meeting FROM MEETING WHERE" + fromDate + "" + toDate + ");";
+		String sqlQurey = "SELECT Meeting FROM MEETING WHERE starttime > " + fromDate + " AND endtime < " + toDate + ");";
 		
-		DatabaseConnection.executeWriteQuery(sqlQurey);		
+		DatabaseConnection.executeWriteQuery(sqlQurey);
 	}
 	
 	public String extractDatesFromMessageData(Message message){
