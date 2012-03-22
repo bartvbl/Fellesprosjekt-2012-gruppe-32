@@ -26,6 +26,10 @@ public class ServerRunner {
 		testAddUserHandler();
 
 	}
+	
+	public static void testGetMeetingsInWeekHandler(){
+		
+	}
 
 	public static void testAddUserHandler() {
 		User user = new User(13, "Neshyy", "roflmao", "Flanders", "Trond", "boe@lool.com", "81549300");
