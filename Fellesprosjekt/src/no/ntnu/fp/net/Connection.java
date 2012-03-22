@@ -27,7 +27,7 @@ public interface Connection {
 	 * @throws java.io.IOException if an I/O error occurs when waiting for a connection
 	 * @throws java.net.SocketTimeoutException if the timeout has been reached
 	 */
-	public void accept() throws java.io.IOException, java.net.SocketTimeoutException;
+	public Connection accept() throws java.io.IOException, java.net.SocketTimeoutException;
 	
 	/**
 	 * Send a message to a remote instance.

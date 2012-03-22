@@ -1,5 +1,7 @@
 package fp.components.calendarViewer;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Date;
 
 import fp.componentHandlers.AbstractComponentHandler;
@@ -8,29 +10,31 @@ import fp.events.Event;
 import fp.events.EventDispatcher;
 import fp.events.EventHandler;
 import fp.events.EventType;
+import fp.models.DateSelectionModel;
+import fp.views.CalendarView;
 
-public class CalendarViewerHandler extends AbstractComponentHandler implements EventHandler {
+public class CalendarViewerHandler extends AbstractComponentHandler implements ActionListener {
+	private DateSelectionModel selectionModel;
 
-	private CalendarViewerController controller;
-
-	public CalendarViewerHandler(EventDispatcher eventDispatcher, CalendarViewerController calendarViewerController) {
+	public CalendarViewerHandler(EventDispatcher eventDispatcher, DateSelectionModel selectionModel) {
 		super(ComponentHandlerType.CALENDAR_VIEW_CALENDAR_VIEWER, eventDispatcher);
-		this.controller = calendarViewerController;
-		this.controller.updateWeek();
+		this.selectionModel = selectionModel;
 		this.addEventListeners();
 	}
 
 	private void addEventListeners() {
-		this.eventDispatcher.addEventListener(this, EventType.SELECTED_WEEK_CHANGED);
-		this.eventDispatcher.addEventListener(this, EventType.WINDOW_RESIZED);
+		CalendarView.nextMonthButton.addActionListener(this);
+		CalendarView.previousMonthButton.addActionListener(this);
+		CalendarView.todayButton.addActionListener(this);
 	}
 
-	public void handleEvent(Event<?> event) {
-		switch(event.eventType) {
-			case WINDOW_RESIZED:
-				break;
-			case SELECTED_WEEK_CHANGED:
-				this.controller.updateWeek();
+	public void actionPerformed(ActionEvent event) {
+		if(event.getSource() == CalendarView.nextMonthButton) {
+			this.selectionModel.incrementWeek();
+		} else if(event.getSource() == CalendarView.previousMonthButton) {
+			this.selectionModel.decrementWeek();
+		} else if(event.getSource() == CalendarView.todayButton) {
+			this.selectionModel.reset();
 		}
 	}
 

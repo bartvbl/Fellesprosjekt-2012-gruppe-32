@@ -13,18 +13,20 @@ import fp.componentHandlers.ComponentHandlerType;
 import fp.events.Event;
 import fp.events.EventDispatcher;
 import fp.events.EventType;
+import fp.models.DateSelectionModel;
+import fp.models.SmallCalendarModel;
 import fp.views.CalendarView;
 import fp.views.SmallCalendarPanel;
 
 public class SmallCalendarHandler extends AbstractComponentHandler implements ActionListener, ListSelectionListener {
 
-	private SmallCalendarController smallCalendarController;
-	private SmallCalendarSelectionController selectionController;
+	private SmallCalendarModel calendarModel;
+	private DateSelectionModel dateModel;
 
-	public SmallCalendarHandler(EventDispatcher eventDispatcher, SmallCalendarController smallCalendarController, SmallCalendarSelectionController smallCalendarSelectionController) {
+	public SmallCalendarHandler(EventDispatcher eventDispatcher, SmallCalendarModel calendarModel, DateSelectionModel dateModel) {
 		super(ComponentHandlerType.CALENDAR_VIEW_SMALL_CALENDAR, eventDispatcher);
-		this.smallCalendarController = smallCalendarController;
-		this.selectionController = smallCalendarSelectionController;
+		this.calendarModel = calendarModel;
+		this.dateModel = dateModel;
 		this.addEventListeners();
 	}
 
@@ -36,17 +38,25 @@ public class SmallCalendarHandler extends AbstractComponentHandler implements Ac
 
 	public void actionPerformed(ActionEvent event) {
 		if(event.getSource() == SmallCalendarPanel.nextMonthButton) {
-			this.smallCalendarController.nextMonth();
+			this.calendarModel.incrementMonth();
 		} else if(event.getSource() == SmallCalendarPanel.prevMonthButton) {
-			this.smallCalendarController.previousMonth();
+			this.calendarModel.decrementMonth();
 		}
 	}
 
 	public void valueChanged(ListSelectionEvent event) {
-		DefaultListSelectionModel model = (DefaultListSelectionModel)event.getSource();
-		if(model.getLeadSelectionIndex() != -1) {
-			this.selectionController.updateSelection();
+		int selectedTableIndex = event.getFirstIndex();
+		//System.out.println("received selection event " + event.getValueIsAdjusting());
+		if((selectedTableIndex > -1) && (!event.getValueIsAdjusting())) {
+			this.invokeSelectionUpdate(selectedTableIndex);
 		}
+	}
+
+	private void invokeSelectionUpdate(int selectedTableIndex) {
+		this.calendarModel.setSelectedTableIndex(selectedTableIndex);
+		int weekNumber = this.calendarModel.getWeek();
+		int yearNumber = this.calendarModel.getYear();
+		this.dateModel.setSelectedWeekNumber(weekNumber, yearNumber);
 	}
 	
 }

@@ -15,6 +15,7 @@ public class SmallCalendarTableTableCellRenderer extends DefaultTableCellRendere
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 		JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, false, row, column);
 		Integer intValue = (Integer) value;
+		if(value == null) { return label; }
 		if(value.equals(ZERO)) {
 			label.setText("");
 		} else {

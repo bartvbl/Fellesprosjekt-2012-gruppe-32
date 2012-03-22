@@ -10,8 +10,6 @@ import fp.events.EventType;
 
 public class DateSelectionModel {
 	private java.util.Calendar calendar;
-	private int selectedWeekNumber;
-	private int selectedYearNumber;
 	private EventDispatcher eventDispatcher;
 	
 	public DateSelectionModel(EventDispatcher eventDispatcher) {
@@ -32,11 +30,11 @@ public class DateSelectionModel {
 	}
 
 	public int getSelectedYear() {
-		return this.selectedYearNumber;
+		return this.calendar.get(Calendar.YEAR);
 	}
 	
 	public int getSelectedWeekNumber() {
-		return this.selectedWeekNumber;
+		return this.calendar.get(Calendar.WEEK_OF_YEAR);
 	}
 	
 	public void incrementWeek() {
@@ -54,10 +52,19 @@ public class DateSelectionModel {
 	}
 	
 	public void setSelectedWeekNumber(int newWeekNumber, int yearNumber) {
-		this.selectedWeekNumber = newWeekNumber;
-		this.selectedYearNumber = yearNumber;
+		System.out.println(newWeekNumber + " " + yearNumber);
+//		System.out.println("calendar: " + this.getSelectedWeekNumber() + ", " + this.getSelectedYear());
+		int currentWeekNumber = this.getSelectedWeekNumber();
+		int currentYearNumber = this.getSelectedYear();
+		if((newWeekNumber == currentWeekNumber) && (yearNumber == currentYearNumber)) {System.out.println("returning");return;}
 		this.calendar.set(Calendar.WEEK_OF_YEAR, newWeekNumber);
 		this.calendar.set(Calendar.YEAR, yearNumber);
+		this.eventDispatcher.dispatchEvent(new Event<Object>(EventType.SELECTED_WEEK_CHANGED));
+	}
+
+	public void reset() {
+		this.calendar = Calendar.getInstance();
+		this.calendar.setFirstDayOfWeek(Calendar.MONDAY);
 		this.eventDispatcher.dispatchEvent(new Event<Object>(EventType.SELECTED_WEEK_CHANGED));
 	}
 }

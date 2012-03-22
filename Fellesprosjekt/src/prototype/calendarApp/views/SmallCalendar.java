@@ -10,6 +10,8 @@
  */
 package prototype.calendarApp.views;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Bart
@@ -19,6 +21,8 @@ public class SmallCalendar extends javax.swing.JPanel {
     /** Creates new form SmallCalendar */
     public SmallCalendar() {
         initComponents();
+        DefaultTableModel model = ((DefaultTableModel)calendarTable.getModel());
+        model.setRowCount(0);
     }
 
     /** This method is called from within the constructor to
@@ -44,28 +48,10 @@ public class SmallCalendar extends javax.swing.JPanel {
         prevMonthButton.setName("prevMonthButton"); // NOI18N
 
         calendarTable.setBackground(resourceMap.getColor("calendarTable.background")); // NOI18N
-        calendarTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"},
-                {null, null, "", "", "", "1", "2"},
-                {"3", "4", "5", "6", "7", "8", "9"},
-                {"10", "11", "12", "13", "14", "15", "16"},
-                {"17", "18", "19", "20", "21", "22", "23"},
-                {"24", "25", "26", "27", "28", "29", "30"},
-                {"31", null, null, null, null, null, null}
-            },
-            new String [] {
-                "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        calendarTable.setModel(new javax.swing.table.DefaultTableModel() {
+        	public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            } });
         calendarTable.setName("calendarTable"); // NOI18N
         calendarTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         calendarTable.setShowHorizontalLines(false);
