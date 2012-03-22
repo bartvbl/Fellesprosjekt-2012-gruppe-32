@@ -27,6 +27,9 @@ public class UserConverter {
 
 		Element userID = new Element("userID");
 		userID.appendChild(user.userID + "");
+		
+		Element userName = new Element("userName");
+		userName.appendChild(user.userName +  "");
 
 		Element password = new Element("password");
 		password.appendChild(user.password);
@@ -44,6 +47,7 @@ public class UserConverter {
 		phoneNumber.appendChild(user.phoneNumber);
 
 		element.appendChild(userID);
+		element.appendChild(userName);
 		element.appendChild(firstName);
 		element.appendChild(lastName);
 		element.appendChild(password);
