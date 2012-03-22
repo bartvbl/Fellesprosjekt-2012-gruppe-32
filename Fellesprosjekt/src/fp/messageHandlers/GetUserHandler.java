@@ -43,6 +43,11 @@ public class GetUserHandler implements MessageHandler{
 		user = new User(userID, userName, password, firstName, lastName, email, phoneNumber);
 		data = UserConverter.convertUserToXML(user);
 		
+		System.out.println(data.toXML());
+		
 	}
+
 	
+	
+
 }
