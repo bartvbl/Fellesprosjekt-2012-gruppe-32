@@ -44,6 +44,7 @@ public class ClientHandler implements Runnable {
 		} catch (IOException e) {
 			this.main.writeMessageInWindow(e.getMessage());
 		}
+		
 	}
 
 	public void initateShutdown(){
@@ -67,5 +68,7 @@ public class ClientHandler implements Runnable {
 	public String toString(){
 		return clientSocket.getRemoteSocketAddress().toString();
 	}
+	
+	
 }
 
