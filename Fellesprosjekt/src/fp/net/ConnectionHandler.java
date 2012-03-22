@@ -7,7 +7,7 @@ import fp.messageParsers.Message;
 
 public class ConnectionHandler {
 	// Denne klassen må ha en XML-reader som konverterer meldingsstreng til et messageObject
-
+	
 	
 	private Socket socket;
 
@@ -23,5 +23,7 @@ public class ConnectionHandler {
 		
 		
 	}
+	
+	
 	
 }
