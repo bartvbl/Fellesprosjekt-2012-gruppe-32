@@ -19,21 +19,29 @@ import fp.views.SmallCalendarPanel;
 
 public class NewMeetingHandler extends AbstractComponentHandler implements ActionListener, ListSelectionListener, KeyListener{
 	
-	NewMeetingController controller;
+	NewMeetingModel model;
 
-	public NewMeetingHandler(EventDispatcher eventDispatcher, NewMeetingController controller) {
+	public NewMeetingHandler(EventDispatcher eventDispatcher, NewMeetingModel model) {
 		super(ComponentHandlerType.NEW_MEETING_VIEW, eventDispatcher);
-		this.controller = controller;
+		this.model = model;
 		this.addEventListeners();
 		}
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if(event.getSource() == NewMeetingWindow.createButton) {
-			this.controller.create();
+			model.createMeeting();
 		} else if(event.getSource() == NewMeetingWindow.cancelButton) {
-			this.controller.cancel();
+			cancelMeeting();
 		}
+	}
+	
+	public void createMeeting(){
+		model.createMeeting();
+	}
+	
+	public void cancelMeeting(){
+		
 	}
 	
 	public void addEventListeners(){
@@ -55,9 +63,16 @@ public class NewMeetingHandler extends AbstractComponentHandler implements Actio
 
 	@Override
 	public void valueChanged(ListSelectionEvent event) {
-		DefaultListSelectionModel model = (DefaultListSelectionModel)event.getSource();
-		if(model.getLeadSelectionIndex() != -1) {
-			
+		DefaultListSelectionModel listModel = (DefaultListSelectionModel)event.getSource();
+		if(listModel == NewMeetingWindow.meetingRoomSearchResultList.getSelectionModel()){
+			if(listModel.getLeadSelectionIndex() != -1) {
+				model.setRoomID((Integer) NewMeetingWindow.meetingRoomSearchResultList.getSelectedValue());
+			}	
+		}
+		else if(listModel == NewMeetingWindow.participantSearchResultList.getSelectionModel()){
+			if(listModel.getLeadSelectionIndex() != -1) {
+				
+			}
 		}
 	}
 
@@ -70,8 +85,30 @@ public class NewMeetingHandler extends AbstractComponentHandler implements Actio
 	@Override
 	public void keyReleased(KeyEvent e) {
 		if(e.getSource()==NewMeetingWindow.appointmentTitleTextPane){
-			
+			model.setDescription(NewMeetingWindow.appointmentTitleTextPane.getText());
 		}
+		else if(e.getSource()==NewMeetingWindow.startDateTextPane){
+			model.setStartDate(NewMeetingWindow.startDateTextPane.getText());
+		}
+		else if(e.getSource()==NewMeetingWindow.startTimeTextPane){
+			model.setStartTime(NewMeetingWindow.startTimeTextPane.getText());
+		}
+		else if(e.getSource()==NewMeetingWindow.endDateTextPane){
+			model.setEndDate(NewMeetingWindow.endDateTextPane.getText());
+		}
+		else if(e.getSource()==NewMeetingWindow.endTimeTextPane){
+			model.setEndTime(NewMeetingWindow.endTimeTextPane.getText());
+		}
+		else if(e.getSource()==NewMeetingWindow.participantSearchTextPane){
+			model.setParticipantSearch(NewMeetingWindow.participantSearchTextPane.getText());
+		}		
+		else if(e.getSource()==NewMeetingWindow.locationSearchTextPane){
+			model.setMeetingRoomSearch(NewMeetingWindow.locationSearchTextPane.getText());
+		}
+		else if(e.getSource()==NewMeetingWindow.manualLocationTextPane){
+			model.setLocation(NewMeetingWindow.manualLocationTextPane.getText());
+		}
+		
 	}
 
 	@Override
