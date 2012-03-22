@@ -20,10 +20,5 @@ public class AddFavouriteMeetingHandler implements MessageHandler {
 		DatabaseConnection.executeWriteQuery(sqlQurey);
 	}
 
-	public Message generateReturnMessage(){
-		Message message;
-		return message;
-	}
-
 	
 }
