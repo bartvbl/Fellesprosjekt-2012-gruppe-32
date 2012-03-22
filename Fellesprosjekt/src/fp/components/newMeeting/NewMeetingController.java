@@ -18,28 +18,43 @@ public class NewMeetingController extends AbstractComponentController {
 	}
 	
 	public void create(){
+		//opprett melding
 		meeting.createMeeting();
 		Message message1 = new Message(MessageType.addMeeting, MeetingConverter.convertMeetingToXML(meeting.getMeeting()));
 		
+		//connection til server og send melding til den/database
+		
+		
 	}
 	
+	
+	
 	public void cancel(){
+		
+		//lukk vinduet
 		
 	}
 	
 	public void searchForMeetingRoom(){
 		
+		
 	}
+	
 	
 	public void searchForUsers(){
 		
-	}
-	
-	public void addUser(){
 		
 	}
 	
+	
+	public void addUser(){
+		
+		
+	}
+	
+	
 	public void selectMeetingRoom(){
+		
 		
 	}
 
