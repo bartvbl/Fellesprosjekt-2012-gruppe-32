@@ -10,12 +10,14 @@ import fp.dataObjects.Meeting.Status;
 import fp.dataObjects.ServerUserData;
 import fp.dataObjects.User;
 import fp.messageHandlers.AddMeetingHandler;
+import fp.messageHandlers.GetMeetingsInWeekHandler;
 import fp.messageHandlers.GetUserHandler;
 import fp.messageParsers.Message;
 import fp.messageParsers.MessageType;
 import fp.server.ServerMain;
 import fp.xmlConverters.MeetingConverter;
 import fp.xmlConverters.UserConverter;
+import fp.xmlConverters.WeekConverter;
 
 public class ServerRunner {
 	public static void main(String[] args) {
@@ -23,11 +25,21 @@ public class ServerRunner {
 		main.initialize();
 		Thread server = new Thread(main);
 		server.start();
-		testAddUserHandler();
+		testGetMeetingsInWeekHandler();
+		
 
 	}
 	
 	public static void testGetMeetingsInWeekHandler(){
+		Element e = WeekConverter.convertWeekYearToXML(12, 3, 2012);
+		Message m = new Message(MessageType.getMeetingsInWeek, e);
+		GetMeetingsInWeekHandler h = new GetMeetingsInWeekHandler();
+		try {
+			h.handleMessage(m, new ServerUserData(new User(12, "Neshyy", "roflmao", "Flanders", "Trondboe", "flanders@boe.com", "81549300")));
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 	}
 
@@ -47,10 +59,10 @@ public class ServerRunner {
 		
 	}
 
-	public static void tryAddMeetingHandler() {
+	public static void testAddMeetingHandler() {
 		Meeting meeting = new Meeting(12, "Lolmøte", "på do",
-				LocationType.location, "2012-12-12 12:12:12",
-				"2012-12-13 12:12:12", Status.active, 12, 12,
+				LocationType.location, "2012-3-22 0:0:0",
+				"2012-3-2 0:0:1", Status.active, 12, 12,
 				MeetingType.appointment);
 		Element e = MeetingConverter.convertMeetingToXML(meeting);
 		Message m = new Message(MessageType.addMeeting, e);
