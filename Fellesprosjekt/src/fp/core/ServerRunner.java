@@ -1,6 +1,7 @@
 package fp.core;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import nu.xom.Element;
 import fp.dataObjects.Meeting;
@@ -12,6 +13,7 @@ import fp.dataObjects.User;
 import fp.messageHandlers.AddMeetingHandler;
 import fp.messageHandlers.GetMeetingsInWeekHandler;
 import fp.messageHandlers.GetUserHandler;
+import fp.messageHandlers.GetUsersFromDatabase;
 import fp.messageParsers.Message;
 import fp.messageParsers.MessageType;
 import fp.server.ServerMain;
@@ -25,9 +27,21 @@ public class ServerRunner {
 		main.initialize();
 		Thread server = new Thread(main);
 		server.start();
-		testGetMeetingsInWeekHandler();
+		testGetUsersFromDatabase();
 		
 
+	}
+	
+	public static void testGetUsersFromDatabase(){
+		try {
+			ArrayList<User> l = GetUsersFromDatabase.searchUsers("Fla");
+			for(User u : l){
+				System.out.println(u.firstName);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static void testGetMeetingsInWeekHandler(){

@@ -52,7 +52,7 @@ public class GetUsersFromDatabase {
 		String email = null;
 		String phoneNumber = null;
 		
-		String query = "Select * from Users WHERE FirstName LIKE '" + name + "%' OR LastName LIKE '" + name + "%';";
+		String query = "Select * from User WHERE FirstName LIKE '" + name + "%' OR LastName LIKE '" + name + "%';";
 		ResultSet rs = DatabaseConnection.executeReadQuery(query);
 		while(rs.next()){
 			userID = rs.getInt("UserID");
