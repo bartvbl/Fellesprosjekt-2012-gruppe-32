@@ -8,6 +8,7 @@ import fp.messageParsers.Message;
 public interface MessageHandler {
 	
 	public void handleMessage(Message message, ServerUserData userData) throws SQLException;
-		
+	
+	public Message generateReturnMessage();
 }
 
