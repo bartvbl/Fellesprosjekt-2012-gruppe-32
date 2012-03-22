@@ -14,13 +14,51 @@ public class NewMeetingModel {
 	private LocationType locationType = null;
 	private String startTime = null;
 	private String endTime = null;
-	private Status status = null;
 	private int creatorID = 0;
 	private int roomID = 0;
 	private MeetingType meetingtype;
+	private String startDate = null;
+	private String endDate = null;
+	private String fullStartTime = null;
+	private String fullEndTime = null;
+	private String participantSearch = null;
+	private String meetingRoomSearch = null;
 	
+	public String getParticipantSearch() {
+		return participantSearch;
+	}
+
+	public void setParticipantSearch(String participantSearch) {
+		this.participantSearch = participantSearch;
+	}
+
+	public String getMeetingRoomSearch() {
+		return meetingRoomSearch;
+	}
+
+	public void setMeetingRoomSearch(String meetingRoomSearch) {
+		this.meetingRoomSearch = meetingRoomSearch;
+		locationType = LocationType.meetingroom;
+	}
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
 	public void createMeeting(){
-		meeting = new Meeting(0, description, location, locationType, startTime, endTime, status, creatorID, roomID, meetingtype);
+		meeting = new Meeting(0, description, location, locationType, fullStartTime, fullEndTime, null, creatorID, roomID, meetingtype);
 	}
 	
 	public Meeting getMeeting() {
@@ -40,12 +78,10 @@ public class NewMeetingModel {
 	}
 	public void setLocation(String location) {
 		this.location = location;
+		locationType = LocationType.location;
 	}
 	public LocationType getLocationType() {
 		return locationType;
-	}
-	public void setLocationType(LocationType locationType) {
-		this.locationType = locationType;
 	}
 	public String getStartTime() {
 		return startTime;
@@ -58,12 +94,6 @@ public class NewMeetingModel {
 	}
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
-	}
-	public Status getStatus() {
-		return status;
-	}
-	public void setStatus(Status status) {
-		this.status = status;
 	}
 	public int getCreatorID() {
 		return creatorID;
@@ -83,6 +113,5 @@ public class NewMeetingModel {
 	public void setMeetingtype(MeetingType meetingtype) {
 		this.meetingtype = meetingtype;
 	}
-	
 	
 }
