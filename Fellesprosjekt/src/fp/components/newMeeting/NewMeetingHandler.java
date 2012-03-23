@@ -36,12 +36,7 @@ public class NewMeetingHandler extends AbstractComponentHandler implements Actio
 		}
 	}
 	
-	public void createMeeting(){
-		model.createMeeting();
-	}
-	
 	public void cancelMeeting(){
-		
 	}
 	
 	public void addEventListeners(){
