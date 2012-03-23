@@ -27,6 +27,8 @@ public class GetUserHandler implements MessageHandler{
 		String lastName = null;
 		String email = null;
 		String phoneNumber = null;
+		
+		
 		query = "SELECT * FROM USER WHERE UserName='"+user.userName + "';";
 		rs = DatabaseConnection.executeReadQuery(query);
 		while(rs.next()){
@@ -40,6 +42,11 @@ public class GetUserHandler implements MessageHandler{
 		}
 		user = new User(userID, userName, password, firstName, lastName, email, phoneNumber);
 		data = UserConverter.convertUserToXML(user);
+		
+		
 	}
+
 	
+	
+
 }

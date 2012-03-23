@@ -67,4 +67,8 @@ public class DateSelectionModel {
 		this.calendar.setFirstDayOfWeek(Calendar.MONDAY);
 		this.eventDispatcher.dispatchEvent(new Event<Object>(EventType.SELECTED_WEEK_CHANGED));
 	}
+	
+	public void setCalendarToToday(){
+		this.calendar = Calendar.getInstance();
+	}
 }

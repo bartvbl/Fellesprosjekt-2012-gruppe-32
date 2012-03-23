@@ -11,6 +11,7 @@ import fp.events.EventDispatcher;
 import fp.models.DateSelectionModel;
 import fp.models.SmallCalendarModel;
 import fp.utils.CalendarDataFormatHelper;
+import fp.net.client.ClientConnectionHandler;
 import fp.views.CalendarViewerView;
 import fp.views.FavouritesView;
 
@@ -44,7 +45,7 @@ public class ClientMain {
 		
 		new FavouritesView();
 		
-		smallCalendarModel.update();
+		new ClientConnectionHandler();
 	}
 	
 	private void createCalendarViewControllers() {

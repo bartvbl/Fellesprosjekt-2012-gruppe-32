@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.ConnectException;
 import java.net.InetAddress;
 import java.net.SocketTimeoutException;
+import java.net.Socket;
 
 import no.ntnu.fp.net.Connection;
 
@@ -28,5 +29,6 @@ public class ConnectionHandler implements Connection {
 	public void close() throws IOException {
 		
 	}
+
 
 }

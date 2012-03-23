@@ -13,14 +13,21 @@ public class AddMeetingHandler implements MessageHandler {
 
 	@Override
 	public void handleMessage(Message message, ServerUserData userdata) throws SQLException {
+		//System.out.println("Starter konvertering...");
 		Meeting meeting = MeetingConverter.convertXMLToMeeting(message.getData());
 		
-		String sqlQurey = "INSERT INTO Meeting VALUES(NULL, " 	+ meeting.description + ", " + meeting.status + "," + meeting.location + ", " 
-																+ meeting.locationType + ", " + meeting.roomID + ", " + meeting.startTime + ", " 
-																+ meeting.endTime + ", " + meeting.creatorID + "," + meeting.meetingType + ");";
+		//System.out.println("Konvertert til XML fil...");
+		//System.out.println("Oppretter SQL streng");
 		
+		String sqlQurey = "INSERT INTO Meeting VALUES(NULL, '" 	+ meeting.status + "','" + meeting.description + "', '" + meeting.locationType + "', '"
+																+ meeting.location + "', '" 
+																 + meeting.roomID + "', '" + meeting.startTime + "', '" 
+																+ meeting.endTime + "', '" + meeting.creatorID + "','" + meeting.meetingType + "');";
+		
+		//System.out.println("Setter inn i database");
 		DatabaseConnection.executeWriteQuery(sqlQurey);
 		
+		//System.out.println("Ferdig");
 	}
 	
 

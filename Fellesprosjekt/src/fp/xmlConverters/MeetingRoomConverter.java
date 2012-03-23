@@ -15,8 +15,12 @@ public class MeetingRoomConverter {
 		Element roomSize = new Element("roomSize");
 		roomSize.appendChild(meetingRoom.roomSize + "");
 
+		Element roomName = new Element("roomName");
+		roomSize.appendChild(meetingRoom.name);
+
 		element.appendChild(roomID);
 		element.appendChild(roomSize);
+		element.appendChild(roomName);
 		
 		return element;
 	}
@@ -28,7 +32,7 @@ public class MeetingRoomConverter {
 	    }
 	
 	public static MeetingRoom convertXMLToMeetingRoom(Element userElement) {
-		String roomID = null, roomSize = null;
+		String roomID = null, roomSize = null, roomName = null;
 		Element element = userElement.getFirstChildElement("roomID");
 		if (element != null) {
 			roomID = element.getValue();
@@ -37,8 +41,12 @@ public class MeetingRoomConverter {
 		if (element != null) {
 			roomSize = element.getValue();
 		}
+		element = userElement.getFirstChildElement("roomName");
+		if (element != null) {
+			roomName = element.getValue();
+		}
 		
-		return new MeetingRoom(Integer.parseInt(roomID), Integer.parseInt(roomSize));
+		return new MeetingRoom(Integer.parseInt(roomID), Integer.parseInt(roomSize), roomName);
 		
 	}
 }

@@ -1,7 +1,5 @@
 package fp.components.calendarViewer;
 
-import java.util.Date;
-
 import fp.componentControllers.AbstractComponentController;
 import fp.componentControllers.ComponentControllerType;
 import fp.components.smallCalendar.CalendarDateConstructor;
@@ -29,5 +27,16 @@ public class CalendarViewerController extends AbstractComponentController {
 		String monthString = this.model.getSelectedMonthString();
 		CalendarView.monthNameLabel.setText(monthString + " (week " + weekNumber + ")");
 	}
-
+	
+	public void incrementSelectedWeek() {
+		this.model.incrementWeek();
+	}
+	
+	public void decrementSelectedWeek() {
+		this.model.decrementWeek();
+	}
+	
+	public void today(){
+		this.model.setCalendarToToday();
+	}
 }

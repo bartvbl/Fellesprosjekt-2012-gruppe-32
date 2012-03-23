@@ -16,7 +16,7 @@ public class AddFavouriteUserHandler implements MessageHandler {
 	public void handleMessage(Message message, ServerUserData userData) throws SQLException {
 		
 		User user = UserConverter.convertXMLToUser(message.getData());
-		String sqlQurey = "INSERT INTO UserFavourites VALUES("+ userData.getUser().userID+ " , 'user', " + user.userID + ", NULL);";
+		String sqlQurey = "INSERT INTO UserFavourites VALUES('"+ userData.getUser().userID+ "' , 'user', '" + user.userID + "', NULL);";
 		DatabaseConnection.executeWriteQuery(sqlQurey);
 	
 	}
