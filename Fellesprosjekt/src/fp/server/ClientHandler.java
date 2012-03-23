@@ -8,12 +8,16 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import fp.events.ConcurrentEventDispatcher;
+
 public class ClientHandler implements Runnable {
 	private Socket clientSocket;
 	private BufferedWriter output;
 	private BufferedReader input;
 	private ServerMain main;
 	private boolean shutdownRequested = false;
+	private boolean connected;
+	private ConcurrentEventDispatcher eventDispatcher;
 	/** 
 	 * When this task is waiting for a response from client,
 	 * it will check again this many times a second.
@@ -21,8 +25,9 @@ public class ClientHandler implements Runnable {
 	private static final int FREQUENCY = 10;
 	private static final int HANDSHAKE_TIMEOUT = 10000;
 
-	public ClientHandler(ServerMain main,Socket clientSocket)
+	public ClientHandler(ServerMain main,Socket clientSocket, ConcurrentEventDispatcher eventDispatcher)
 	{
+		this.eventDispatcher = eventDispatcher;
 		this.clientSocket = clientSocket;
 		this.main = main;
 		try {
@@ -35,11 +40,15 @@ public class ClientHandler implements Runnable {
 
 	public void run()
 	{
+		this.connected = true;
 		try {
-			output.write("FIN");
-			flush();
-			this.waitForInput();
-			clientSocket.close();
+			while(connected) {
+				if(this.waitForInput()) {
+					output.write("I don't understand you!");
+					ConnectionUtils.flush(output);
+				}
+					
+			}
 			main.removeHandler(this);
 		} catch (IOException e) {
 			this.main.writeMessageInWindow(e.getMessage());
@@ -60,15 +69,8 @@ public class ClientHandler implements Runnable {
 		return input.ready();
 	}
 	
-	private void flush() throws IOException{
-		output.newLine();
-		output.flush();
-	}
-	
 	public String toString(){
 		return clientSocket.getRemoteSocketAddress().toString();
 	}
-	
-	
 }
 
