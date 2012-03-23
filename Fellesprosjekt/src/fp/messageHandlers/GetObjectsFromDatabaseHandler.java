@@ -90,7 +90,7 @@ public class GetObjectsFromDatabaseHandler {
 		int size = 0;
 		String name = null;
 		
-		String query = 	"SELECT * FROM MeetingRoom WHERE  Size >= '" + capasity + "' AND NOT IN (SELECT mR.RoomID, mR.Size, mR.RoomName FROM MeetingRoom AS mR AND Meeting as M WHERE mR.RoomID = M.RoomID AND (('" + fromDateTime + "' > M.StartTime AND '" + fromDateTime + "' < M.endTime) OR ('" + toDateTimte + "' > M.StartTime AND '" + toDateTimte + "' < M.endTime)));";
+		String query = 	"SELECT * FROM MeetingRoom WHERE  Size >= '" + capasity + "' AND RoomID NOT IN (SELECT mR.RoomID, mR.Size, mR.RoomName FROM MeetingRoom AS mR AND Meeting as M WHERE mR.RoomID = M.RoomID AND (('" + fromDateTime + "' > M.StartTime AND '" + fromDateTime + "' < M.endTime) OR ('" + toDateTimte + "' > M.StartTime AND '" + toDateTimte + "' < M.endTime)));";
 		
 		ResultSet rs = DatabaseConnection.executeReadQuery(query);
 		while(rs.next()){
