@@ -1,13 +1,16 @@
 package fp.server;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 
 import nu.xom.Attribute;
 import nu.xom.Builder;
 import nu.xom.Document;
 import nu.xom.Element;
+import fp.dataObjects.ServerUserData;
 import fp.dataObjects.User;
 import fp.messageParsers.Message;
+import fp.messageParsers.MessageParser;
 import fp.messageParsers.MessageType;
 import fp.net.ConnectionHandler;
 
@@ -30,13 +33,31 @@ public class ServerClientContext {
 		getMessageType.put("removeMeeting", MessageType.removeMeeting);
 	}
 	
-	public void revieceXMLMessage(){
-		
+	public void revieceXMLMessage(String m) throws SQLException{
+		Message message = convertXMLMessageIntoMessage(m);
+		MessageParser.parseMessage(message, new ServerUserData(this.user));
+	}
+	
+	public void recieveReturnMessage(Element returnData){
+		Element returnElement = convertReturnMessageIntoXMLElement(returnData);
 		
 	}
 	
-	public void revieceReturnMessage(){
+	public Element convertReturnMessageIntoXMLElement(Element databaseResult){
+		Element rootElement = new Element("callendarMessage");
+		Attribute version = new Attribute("version", "0.1");
+		rootElement.addAttribute(version);
 		
+		Element header = new Element("header");
+		Attribute messageType = new Attribute("messageType", "returnMessage");
+		header.addAttribute(messageType);
+		
+		Element data = new Element("data");
+		data.appendChild(databaseResult);
+		rootElement.appendChild(header);
+		rootElement.appendChild(data);
+		
+		return rootElement;
 	}
 	
 	public Message convertXMLMessageIntoMessage(String XMLMessage){

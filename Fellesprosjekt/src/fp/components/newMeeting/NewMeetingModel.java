@@ -20,7 +20,6 @@ public class NewMeetingModel {
 	private LocationType locationType;
 	private String startTime;
 	private String endTime;
-	private int creatorID;
 	private int roomID;
 	private MeetingType meetingtype;
 	private String startDate;
@@ -52,7 +51,6 @@ public class NewMeetingModel {
 		locationType = null;
 		startTime = null;
 		endTime = null;
-		creatorID = 0;
 		roomID = 0;
 		meetingtype = null;
 		startDate = null;
@@ -89,7 +87,9 @@ public class NewMeetingModel {
 	}
 
 	public void setParticipantSearch(String participantSearch) {
+		String oldValue = this.participantSearch;
 		this.participantSearch = participantSearch;
+		pcs.firePropertyChange(PARTICIPANT_SEARCH, oldValue, this.participantSearch);
 	}
 
 	public String getMeetingRoomSearch() {
@@ -97,8 +97,13 @@ public class NewMeetingModel {
 	}
 
 	public void setMeetingRoomSearch(String meetingRoomSearch) {
+		String oldValue = this.meetingRoomSearch;
 		this.meetingRoomSearch = meetingRoomSearch;
-		locationType = LocationType.meetingroom;
+		pcs.firePropertyChange(MEETING_ROOM_SEARCH, oldValue, this.meetingRoomSearch);
+		if(locationType == LocationType.location){
+			locationType = LocationType.meetingroom;
+			pcs.firePropertyChange(LOCATION_TYPE, LocationType.location, LocationType.meetingroom);
+		}
 	}
 
 	public String getStartDate() {
@@ -106,6 +111,7 @@ public class NewMeetingModel {
 	}
 
 	public void setStartDate(String startDate) {
+//		String oldvalue = this.startDate;
 		this.startDate = startDate;
 	}
 
@@ -118,14 +124,11 @@ public class NewMeetingModel {
 	}
 
 	public void createMeeting(){
-		meeting = new Meeting(0, description, location, locationType, fullStartTime, fullEndTime, null, creatorID, roomID, meetingtype);
+		meeting = new Meeting(0, description, location, locationType, fullStartTime, fullEndTime, null, 0, roomID, meetingtype);
 	}
 	
 	public Meeting getMeeting() {
 		return meeting;
-	}
-	public void setMeeting(Meeting meeting) {
-		this.meeting = meeting;
 	}
 	public String getDescription() {
 		return description;
@@ -137,8 +140,13 @@ public class NewMeetingModel {
 		return location;
 	}
 	public void setLocation(String location) {
+		String oldValue = this.location;
 		this.location = location;
-		locationType = LocationType.location;
+		pcs.firePropertyChange(LOCATION, oldValue, this.location);
+		if(!(locationType == LocationType.location)){
+			locationType = LocationType.location;
+			pcs.firePropertyChange(LOCATION_TYPE, LocationType.meetingroom, LocationType.location);
+		}
 	}
 	public LocationType getLocationType() {
 		return locationType;
@@ -155,12 +163,6 @@ public class NewMeetingModel {
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
-	public int getCreatorID() {
-		return creatorID;
-	}
-	public void setCreatorID(int creatorID) {
-		this.creatorID = creatorID;
-	}
 	public int getRoomID() {
 		return roomID;
 	}
@@ -171,7 +173,9 @@ public class NewMeetingModel {
 		return meetingtype;
 	}
 	public void setMeetingtype(MeetingType meetingtype) {
+		MeetingType oldValue = this.meetingtype;
 		this.meetingtype = meetingtype;
+		pcs.firePropertyChange(MEETING_TYPE, oldValue, this.meetingtype);
 	}
 	
 }
