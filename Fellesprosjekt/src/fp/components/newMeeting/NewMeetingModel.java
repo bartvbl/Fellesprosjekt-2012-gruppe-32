@@ -41,6 +41,7 @@ public class NewMeetingModel {
 	public final static String INVITED = "inv";
 	public final static String PARTICIPANT_SEARCH = "part_search";
 	public final static String MEETING_ROOM_SEARCH = "meet_search";
+	public final static String CREATE_MEETING = "create_meeting";
 
 	public NewMeetingModel(){
 		pcs = new PropertyChangeSupport(this);
@@ -123,6 +124,7 @@ public class NewMeetingModel {
 
 	public void createMeeting(){
 		meeting = new Meeting(0, description, location, locationType, fullStartTime, fullEndTime, null, 0, roomID, meetingtype);
+		pcs.firePropertyChange(CREATE_MEETING, null, meeting);
 	}
 	
 	public Meeting getMeeting() {
