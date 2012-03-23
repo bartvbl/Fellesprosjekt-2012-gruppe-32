@@ -8,27 +8,13 @@ import java.net.Socket;
 
 import no.ntnu.fp.net.Connection;
 
-public class ConnectionHandler implements Connection {
+public class ConnectionHandler {
 
-	public void connect(InetAddress remoteAddress, int remotePort)
-			throws IOException, SocketTimeoutException {
+	private Socket socket;
+
+	public ConnectionHandler(Socket socket) {
+		this.socket = socket;
 	}
-
-	public Connection accept() throws IOException, SocketTimeoutException {
-		return null;
-	}
-
-	public void send(String msg) throws ConnectException, IOException {
-		
-	}
-
-	public String receive() throws ConnectException, IOException {
-		return null;
-	}
-
-	public void close() throws IOException {
-		
-	}
-
-
+	
+	
 }
