@@ -84,7 +84,7 @@ public class NewMeetingController extends AbstractComponentController implements
 			
 		}		
 		else if(evt.getPropertyName() == NewMeetingModel.PARTICIPANT_SEARCH){
-			NewMeetingWindow.participantSearchResultList.get
+			
 		}		
 		else if(evt.getPropertyName() == NewMeetingModel.MEETING_ROOM_SEARCH){
 			

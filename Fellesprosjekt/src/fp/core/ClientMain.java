@@ -1,6 +1,7 @@
 package fp.core;
 
 import fp.componentControllers.CalendarViewResizeController;
+import fp.componentHandlers.AddNewMeetingButtonHandler;
 import fp.componentHandlers.CalendarViewResizeHandler;
 import fp.components.calendarViewer.CalendarViewerController;
 import fp.components.calendarViewer.CalendarViewerHandler;
@@ -38,6 +39,7 @@ public class ClientMain {
 		CalendarViewerController calendarViewerController = new CalendarViewerController(eventDispatcher, dateSelectionModel);
 		new CalendarViewerHandler(eventDispatcher, calendarViewerController);
 		new ChangeWeekButtonHandler(eventDispatcher, calendarViewerController);
+		new AddNewMeetingButtonHandler(eventDispatcher);
 		
 		new FavouritesView();
 		
