@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class ClientConnectionFileReader {
-	private static final String source = "res/connection.cfg";
+	private static final String source = "config/connection.cfg";
 	private String serverHost;
 	private int serverPort;
 
