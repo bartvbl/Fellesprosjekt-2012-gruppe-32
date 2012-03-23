@@ -6,13 +6,14 @@ import fp.dataObjects.Meeting;
 import fp.dataObjects.ServerUserData;
 import fp.database.DatabaseConnection;
 import fp.messageParsers.Message;
+import fp.server.ServerClientContext;
 import fp.xmlConverters.MeetingConverter;
 
 public class AddMeetingHandler implements MessageHandler {
 
 
 	@Override
-	public void handleMessage(Message message, ServerUserData userdata) throws SQLException {
+	public void handleMessage(Message message, ServerClientContext clientContext) throws SQLException {
 		//System.out.println("Starter konvertering...");
 		Meeting meeting = MeetingConverter.convertXMLToMeeting(message.getData());
 		

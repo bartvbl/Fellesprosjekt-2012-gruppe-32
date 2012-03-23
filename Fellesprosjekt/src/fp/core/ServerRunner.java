@@ -28,71 +28,66 @@ public class ServerRunner {
 		main.initialize();
 		Thread server = new Thread(main);
 		server.start();
-		try {
-			testGetMeetingRooms();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 	}
-
 	
+	@Deprecated
 	public static void testGetMeetingRooms() throws SQLException {
-		Element result = GetObjectsFromDatabaseHandler
-				.meetingRoomSearch(1, "2012-02-01 00:00:00", "2012-03-01 00:00:00");
-		Elements elements = result.getChildElements();
-		Element e = elements.get(0);
-		System.out.println(result.toXML());
+//		Element result = GetObjectsFromDatabaseHandler
+//				.meetingRoomSearch(1, "2012-02-01 00:00:00", "2012-03-01 00:00:00");
+//		Elements elements = result.getChildElements();
+//		Element e = elements.get(0);
+//		System.out.println(result.toXML());
 	}
 	
-
+	@Deprecated
 	public static void testGetMeetingsInWeekHandler() {
-		Element e = WeekConverter.convertWeekYearToXML(12, 3, 2012);
-		Message m = new Message(MessageType.getMeetingsInWeek, e);
-		GetMeetingsInWeekHandler h = new GetMeetingsInWeekHandler();
-		try {
-			h.handleMessage(m, new ServerUserData(new User(12, "Neshyy",
-					"roflmao", "Flanders", "Trondboe", "flanders@boe.com",
-					"81549300")));
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+//		Element e = WeekConverter.convertWeekYearToXML(12, 3, 2012);
+//		Message m = new Message(MessageType.getMeetingsInWeek, e);
+//		GetMeetingsInWeekHandler h = new GetMeetingsInWeekHandler();
+//		try {
+//			h.handleMessage(m, new ServerUserData(new User(12, "Neshyy",
+//					"roflmao", "Flanders", "Trondboe", "flanders@boe.com",
+//					"81549300")));
+//		} catch (SQLException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
 
 	}
 
+	@Deprecated
 	public static void testAddUserHandler() {
-		User user = new User(13, "Neshyy", "roflmao", "Flanders", "Trond",
-				"boe@lool.com", "81549300");
-		Message m = new Message(MessageType.getUser,
-				UserConverter.convertUserToXML(user));
-		GetUserHandler h = new GetUserHandler();
-		ServerUserData serverData = new ServerUserData(user);
-
-		try {
-			h.handleMessage(m, serverData);
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		User user = new User(13, "Neshyy", "roflmao", "Flanders", "Trond",
+//				"boe@lool.com", "81549300");
+//		Message m = new Message(MessageType.getUser,
+//				UserConverter.convertUserToXML(user));
+//		GetUserHandler h = new GetUserHandler();
+//		ServerUserData serverData = new ServerUserData(user);
+//
+//		try {
+//			h.handleMessage(m, serverData);
+//
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 
 	}
 
+	@Deprecated
 	public static void testAddMeetingHandler() {
-		Meeting meeting = new Meeting(12, "Lolmøte", "på do",
-				LocationType.location, "2012-3-22 0:0:0", "2012-3-2 0:0:1",
-				Status.active, 12, 12, MeetingType.appointment);
-		Element e = MeetingConverter.convertMeetingToXML(meeting);
-		Message m = new Message(MessageType.addMeeting, e);
-		AddMeetingHandler amh = new AddMeetingHandler();
-		try {
-			amh.handleMessage(m, new ServerUserData(new User(12, "username",
-					"password", "firstname", "lastname", "email", "124325")));
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+//		Meeting meeting = new Meeting(12, "Lolmøte", "på do",
+//				LocationType.location, "2012-3-22 0:0:0", "2012-3-2 0:0:1",
+//				Status.active, 12, 12, MeetingType.appointment);
+//		Element e = MeetingConverter.convertMeetingToXML(meeting);
+//		Message m = new Message(MessageType.addMeeting, e);
+//		AddMeetingHandler amh = new AddMeetingHandler();
+//		try {
+//			amh.handleMessage(m, new ServerUserData(new User(12, "username",
+//					"password", "firstname", "lastname", "email", "124325")));
+//		} catch (SQLException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
 	}
 }

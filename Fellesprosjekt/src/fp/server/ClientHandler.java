@@ -6,66 +6,59 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import fp.messageParsers.Message;
+import fp.messageParsers.MessageParser;
+import fp.net.ConnectionHandler;
+
 public class ClientHandler implements Runnable {
-	private Socket clientSocket;
-	private BufferedWriter output;
-	private BufferedReader input;
 	private ServerMain main;
 	private boolean shutdownRequested = false;
 	private boolean isRunning = true;
+	private ConnectionHandler connectionHandler;
+	private ServerClientContext clientContext;
 	private static final int FREQUENCY = 10;
-	private static final int HANDSHAKE_TIMEOUT = 10000;
+	private static final int HANDSHAKE_TIMEOUT = 3600000;
 
-	public ClientHandler(ServerMain main,Socket clientSocket)
+	public ClientHandler(ServerMain main, Socket clientSocket)
 	{
-		this.clientSocket = clientSocket;
 		this.main = main;
-		try {
-			this.input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-			this.output = new BufferedWriter(new PrintWriter(clientSocket.getOutputStream()));
-		} catch (IOException e) {
-			this.main.writeMessageInWindow(e.getMessage());
-		}
+		this.connectionHandler = new ConnectionHandler(clientSocket);
+		this.clientContext = new ServerClientContext(connectionHandler);
 	}
 
 	public void run()
 	{
 		try {
 			while((isRunning) && (!this.shutdownRequested)) {
-				
+				this.handleMessages();
+				this.sleepThread();
 			}
-			clientSocket.close();
 			main.removeHandler(this);
 		} catch (IOException e) {
 			this.main.writeMessageInWindow(e.getMessage());
+		} catch (SQLException e) {
+			this.main.writeMessageInWindow(e.getMessage());
 		}
 		
+	}
+
+	private void handleMessages() throws IOException, SQLException {
+		Message message = this.connectionHandler.receiveMessage();
+		if(message != null) {
+			MessageParser.parseMessage(message, this.clientContext);
+		}
 	}
 
 	public void initateShutdown(){
 		shutdownRequested = true;
 	}
 	
-	private boolean waitForInput() throws IOException{
-		int waits = 0;
-		while(!input.ready() && waits < HANDSHAKE_TIMEOUT/(1000/FREQUENCY)){
-			waits++;
-			try {Thread.sleep(1000/FREQUENCY);} catch (InterruptedException e) {this.main.writeMessageInWindow(e.getMessage());}
-		}
-		return input.ready();
+	private void sleepThread() {
+		try {Thread.sleep(1000/FREQUENCY);} 
+		catch (InterruptedException e) {this.main.writeMessageInWindow(e.getMessage());}
 	}
-	
-	private void flush() throws IOException{
-		output.newLine();
-		output.flush();
-	}
-	
-	public String toString(){
-		return clientSocket.getRemoteSocketAddress().toString();
-	}
-	
-	
 }
 

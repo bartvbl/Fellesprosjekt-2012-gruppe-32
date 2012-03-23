@@ -10,12 +10,13 @@ import fp.dataObjects.ServerUserData;
 import fp.dataObjects.User;
 import fp.database.DatabaseConnection;
 import fp.messageParsers.Message;
+import fp.server.ServerClientContext;
 import fp.xmlConverters.UserConverter;
 
 public class GetUserHandler implements MessageHandler{
 	
 	@Override
-	public void handleMessage(Message message, ServerUserData userData) throws SQLException {
+	public void handleMessage(Message message, ServerClientContext clientContext) throws SQLException {
 		User user = UserConverter.convertXMLToUser(message.getData());
 		String query;
 		ResultSet rs;

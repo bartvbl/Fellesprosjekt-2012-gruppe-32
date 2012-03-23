@@ -2,14 +2,12 @@ package fp.messageHandlers;
 
 import java.sql.SQLException;
 
-import nu.xom.Element;
-
-import fp.dataObjects.ServerUserData;
 import fp.messageParsers.Message;
+import fp.server.ServerClientContext;
 
 public interface MessageHandler {
 	
-	public void handleMessage(Message message, ServerUserData userData) throws SQLException;
+	public void handleMessage(Message message, ServerClientContext clientContext) throws SQLException;
 	
 }
 

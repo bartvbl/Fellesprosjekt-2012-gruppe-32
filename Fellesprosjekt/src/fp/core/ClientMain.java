@@ -10,6 +10,7 @@ import fp.components.smallCalendar.SmallCalendarHandler;
 import fp.events.EventDispatcher;
 import fp.models.DateSelectionModel;
 import fp.net.client.ClientConnectionHandler;
+import fp.util.RandomStringGenerator;
 import fp.views.CalendarViewerView;
 import fp.views.FavouritesView;
 
@@ -40,6 +41,12 @@ public class ClientMain {
 		new ChangeWeekButtonHandler(eventDispatcher, calendarViewerController);
 		
 		new FavouritesView();
+		
+		RandomStringGenerator.generateString();
+		RandomStringGenerator.generateString();
+		RandomStringGenerator.generateString();
+		RandomStringGenerator.generateString();
+		RandomStringGenerator.generateString();
 		
 		new ClientConnectionHandler();
 	}

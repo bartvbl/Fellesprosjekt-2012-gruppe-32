@@ -16,13 +16,14 @@ import fp.dataObjects.Meeting.MeetingType;
 import fp.dataObjects.Meeting.Status;
 import fp.database.DatabaseConnection;
 import fp.messageParsers.Message;
+import fp.server.ServerClientContext;
 import fp.xmlConverters.MeetingConverter;
 import fp.xmlConverters.UserConverter;
 
 public class GetMeetingHandler implements MessageHandler{
 
 	@Override
-	public void handleMessage(Message message, ServerUserData userdata) throws SQLException {
+	public void handleMessage(Message message, ServerClientContext clientContext) throws SQLException {
 		User user;
 		String query;
 		ResultSet resultSet;
