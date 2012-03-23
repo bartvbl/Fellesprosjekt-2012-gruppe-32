@@ -8,6 +8,7 @@ import fp.dataObjects.Meeting;
 import fp.dataObjects.Meeting.LocationType;
 import fp.dataObjects.Meeting.MeetingType;
 import fp.dataObjects.Meeting.Status;
+import fp.dataObjects.MeetingRoom;
 
 public class NewMeetingModel {
 	
@@ -29,6 +30,7 @@ public class NewMeetingModel {
 	private String participantSearch;
 	private String meetingRoomSearch;
 	private ArrayList<String> invited;
+	private ArrayList<MeetingRoom> meetingRooms;
 	
 	public final static String DESCRIPTION = "desc";
 	public final static String LOCATION = "loc";

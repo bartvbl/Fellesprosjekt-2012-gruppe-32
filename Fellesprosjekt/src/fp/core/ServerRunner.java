@@ -38,7 +38,7 @@ public class ServerRunner {
 
 	public static void testGetMeetingRooms() throws SQLException {
 		Element result = GetObjectsFromDatabaseHandler
-				.meetingRoomSearchResults(100);
+				.meetingRoomSearch(1, "2012-02-01 00:00:00", "2012-03-01 00:00:00");
 		Elements elements = result.getChildElements();
 		Element e = elements.get(0);
 		System.out.println(result.toXML());
