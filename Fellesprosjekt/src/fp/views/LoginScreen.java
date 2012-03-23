@@ -10,6 +10,9 @@
  */
 package fp.views;
 
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Bart
@@ -19,6 +22,9 @@ public class LoginScreen extends javax.swing.JFrame {
     /** Creates new form LoginScreen */
     public LoginScreen() {
         initComponents();
+        this.setResizable(false);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setTitle("Log in");
     }
 
     /** This method is called from within the constructor to
@@ -33,7 +39,7 @@ public class LoginScreen extends javax.swing.JFrame {
         usernameTextPane = new javax.swing.JTextPane();
         usernameLabel = new javax.swing.JLabel();
         passwordLabel = new javax.swing.JLabel();
-        passwordTextPane = new javax.swing.JTextPane();
+        passwordTextPane = new javax.swing.JPasswordField();
         loginButton = new javax.swing.JButton();
         lockIcon = new javax.swing.JLabel();
 
@@ -56,7 +62,7 @@ public class LoginScreen extends javax.swing.JFrame {
         loginButton.setText(resourceMap.getString("loginButton.text")); // NOI18N
         loginButton.setName("loginButton"); // NOI18N
 
-        lockIcon.setIcon(resourceMap.getIcon("lockIcon.icon")); // NOI18N
+        lockIcon.setIcon(new ImageIcon("res/lock.png")); // NOI18N
         lockIcon.setText(resourceMap.getString("lockIcon.text")); // NOI18N
         lockIcon.setName("lockIcon"); // NOI18N
 
@@ -103,46 +109,11 @@ public class LoginScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new LoginScreen().setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lockIcon;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel passwordLabel;
-    private javax.swing.JTextPane passwordTextPane;
+    private javax.swing.JPasswordField passwordTextPane;
     private javax.swing.JLabel usernameLabel;
     private javax.swing.JTextPane usernameTextPane;
     // End of variables declaration//GEN-END:variables

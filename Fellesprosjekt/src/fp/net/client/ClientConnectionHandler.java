@@ -5,6 +5,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 import fp.net.ConnectionHandler;
+import fp.util.FeedbackProvider;
 
 public class ClientConnectionHandler {
 	private ConnectionHandler connectionHandler;
@@ -13,8 +14,16 @@ public class ClientConnectionHandler {
 		try {
 			this.createConnection();
 		} 
-		catch (UnknownHostException e) {e.printStackTrace();} 
-		catch (IOException e) {e.printStackTrace();}
+		catch (UnknownHostException e) {
+			e.printStackTrace();
+			FeedbackProvider.showUnknownHostMessage();
+			System.exit(0);
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+			FeedbackProvider.showUnknownHostMessage();
+			System.exit(0);
+		}
 	}
 
 	private void createConnection() throws UnknownHostException, IOException {

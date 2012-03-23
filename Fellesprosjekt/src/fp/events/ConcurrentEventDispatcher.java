@@ -9,17 +9,14 @@ public class ConcurrentEventDispatcher {
 	private ConcurrentHashMap<EventType, CopyOnWriteArrayList<Object>> listeners = new ConcurrentHashMap<EventType, CopyOnWriteArrayList<Object>>();
 	private ConcurrentHashMap<Object, AtomicReference<ArrayList<ServerEvent<?>>>> dispatchedEventCue = new ConcurrentHashMap<Object, AtomicReference<ArrayList<ServerEvent<?>>>>();
 	
-	public ConcurrentEventDispatcher()
-	{
-		
-	}
-	public synchronized void addEventListener(EventType type, Object Object)
+	public synchronized void addEventListener(EventType type, Object object)
 	{
 		listeners.putIfAbsent(type, new CopyOnWriteArrayList<Object>());
+		dispatchedEventCue.put(object, new AtomicReference<ArrayList<ServerEvent<?>>>());
 		CopyOnWriteArrayList<Object> list = this.listeners.get(type);
 		synchronized(list)
 		{
-			list.add(Object);
+			list.add(object);
 		}
 	}
 	public synchronized void removeEventListener(EventType type, Object Object)

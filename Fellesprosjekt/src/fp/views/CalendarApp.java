@@ -15,12 +15,21 @@ import fp.core.ClientMain;
  */
 public class CalendarApp extends SingleFrameApplication {
 
-    /**
+    private static CalendarView calendarView;
+	private static LoginScreen loginScreen;
+
+	/**
      * At startup create and show the main frame of the application.
      */
     @Override protected void startup() {
-        show(new CalendarView(this));
+        calendarView = new CalendarView(this);
+        loginScreen = new LoginScreen();
+        show(loginScreen);
         new ClientMain();
+    }
+    
+    public void showMainWindow() {
+    	show(calendarView);
     }
 
     /**

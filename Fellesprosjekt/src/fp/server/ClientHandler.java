@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import fp.events.ConcurrentEventDispatcher;
 import fp.events.Event;
+import fp.events.EventType;
 import fp.events.ServerEvent;
 import fp.messageParsers.Message;
 import fp.messageParsers.MessageParser;
@@ -35,6 +36,7 @@ public class ClientHandler implements Runnable {
 		this.eventDispatcher = eventDispatcher;
 		this.connectionHandler = new ConnectionHandler(clientSocket);
 		this.clientContext = new ServerClientContext(connectionHandler);
+		this.eventDispatcher.addEventListener(EventType.SERVER_MEETING_REGISTERED, this);
 	}
 
 	public void run()
