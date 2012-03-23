@@ -16,6 +16,7 @@ import fp.messageHandlers.GetObjectsFromDatabaseHandler;
 import fp.messageHandlers.GetUserHandler;
 import fp.messageParsers.Message;
 import fp.messageParsers.MessageType;
+import fp.server.ServerClientContext;
 import fp.server.ServerMain;
 import fp.xmlConverters.MeetingConverter;
 import fp.xmlConverters.UserConverter;
@@ -36,13 +37,15 @@ public class ServerRunner {
 
 	}
 
+	
 	public static void testGetMeetingRooms() throws SQLException {
 		Element result = GetObjectsFromDatabaseHandler
-				.meetingRoomSearchResults(100);
+				.meetingRoomSearch(1, "2012-02-01 00:00:00", "2012-03-01 00:00:00");
 		Elements elements = result.getChildElements();
 		Element e = elements.get(0);
 		System.out.println(result.toXML());
 	}
+	
 
 	public static void testGetMeetingsInWeekHandler() {
 		Element e = WeekConverter.convertWeekYearToXML(12, 3, 2012);
