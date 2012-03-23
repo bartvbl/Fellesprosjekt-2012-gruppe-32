@@ -7,16 +7,17 @@ import fp.dataObjects.ServerUserData;
 import fp.dataObjects.User;
 import fp.database.DatabaseConnection;
 import fp.messageParsers.Message;
+import fp.server.ServerClientContext;
 import fp.xmlConverters.MeetingConverter;
 import fp.xmlConverters.UserConverter;
 
 public class AddFavouriteUserHandler implements MessageHandler {
 
 	@Override
-	public void handleMessage(Message message, ServerUserData userData) throws SQLException {
+	public void handleMessage(Message message, ServerClientContext clientContext) throws SQLException {
 		
 		User user = UserConverter.convertXMLToUser(message.getData());
-		String sqlQurey = "INSERT INTO UserFavourites VALUES('"+ userData.getUser().userID+ "' , 'user', '" + user.userID + "', NULL);";
+		String sqlQurey = "INSERT INTO UserFavourites VALUES('"+ clientContext.user.userID+ "' , 'user', '" + user.userID + "', NULL);";
 		DatabaseConnection.executeWriteQuery(sqlQurey);
 	
 	}

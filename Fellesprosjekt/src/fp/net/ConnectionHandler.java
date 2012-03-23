@@ -15,15 +15,17 @@ import fp.xmlConverters.XMLWriter;
 public class ConnectionHandler {
 	private BufferedReader bufferedReader;
 	private BufferedWriter bufferedWriter;
+	private Socket socket;
 	
 	public ConnectionHandler(Socket socket) {
 		try {
+			this.socket = socket;
 			this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			this.bufferedWriter = new BufferedWriter(new PrintWriter(socket.getOutputStream()));
 		} catch (IOException e) {e.printStackTrace();}
 	}
 	
-	public Message receiveMessage(String message) throws IOException{
+	public Message receiveMessage() throws IOException{
 		if (bufferedReader.ready()){
 			String inputLine = this.bufferedReader.readLine();
 			Message parsedMessage = this.convertMessageStringToMessage(inputLine);
@@ -32,13 +34,15 @@ public class ConnectionHandler {
 		return null;
 	}
 	
-	public void sendMessage(Message message){
+	public void sendMessage(Message message) throws IOException{
 		String convertedMessage = XMLWriter.convertMessageIntoXMLElement(message);
-		try {
-			this.bufferedWriter.write(convertedMessage);
-			this.bufferedWriter.newLine();
-			this.bufferedWriter.flush();
-		} catch (IOException e) {e.printStackTrace();}
+		this.bufferedWriter.write(convertedMessage);
+		this.bufferedWriter.newLine();
+		this.bufferedWriter.flush();
+	}
+	
+	public void closeConnection() throws IOException {
+		this.socket.close();
 	}
 	
 	private Message convertMessageStringToMessage(String messageString){

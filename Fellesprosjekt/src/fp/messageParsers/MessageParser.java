@@ -12,6 +12,7 @@ import fp.messageHandlers.GetMeetingsInWeekHandler;
 import fp.messageHandlers.GetUserHandler;
 import fp.messageHandlers.MessageHandler;
 import fp.messageHandlers.UpdateMeetingHandler;
+import fp.server.ServerClientContext;
 
 public class MessageParser {
 	
@@ -29,12 +30,12 @@ public class MessageParser {
 		
 	}
 	
-	public static void parseMessage(Message message, ServerUserData userData) throws SQLException{
+	public static void parseMessage(Message message, ServerClientContext clientContext) throws SQLException{
 		if (typeForHandlerMap.size() == 0){
 			initiate();
 		}
 		System.out.println(message.type);
-		typeForHandlerMap.get(message.type).handleMessage(message, userData);
+		typeForHandlerMap.get(message.type).handleMessage(message, clientContext);
 	}
 
 }

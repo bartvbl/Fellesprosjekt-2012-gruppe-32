@@ -1,6 +1,7 @@
 package fp.core;
 
 import fp.componentControllers.CalendarViewResizeController;
+import fp.componentHandlers.AddNewMeetingButtonHandler;
 import fp.componentHandlers.CalendarViewResizeHandler;
 import fp.components.calendarViewer.CalendarViewerController;
 import fp.components.calendarViewer.CalendarViewerHandler;
@@ -10,6 +11,7 @@ import fp.components.smallCalendar.SmallCalendarHandler;
 import fp.events.EventDispatcher;
 import fp.models.DateSelectionModel;
 import fp.net.client.ClientConnectionHandler;
+import fp.util.RandomStringGenerator;
 import fp.views.CalendarViewerView;
 import fp.views.FavouritesView;
 
@@ -38,8 +40,15 @@ public class ClientMain {
 		CalendarViewerController calendarViewerController = new CalendarViewerController(eventDispatcher, dateSelectionModel);
 		new CalendarViewerHandler(eventDispatcher, calendarViewerController);
 		new ChangeWeekButtonHandler(eventDispatcher, calendarViewerController);
+		new AddNewMeetingButtonHandler(eventDispatcher);
 		
 		new FavouritesView();
+		
+		RandomStringGenerator.generateString();
+		RandomStringGenerator.generateString();
+		RandomStringGenerator.generateString();
+		RandomStringGenerator.generateString();
+		RandomStringGenerator.generateString();
 		
 		new ClientConnectionHandler();
 	}

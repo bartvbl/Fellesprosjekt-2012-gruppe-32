@@ -7,11 +7,12 @@ import nu.xom.Element;
 import fp.dataObjects.ServerUserData;
 import fp.database.DatabaseConnection;
 import fp.messageParsers.Message;
+import fp.server.ServerClientContext;
 
 public class GetMeetingsInWeekHandler implements MessageHandler {
 
 	@Override
-	public void handleMessage(Message message, ServerUserData userdata) throws SQLException {
+	public void handleMessage(Message message, ServerClientContext clientContext) throws SQLException {
 		// skal hente møte basert på starttime og endtime
 		String[] fromDateToDate = extractDatesFromMessageData(message).split("#");
 		String fromDate = fromDateToDate[0];
