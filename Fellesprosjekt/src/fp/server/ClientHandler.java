@@ -14,7 +14,7 @@ import fp.events.Event;
 import fp.events.EventType;
 import fp.events.ServerEvent;
 import fp.messageParsers.Message;
-import fp.messageParsers.MessageParser;
+import fp.messageParsers.server.MessageParser;
 import fp.net.ConnectionHandler;
 import fp.packetBuilders.InitialHandshakePacketBuilder;
 import fp.server.events.EventParser;

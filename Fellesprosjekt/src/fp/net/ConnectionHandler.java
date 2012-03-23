@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import fp.messageParsers.Message;
-import fp.messageParsers.MessageParser;
+import fp.messageParsers.server.MessageParser;
 import fp.xmlConverters.XMLReader;
 import fp.xmlConverters.XMLWriter;
 

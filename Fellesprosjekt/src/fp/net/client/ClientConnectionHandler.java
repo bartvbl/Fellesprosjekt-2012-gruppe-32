@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import fp.messageParsers.Message;
 import fp.net.ConnectionHandler;
 import fp.util.FeedbackProvider;
 
@@ -30,5 +31,12 @@ public class ClientConnectionHandler {
 		ClientConnectionFileReader connectionFile = new ClientConnectionFileReader();
 		Socket socket = new Socket(connectionFile.getServerHost(), connectionFile.getServerPort());
 		this.connectionHandler = new ConnectionHandler(socket);
+	}
+
+	public Message receive() {
+		try {
+			return this.connectionHandler.receiveMessage();
+		} catch (IOException e) {e.printStackTrace();}
+		return null;
 	}
 }
