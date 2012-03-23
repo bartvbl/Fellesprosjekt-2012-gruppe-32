@@ -14,10 +14,7 @@ public class ClientHandler implements Runnable {
 	private BufferedReader input;
 	private ServerMain main;
 	private boolean shutdownRequested = false;
-	/** 
-	 * When this task is waiting for a response from client,
-	 * it will check again this many times a second.
-	 */
+	private boolean isRunning = true;
 	private static final int FREQUENCY = 10;
 	private static final int HANDSHAKE_TIMEOUT = 10000;
 
@@ -36,9 +33,9 @@ public class ClientHandler implements Runnable {
 	public void run()
 	{
 		try {
-			output.write("FIN");
-			flush();
-			this.waitForInput();
+			while((isRunning) && (!this.shutdownRequested)) {
+				
+			}
 			clientSocket.close();
 			main.removeHandler(this);
 		} catch (IOException e) {
