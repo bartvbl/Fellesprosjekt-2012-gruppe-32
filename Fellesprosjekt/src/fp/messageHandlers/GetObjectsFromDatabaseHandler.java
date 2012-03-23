@@ -82,7 +82,7 @@ public class GetObjectsFromDatabaseHandler {
 	
 	//Returnerer et XML element med alle m¿terom som matcher s¿ket
 	
-	public static Element meetingRoomSearchResults(int capasity) throws SQLException{
+	public static Element meetingRoomSearch(int capasity) throws SQLException{
 		
 		Element meetingRoomElement = new Element("MeetingRoomElement");
 		
