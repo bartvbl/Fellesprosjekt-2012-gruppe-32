@@ -16,7 +16,7 @@ public class XMLWriter {
 
 	// message til string
 
-	public static Element convertReturnMessageIntoXMLElement(Element databaseResult) {
+	public static Element convertMessageToXMLString(Element databaseResult) {
 		Element rootElement = new Element("callendarMessage");
 		Attribute version = new Attribute("version", "0.1");
 		rootElement.addAttribute(version);
@@ -31,5 +31,10 @@ public class XMLWriter {
 		rootElement.appendChild(data);
 
 		return rootElement;
+	}
+
+	public static String convertMessageIntoXMLElement(Message message) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
