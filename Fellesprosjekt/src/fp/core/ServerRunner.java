@@ -13,7 +13,7 @@ import fp.dataObjects.User;
 import fp.messageHandlers.AddMeetingHandler;
 import fp.messageHandlers.GetMeetingsInWeekHandler;
 import fp.messageHandlers.GetUserHandler;
-import fp.messageHandlers.GetUsersFromDatabase;
+import fp.messageHandlers.GetObjectsFromDatabaseHandler;
 import fp.messageParsers.Message;
 import fp.messageParsers.MessageType;
 import fp.server.ServerMain;
@@ -34,7 +34,7 @@ public class ServerRunner {
 	
 	public static void testGetUsersFromDatabase(){
 		try {
-			ArrayList<User> l = GetUsersFromDatabase.searchUsers("Fla");
+			ArrayList<User> l = GetObjectsFromDatabaseHandler.searchUsers("Fla");
 			for(User u : l){
 				System.out.println(u.firstName);
 			}
