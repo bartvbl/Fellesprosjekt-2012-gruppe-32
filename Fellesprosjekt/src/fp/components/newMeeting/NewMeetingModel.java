@@ -1,5 +1,9 @@
 package fp.components.newMeeting;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
+
 import fp.dataObjects.Meeting;
 import fp.dataObjects.Meeting.LocationType;
 import fp.dataObjects.Meeting.MeetingType;
@@ -8,21 +12,75 @@ import fp.dataObjects.Meeting.Status;
 public class NewMeetingModel {
 	
 	private Meeting meeting;
+	private PropertyChangeSupport pcs;
 	
-	private String description = null;
-	private String location = null;
-	private LocationType locationType = null;
-	private String startTime = null;
-	private String endTime = null;
-	private int creatorID = 0;
-	private int roomID = 0;
+	private String description;
+	private String location;
+	private LocationType locationType;
+	private String startTime;
+	private String endTime;
+	private int creatorID;
+	private int roomID;
 	private MeetingType meetingtype;
-	private String startDate = null;
-	private String endDate = null;
-	private String fullStartTime = null;
-	private String fullEndTime = null;
-	private String participantSearch = null;
-	private String meetingRoomSearch = null;
+	private String startDate;
+	private String endDate;
+	private String fullStartTime;
+	private String fullEndTime;
+	private String participantSearch;
+	private String meetingRoomSearch;
+	private ArrayList<String> invited;
+	
+	public final static String DESCRIPTION = "desc";
+	public final static String LOCATION = "loc";
+	public final static String LOCATION_TYPE= "loctyp";
+	public final static String START_TIME = "start_time";
+	public final static String END_TIME = "end_time";
+	public final static String ROOM_ID = "room_id";
+	public final static String MEETING_TYPE = "meetyp";
+	public final static String START_DATE = "start_date";
+	public final static String END_DATE = "end_date";
+	public final static String INVITED = "inv";
+	public final static String PARTICIPANT_SEARCH = "part_search";
+	public final static String MEETING_ROOM_SEARCH = "meet_search";
+
+	public NewMeetingModel(){
+		pcs = new PropertyChangeSupport(this);
+		description = null;
+		location = null;
+		locationType = null;
+		startTime = null;
+		endTime = null;
+		creatorID = 0;
+		roomID = 0;
+		meetingtype = null;
+		startDate = null;
+		endDate = null;
+		fullStartTime = null;
+		fullEndTime = null;
+		participantSearch = null;
+		meetingRoomSearch = null;
+		invited = new ArrayList<String>();
+	}
+	
+	public void addPropertyChangeListener(PropertyChangeListener listener){
+		pcs.addPropertyChangeListener(listener);
+	}
+	
+	public void addInvited(String participant){
+		if(!invited.contains(participant)){
+			ArrayList<String> oldInv = invited;
+			invited.add(participant);
+			pcs.firePropertyChange(INVITED, oldInv, invited);
+		}
+	}
+	
+	public void removeInvited(String participant){
+		if(invited.contains(participant)){
+			ArrayList<String> oldInv = invited;
+			invited.remove(participant);
+			pcs.firePropertyChange(INVITED, oldInv, invited);
+		}
+	}
 	
 	public String getParticipantSearch() {
 		return participantSearch;
