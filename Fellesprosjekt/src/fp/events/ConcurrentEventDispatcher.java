@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class ConcurrentEventDispatcher {
 	private ConcurrentHashMap<EventType, CopyOnWriteArrayList<Object>> listeners = new ConcurrentHashMap<EventType, CopyOnWriteArrayList<Object>>();
-	private ConcurrentHashMap<Object, AtomicReference<ArrayList<Event<?>>>> dispatchedEventCue = new ConcurrentHashMap<Object, AtomicReference<ArrayList<Event<?>>>>();
+	private ConcurrentHashMap<Object, AtomicReference<ArrayList<ServerEvent<?>>>> dispatchedEventCue = new ConcurrentHashMap<Object, AtomicReference<ArrayList<ServerEvent<?>>>>();
 	
 	public ConcurrentEventDispatcher()
 	{
@@ -35,11 +35,11 @@ public class ConcurrentEventDispatcher {
 			list.remove(Object);
 		}
 	}
-	public synchronized void dispatchEvent(Event<?> event)
+	public synchronized void dispatchEvent(ServerEvent<?> event)
 	{
 		CopyOnWriteArrayList<Object> listeners = this.listeners.get(event.eventType);
-		AtomicReference<ArrayList<Event<?>>> eventCueReference;
-		ArrayList<Event<?>> eventCue;
+		AtomicReference<ArrayList<ServerEvent<?>>> eventCueReference;
+		ArrayList<ServerEvent<?>> eventCue;
 		for(Object Object : listeners)
 		{
 			eventCueReference = this.dispatchedEventCue.get(Object);
@@ -50,11 +50,11 @@ public class ConcurrentEventDispatcher {
 			}
 		}
 	}
-	public synchronized ArrayList<Event<?>> getEventsByListenerObject(Object listener)
+	public synchronized ArrayList<ServerEvent<?>> getEventsByListenerObject(Object listener)
 	{
-		AtomicReference<ArrayList<Event<?>>> eventCueReference = this.dispatchedEventCue.get(listener);
-		ArrayList<Event<?>> emptyList = new ArrayList<Event<?>>();
-		ArrayList<Event<?>> returnedEventCue = eventCueReference.getAndSet(emptyList);
+		AtomicReference<ArrayList<ServerEvent<?>>> eventCueReference = this.dispatchedEventCue.get(listener);
+		ArrayList<ServerEvent<?>> emptyList = new ArrayList<ServerEvent<?>>();
+		ArrayList<ServerEvent<?>> returnedEventCue = eventCueReference.getAndSet(emptyList);
 		return returnedEventCue;
 	}
 	

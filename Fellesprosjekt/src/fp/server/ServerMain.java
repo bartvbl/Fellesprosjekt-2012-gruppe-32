@@ -8,16 +8,18 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import fp.database.DatabaseConnection;
+import fp.events.ConcurrentEventDispatcher;
 
 public class ServerMain implements Runnable{
 	private ServerSocket serverSocket = null;
 	private ServerWindow window;
 	private ExecutorService threadpool;
 	private ArrayList<ClientHandler> handlers;
+	private ConcurrentEventDispatcher eventDispatcher;
 
 	public ServerMain()
 	{
-
+		this.eventDispatcher = new ConcurrentEventDispatcher();
 	}
 
 	public void initialize()
@@ -43,7 +45,7 @@ public class ServerMain implements Runnable{
 		while(true){
 			try {
 				clientSocket = this.serverSocket.accept();
-				ClientHandler handler = new ClientHandler(this, clientSocket);
+				ClientHandler handler = new ClientHandler(this, clientSocket, this.eventDispatcher);
 				handlers.add(handler);
 				this.threadpool.execute(handler);
 				this.window.writeMessage("Accepted client from " + handler.toString());
