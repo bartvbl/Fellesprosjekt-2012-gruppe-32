@@ -11,7 +11,9 @@ import fp.events.EventDispatcher;
 import fp.models.DateSelectionModel;
 import fp.models.SmallCalendarModel;
 import fp.utils.CalendarDataFormatHelper;
+import fp.utils.StringRandomiser;
 import fp.net.client.ClientConnectionCreator;
+import fp.views.CalendarView;
 import fp.views.CalendarViewerView;
 import fp.views.FavouritesView;
 
@@ -46,6 +48,8 @@ public class ClientMain {
 		new FavouritesView();
 		
 		smallCalendarModel.update();
+		
+		StringRandomiser.generateRandomString();
 		
 		new ClientConnectionCreator();
 	}

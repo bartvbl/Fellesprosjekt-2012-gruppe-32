@@ -25,7 +25,6 @@ public class CalendarView extends FrameView {
 
 	public CalendarView(SingleFrameApplication app) {
         super(app);
-
         initComponents();
         searchPanel.setLayout(new BorderLayout());
         JTextPane searchTextPane = new JTextPane();

@@ -42,6 +42,7 @@ public class ClientHandler implements Runnable {
 	{
 		this.connected = true;
 		try {
+			
 			while(connected) {
 				if(this.waitForInput()) {
 					output.write("I don't understand you!");
