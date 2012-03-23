@@ -59,7 +59,7 @@ public class DateSelectionModel {
 		if((newWeekNumber == currentWeekNumber) && (yearNumber == currentYearNumber)) {System.out.println("returning");return;}
 		this.calendar.set(Calendar.WEEK_OF_YEAR, newWeekNumber);
 		this.calendar.set(Calendar.YEAR, yearNumber);
-		//this.eventDispatcher.dispatchEvent(new Event<Object>(EventType.SELECTED_WEEK_CHANGED));
+		this.eventDispatcher.dispatchEvent(new Event<Object>(EventType.SELECTED_WEEK_CHANGED));
 	}
 
 	public void reset() {

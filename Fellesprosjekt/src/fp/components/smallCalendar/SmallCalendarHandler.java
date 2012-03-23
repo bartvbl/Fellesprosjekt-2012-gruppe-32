@@ -48,7 +48,9 @@ public class SmallCalendarHandler extends AbstractComponentHandler implements Ac
 		int selectedTableIndex = event.getFirstIndex();
 		//System.out.println("received selection event " + event.getValueIsAdjusting());
 		if((selectedTableIndex > -1) && (!event.getValueIsAdjusting())) {
+			SmallCalendarPanel.calendarTable.getSelectionModel().removeListSelectionListener(this);
 			this.invokeSelectionUpdate(selectedTableIndex);
+			SmallCalendarPanel.calendarTable.getSelectionModel().addListSelectionListener(this);
 		}
 	}
 
