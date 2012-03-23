@@ -35,6 +35,10 @@ public class ServerClientContext {
 		
 	}
 	
+	public void revieceReturnMessage(){
+		
+	}
+	
 	public Message convertXMLMessageIntoMessage(String XMLMessage){
 		Document doc = null;
 		try {

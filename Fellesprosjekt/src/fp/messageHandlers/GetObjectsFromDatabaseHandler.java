@@ -1,12 +1,9 @@
 package fp.messageHandlers;
 
-import java.awt.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import nu.xom.Element;
-
 import fp.dataObjects.MeetingRoom;
 import fp.dataObjects.User;
 import fp.database.DatabaseConnection;
@@ -15,10 +12,10 @@ import fp.xmlConverters.UserConverter;
 
 public class GetObjectsFromDatabaseHandler {
 	
+	/*
 	public static ArrayList<User> getUsers() throws SQLException{
 		
 		
-		/*
 		ArrayList<User> users = new ArrayList<User>();
 		int userID = 0;
 		ResultSet rs;
@@ -85,7 +82,7 @@ public class GetObjectsFromDatabaseHandler {
 	
 	//Returnerer et XML element med alle m¿terom som matcher s¿ket
 	
-	public static Element meetingRoomSearchResults(String capasity){
+	public static Element meetingRoomSearchResults(int capasity) throws SQLException{
 		
 		Element meetingRoomElement = new Element("MeetingRoomElement");
 		
@@ -93,7 +90,7 @@ public class GetObjectsFromDatabaseHandler {
 		int size = 0;
 		String name = null;
 		
-		String query = "SELECT * FROM MeetingRoom WHERE Size > =  '" + capasity + "';";
+		String query = "SELECT * FROM MeetingRoom WHERE Size >=  " + capasity + ";";
 		ResultSet rs = DatabaseConnection.executeReadQuery(query);
 		while(rs.next()){
 			meetingRoomID = rs.getInt("RoomID");
