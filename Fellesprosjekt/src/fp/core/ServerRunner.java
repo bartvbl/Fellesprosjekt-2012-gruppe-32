@@ -29,7 +29,7 @@ public class ServerRunner {
 		Thread server = new Thread(main);
 		server.start();
 		try {
-			ServerClientContext.test();
+			testGetMeetingRooms();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -37,7 +37,7 @@ public class ServerRunner {
 
 	}
 
-	/*
+	
 	public static void testGetMeetingRooms() throws SQLException {
 		Element result = GetObjectsFromDatabaseHandler
 				.meetingRoomSearch(1, "2012-02-01 00:00:00", "2012-03-01 00:00:00");
@@ -45,7 +45,7 @@ public class ServerRunner {
 		Element e = elements.get(0);
 		System.out.println(result.toXML());
 	}
-	*/
+	
 
 	public static void testGetMeetingsInWeekHandler() {
 		Element e = WeekConverter.convertWeekYearToXML(12, 3, 2012);
