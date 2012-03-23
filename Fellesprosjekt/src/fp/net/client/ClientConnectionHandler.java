@@ -31,6 +31,4 @@ public class ClientConnectionHandler {
 		Socket socket = new Socket(connectionFile.getServerHost(), connectionFile.getServerPort());
 		this.connectionHandler = new ConnectionHandler(socket);
 	}
-	
-	
 }

@@ -110,11 +110,11 @@ public class LoginScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel lockIcon;
-    private javax.swing.JButton loginButton;
-    private javax.swing.JLabel passwordLabel;
-    private javax.swing.JPasswordField passwordTextPane;
-    private javax.swing.JLabel usernameLabel;
-    private javax.swing.JTextPane usernameTextPane;
+    public static javax.swing.JLabel lockIcon;
+    public static javax.swing.JButton loginButton;
+    public static javax.swing.JLabel passwordLabel;
+    public static javax.swing.JPasswordField passwordTextPane;
+    public static javax.swing.JLabel usernameLabel;
+    public static javax.swing.JTextPane usernameTextPane;
     // End of variables declaration//GEN-END:variables
 }
