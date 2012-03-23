@@ -5,8 +5,8 @@ import fp.messageParsers.Message;
 import fp.messageParsers.client.ClientMessageParser;
 
 public class ClientConnector {
-	private ClientConnectionContext connectionContext;
-	private EventDispatcher eventDispatcher;
+	private static ClientConnectionContext connectionContext;
+	private static EventDispatcher eventDispatcher;
 	
 	public ClientConnector(EventDispatcher eventDispatcher) {
 		ClientConnectionHandler connectionHandler = new ClientConnectionHandler();
@@ -18,5 +18,9 @@ public class ClientConnector {
 		if(message != null) {
 			ClientMessageParser.parseMessage(message, connectionContext);
 		}
+	}
+	
+	public static void sendMessage(Message message) {
+		
 	}
 }

@@ -46,8 +46,7 @@ private static HashMap<String, MessageType> getMessageType = new HashMap<String,
 
 		Element data = root.getFirstChildElement("data");
 
-		Message message = new Message(
-				getMessageType.get(messageType.getValue()), data);
+		Message message = new Message(Enum.valueOf(MessageType.class, messageType.getValue()), data);
 
 		return message;
 	}

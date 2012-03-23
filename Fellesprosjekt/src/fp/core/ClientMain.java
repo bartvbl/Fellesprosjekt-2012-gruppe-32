@@ -9,6 +9,7 @@ import fp.components.calendarViewer.ChangeWeekButtonHandler;
 import fp.components.smallCalendar.SmallCalendarController;
 import fp.components.smallCalendar.SmallCalendarHandler;
 import fp.events.EventDispatcher;
+import fp.messageParsers.client.ClientMessageParser;
 import fp.models.DateSelectionModel;
 import fp.net.client.ClientConnectionHandler;
 import fp.net.client.ClientConnectionReceiverWorker;
@@ -52,6 +53,7 @@ public class ClientMain {
 		RandomStringGenerator.generateString();
 		RandomStringGenerator.generateString();
 		
+		new ClientMessageParser();
 		ClientConnector connector = new ClientConnector(eventDispatcher);
 		new ClientConnectionReceiverWorker(connector);
 	}

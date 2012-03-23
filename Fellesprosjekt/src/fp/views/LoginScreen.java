@@ -25,6 +25,7 @@ public class LoginScreen extends javax.swing.JFrame {
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setTitle("Log in");
+        LoginScreen.loginButton.setEnabled(false);
     }
 
     /** This method is called from within the constructor to

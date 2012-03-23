@@ -15,7 +15,7 @@ public class XMLWriter {
 		rootElement.addAttribute(version);
 
 		Element header = new Element("header");
-		Attribute messageType = new Attribute("messageType", "returnMessage");
+		Attribute messageType = new Attribute("messageType", message.type.toString());
 		header.addAttribute(messageType);
 
 		Element data = new Element("data");
