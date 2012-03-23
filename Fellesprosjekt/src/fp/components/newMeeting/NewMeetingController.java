@@ -8,7 +8,7 @@ import fp.componentControllers.AbstractComponentController;
 import fp.componentControllers.ComponentControllerType;
 import fp.dataObjects.User;
 import fp.events.EventDispatcher;
-import fp.messageHandlers.GetUsersFromDatabase;
+import fp.messageHandlers.GetObjectsFromDatabaseHandler;
 import fp.messageParsers.Message;
 import fp.messageParsers.MessageType;
 import fp.xmlConverters.MeetingConverter;
