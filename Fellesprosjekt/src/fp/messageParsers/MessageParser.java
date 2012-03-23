@@ -8,6 +8,7 @@ import fp.messageHandlers.AddFavouriteMeetingHandler;
 
 import fp.messageHandlers.AddMeetingHandler;
 import fp.messageHandlers.GetMeetingHandler;
+import fp.messageHandlers.GetMeetingsInWeekHandler;
 import fp.messageHandlers.GetUserHandler;
 import fp.messageHandlers.MessageHandler;
 import fp.messageHandlers.UpdateMeetingHandler;
@@ -17,17 +18,22 @@ public class MessageParser {
 	private static HashMap<MessageType, MessageHandler> typeForHandlerMap = new HashMap<MessageType, MessageHandler>();
 	
 	
-	public MessageParser(){
+	public static void initiate(){
 		typeForHandlerMap.put(MessageType.addMeeting, new AddMeetingHandler());
 		typeForHandlerMap.put(MessageType.getMeeting, new GetMeetingHandler());
 		typeForHandlerMap.put(MessageType.updateMeeting, new UpdateMeetingHandler());
 		typeForHandlerMap.put(MessageType.getMeeting, new GetMeetingHandler());
+		typeForHandlerMap.put(MessageType.getMeetingsInWeek, new GetMeetingsInWeekHandler());
 		typeForHandlerMap.put(MessageType.getUser, new GetUserHandler());
 		typeForHandlerMap.put(MessageType.addFavourite, new AddFavouriteMeetingHandler());
 		
 	}
 	
 	public static void parseMessage(Message message, ServerUserData userData) throws SQLException{
+		if (typeForHandlerMap.size() == 0){
+			initiate();
+		}
+		System.out.println(message.type);
 		typeForHandlerMap.get(message.type).handleMessage(message, userData);
 	}
 

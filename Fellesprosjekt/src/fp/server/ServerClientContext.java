@@ -13,6 +13,7 @@ import fp.messageParsers.Message;
 import fp.messageParsers.MessageParser;
 import fp.messageParsers.MessageType;
 import fp.net.ConnectionHandler;
+import fp.xmlConverters.WeekConverter;
 
 
 public class ServerClientContext {
@@ -23,7 +24,7 @@ public class ServerClientContext {
 	public ServerClientContext(ConnectionHandler connectionHandler, User user){
 		this.connectionHandler = connectionHandler;
 		this.user = user;
-		
+		getMessageType = new HashMap<String, MessageType>();
 		getMessageType.put("getUser", MessageType.getUser);
 		getMessageType.put("getMeeting", MessageType.getMeeting);
 		getMessageType.put("getMeetingsInWeek", MessageType.getMeetingsInWeek);
@@ -32,6 +33,18 @@ public class ServerClientContext {
 		getMessageType.put("updateMeeting", MessageType.updateMeeting);
 		getMessageType.put("removeMeeting", MessageType.removeMeeting);
 	}
+	
+	public static void test() throws SQLException{
+		Element week = WeekConverter.convertWeekYearToXML(12, 3, 2012);
+		ServerClientContext scc = new ServerClientContext(null, null);
+		String testString = "<calendarMessage version=\"0.1\"><header messageType=\"getMeetingsInWeek\"/><data><fromDate>2012-3-22 0:0:0</fromDate><toDate>2012-3-22 0:0:1</toDate></data></calendarMessage>";
+		Message m = scc.convertXMLMessageIntoMessage(testString);
+		if (m != null){
+			MessageParser.parseMessage(m, new ServerUserData(new User(12, "Neshyy", "roflmao", "Flanders", "Trondboe", "flandy@rofl.com", "81549300")));			
+		}
+		
+	}
+	
 	
 	public void revieceXMLMessage(String m) throws SQLException{
 		Message message = convertXMLMessageIntoMessage(m);
@@ -64,7 +77,7 @@ public class ServerClientContext {
 		Document doc = null;
 		try {
 			Builder parser = new Builder(false);
-			doc = parser.build(XMLMessage);
+			doc = parser.build(XMLMessage, "");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
