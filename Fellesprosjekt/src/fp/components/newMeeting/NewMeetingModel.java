@@ -179,5 +179,13 @@ public class NewMeetingModel {
 		this.meetingtype = meetingtype;
 		pcs.firePropertyChange(MEETING_TYPE, oldValue, this.meetingtype);
 	}
+
+	public void setMeetingRooms(ArrayList<MeetingRoom> meetingRooms) {
+		this.meetingRooms = meetingRooms;
+	}
+
+	public ArrayList<MeetingRoom> getMeetingRooms() {
+		return meetingRooms;
+	}
 	
 }
