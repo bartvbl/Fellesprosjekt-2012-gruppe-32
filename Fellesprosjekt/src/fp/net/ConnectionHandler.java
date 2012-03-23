@@ -18,11 +18,6 @@ public class ConnectionHandler {
 				
 	}
 
-	public Message pollConnection(){
-		this.socket.
-		
-		
-	}
 	
 	
 	
