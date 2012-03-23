@@ -53,13 +53,13 @@ public class DateSelectionModel {
 	
 	public void setSelectedWeekNumber(int newWeekNumber, int yearNumber) {
 		System.out.println(newWeekNumber + " " + yearNumber);
-//		System.out.println("calendar: " + this.getSelectedWeekNumber() + ", " + this.getSelectedYear());
+		System.out.println("calendar: " + this.getSelectedWeekNumber() + ", " + this.getSelectedYear());
 		int currentWeekNumber = this.getSelectedWeekNumber();
 		int currentYearNumber = this.getSelectedYear();
 		if((newWeekNumber == currentWeekNumber) && (yearNumber == currentYearNumber)) {System.out.println("returning");return;}
 		this.calendar.set(Calendar.WEEK_OF_YEAR, newWeekNumber);
 		this.calendar.set(Calendar.YEAR, yearNumber);
-		this.eventDispatcher.dispatchEvent(new Event<Object>(EventType.SELECTED_WEEK_CHANGED));
+		//this.eventDispatcher.dispatchEvent(new Event<Object>(EventType.SELECTED_WEEK_CHANGED));
 	}
 
 	public void reset() {
