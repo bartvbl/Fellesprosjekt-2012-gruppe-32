@@ -39,4 +39,10 @@ public class ClientConnectionHandler {
 		} catch (IOException e) {e.printStackTrace();}
 		return null;
 	}
+
+	public void sendMessage(Message message) {
+		try {
+			this.connectionHandler.sendMessage(message);
+		} catch (IOException e) {e.printStackTrace();}
+	}
 }

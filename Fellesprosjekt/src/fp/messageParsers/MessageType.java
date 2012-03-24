@@ -9,5 +9,6 @@ public enum MessageType {
 	addFavourite, 
 	getMeetingsInWeek, 
 	inviteClient, 
-	connectionRequestAccepted
+	connectionRequestAccepted, 
+	loginRequest
 }

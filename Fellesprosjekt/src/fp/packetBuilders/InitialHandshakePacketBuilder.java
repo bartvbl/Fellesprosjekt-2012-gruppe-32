@@ -9,6 +9,9 @@ public class InitialHandshakePacketBuilder {
 	public static Message generateInviteMessage(String passwordSalt) {
 		Element element = new Element("PasswordSalt");
 		element.addAttribute(new Attribute("value", passwordSalt));
-		return new Message(MessageType.inviteClient, element);
+		
+		Message message = new Message(MessageType.inviteClient);
+		message.addDataElement(element);
+		return message;
 	}
 }

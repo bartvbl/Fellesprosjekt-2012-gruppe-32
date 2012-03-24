@@ -4,6 +4,8 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
+import nu.xom.Element;
+
 import fp.componentControllers.AbstractComponentController;
 import fp.componentControllers.ComponentControllerType;
 import fp.dataObjects.Meeting.LocationType;
@@ -30,7 +32,9 @@ public class NewMeetingController extends AbstractComponentController implements
 	public void create(){
 		//opprett melding
 		meeting.getMeeting();
-		Message message1 = new Message(MessageType.addMeeting, MeetingConverter.convertMeetingToXML(meeting.getMeeting()));
+		Element meetingData = MeetingConverter.convertMeetingToXML(meeting.getMeeting());
+		Message message = new Message(MessageType.addMeeting);
+		message.addDataElement(meetingData);
 		
 		//connection til server og send melding til den/database
 		

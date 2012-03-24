@@ -15,7 +15,7 @@ public class AddMeetingHandler implements MessageHandler {
 	@Override
 	public void handleMessage(Message message, ServerClientContext clientContext) throws SQLException {
 		//System.out.println("Starter konvertering...");
-		Meeting meeting = MeetingConverter.convertXMLToMeeting(message.getData());
+		Meeting meeting = MeetingConverter.convertXMLToMeeting(message.getDataElements().get(0));
 		
 		//System.out.println("Konvertert til XML fil...");
 		//System.out.println("Oppretter SQL streng");

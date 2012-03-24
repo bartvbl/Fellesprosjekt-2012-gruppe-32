@@ -34,11 +34,11 @@ public class GetMeetingsInWeekHandler implements MessageHandler {
 	public String extractDatesFromMessageData(Message message){
 		
 		String fromDate = null, toDate = null;
-		Element element = message.getData().getFirstChildElement("fromDate");
+		Element element = message.getDataElements().get(0).getFirstChildElement("fromDate");
 		if (element != null) {
 			fromDate = element.getValue();
 		}
-		element = message.getData().getFirstChildElement("toDate");
+		element = message.getDataElements().get(0).getFirstChildElement("toDate");
 		if (element != null) {
 			toDate = element.getValue();
 		}

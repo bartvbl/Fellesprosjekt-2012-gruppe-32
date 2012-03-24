@@ -17,7 +17,7 @@ public class GetUserHandler implements MessageHandler{
 	
 	@Override
 	public void handleMessage(Message message, ServerClientContext clientContext) throws SQLException {
-		User user = UserConverter.convertXMLToUser(message.getData());
+		User user = UserConverter.convertXMLToUser(message.getDataElements().get(0));
 		String query;
 		ResultSet rs;
 		Element data;

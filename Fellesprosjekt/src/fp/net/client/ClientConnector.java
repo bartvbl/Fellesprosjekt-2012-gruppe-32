@@ -21,6 +21,6 @@ public class ClientConnector {
 	}
 	
 	public static void sendMessage(Message message) {
-		
+		connectionContext.connectionHandler.sendMessage(message);
 	}
 }

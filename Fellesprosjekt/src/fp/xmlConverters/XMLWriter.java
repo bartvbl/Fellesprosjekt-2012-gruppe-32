@@ -1,8 +1,11 @@
 package fp.xmlConverters;
 
+import java.util.ArrayList;
+
 import fp.messageParsers.Message;
 import nu.xom.Attribute;
 import nu.xom.Element;
+import nu.xom.Elements;
 public class XMLWriter {
 	public static String convertMessageIntoXMLElement(Message message) {
 		Element xmlMessage = generateXMLTree(message);
@@ -19,9 +22,13 @@ public class XMLWriter {
 		header.addAttribute(messageType);
 
 		Element data = new Element("data");
-		data.appendChild(message.getData());
 		rootElement.appendChild(header);
 		rootElement.appendChild(data);
+		
+		ArrayList<Element> dataElements = message.getDataElements();
+		for(Element dataElement : dataElements) {
+			data.appendChild(dataElement);
+		}
 
 		return rootElement;
 	}
