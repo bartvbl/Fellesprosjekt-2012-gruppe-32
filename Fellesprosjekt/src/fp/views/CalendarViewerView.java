@@ -6,7 +6,9 @@ import java.awt.Rectangle;
 
 import javax.swing.JScrollPane;
 
+import fp.components.calendarViewer.AddNewMeetingHandler;
 import fp.components.calendarViewer.DatePanelHoverHandler;
+import fp.messageHandlers.AddMeetingHandler;
 
 public class CalendarViewerView {
 	public static DatePanel[] dayDatePanels = new DatePanel[7];
@@ -19,12 +21,15 @@ public class CalendarViewerView {
 	}
 	
 	private void createDayPanels() {
+		AddNewMeetingHandler meetingHandler = new AddNewMeetingHandler();
 		for(int i = 0; i < 7; i++) {
 			DatePanel currentPanel = new DatePanel();
 			dayDatePanels[i] = currentPanel;
 			currentPanel.dayNameLabel.setText(" " + dayNames[i]);
 			currentPanel.addMouseListener(new DatePanelHoverHandler(currentPanel));
 			CalendarView.calendarViewerLayeredPane.add(currentPanel, i+1);
+			currentPanel.addNewMeetingButton.addActionListener(meetingHandler);
+			currentPanel.addNewMeetingButton.setActionCommand("Add meeting for day " + i);
 		}
 	}
 
