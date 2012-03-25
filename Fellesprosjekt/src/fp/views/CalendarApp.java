@@ -4,6 +4,8 @@
 
 package fp.views;
 
+import javax.swing.JFrame;
+
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 
@@ -30,6 +32,11 @@ public class CalendarApp extends SingleFrameApplication {
     
     public void showMainWindow() {
     	show(calendarView);
+    	JFrame frame = calendarView.getFrame();
+    	frame.setVisible(false);
+    	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	frame.setExtendedState(JFrame.NORMAL);
+    	frame.setVisible(true);
     }
 
     /**

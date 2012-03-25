@@ -2,8 +2,8 @@ package fp.xmlConverters;
 
 import nu.xom.Element;
 import fp.dataObjects.Notification;
-import fp.dataObjects.Notification.acceptedMeeting;
-import fp.dataObjects.Notification.notificationType;
+import fp.dataObjects.Notification.NotificationStatus;
+import fp.dataObjects.Notification.NotificationType;
 import fp.dataObjects.User;
 
 public class NotificationConverter {
@@ -11,7 +11,7 @@ public class NotificationConverter {
 
 	
 	public static void main(String[] args) {
-		Notification not = new Notification(1, 3, acceptedMeeting.Yes, notificationType.newMeeting);
+		Notification not = new Notification(1, 3, NotificationStatus.Yes, NotificationType.newMeeting);
 		System.out.println(convertNotificationToXML(not));
 	}
 	
@@ -54,8 +54,8 @@ public Notification toNotification(String xml) throws java.io.IOException, java.
 public static Notification convertXMLToNotification(Element notificationElement) {
 	
 	String userID = null, meetingID = null;
-	acceptedMeeting aM = null;
-	notificationType nT = null;
+	NotificationStatus aM = null;
+	NotificationType nT = null;
 	
 
 	Element element = notificationElement.getFirstChildElement("userID");

@@ -29,6 +29,10 @@ public class LoginScreen extends javax.swing.JFrame {
         this.setTitle("Log in");
         LoginScreen.loginButton.setEnabled(false);
         loginScreen = this;
+        
+        usernameTextPane.setText("root");
+        passwordTextPane.setText("CheeseSlicer");
+        
     }
     
     public static void close() {

@@ -12,5 +12,6 @@ public enum MessageType {
 	connectionRequestAccepted, 
 	loginRequest, 
 	loginRequestAccepted, 
-	loginRequestRejected
+	loginRequestRejected, 
+	meetingNotification
 }
