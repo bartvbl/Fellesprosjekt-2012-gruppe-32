@@ -59,7 +59,6 @@ public class ClientMain {
 		new ChangeWeekButtonHandler(eventDispatcher, calendarViewerController);
 		new AddNewMeetingButtonHandler(eventDispatcher);
 		
-		
 		new FavouritesView();
 		
 		new ClientMessageParser(eventDispatcher);
