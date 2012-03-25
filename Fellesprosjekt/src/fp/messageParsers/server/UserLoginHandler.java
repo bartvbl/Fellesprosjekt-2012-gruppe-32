@@ -28,12 +28,17 @@ public class UserLoginHandler implements MessageHandler {
 		String password = dataElements.get(1).getAttributeValue("value");
 		
 		ResultSet set = DatabaseConnection.executeReadQuery("SELECT * FROM User WHERE UserName='"+userName+"'");
-		
-		try {set.next();}
-		catch(SQLException e) {return;}
-		
-		String correctPasswordHash = StringHasher.hashPassword(set.getString("Password"), clientContext.passwordSalt);
-		User user = UserReader.readUserFromResultSet(set);
+		String correctPasswordHash = "";
+		User user = null;
+		try {
+			set.next();
+			correctPasswordHash = StringHasher.hashPassword(set.getString("Password"), clientContext.passwordSalt);
+			user = UserReader.readUserFromResultSet(set);
+		}
+		catch(SQLException e) {
+			this.sendInvalidLoginMessage(clientContext);
+			return;
+		}
 		
 		if(correctPasswordHash.equals(password)) {
 			clientContext.user = user;
@@ -41,9 +46,13 @@ public class UserLoginHandler implements MessageHandler {
 			clientContext.connectionHandler.sendMessage(replymessage);
 			this.sendPendingNotifications(clientContext);
 		} else {
-			Message replymessage = InitialHandshakePacketBuilder.generateInvalidLoginMessage();
-			clientContext.connectionHandler.sendMessage(replymessage);
+			this.sendInvalidLoginMessage(clientContext);
 		}	
+	}
+	
+	private void sendInvalidLoginMessage(ServerClientContext clientContext) {
+		Message replymessage = InitialHandshakePacketBuilder.generateInvalidLoginMessage();
+		clientContext.connectionHandler.sendMessage(replymessage);
 	}
 
 	private void sendPendingNotifications(ServerClientContext context) {

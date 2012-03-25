@@ -10,15 +10,30 @@
  */
 package fp.views;
 
+import javax.swing.ButtonGroup;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Bart
  */
 public class NewMeetingWindow extends javax.swing.JFrame {
 
-    /** Creates new form NewMeetingWindow */
+    private static JFrame frame;
+	/** Creates new form NewMeetingWindow */
     public NewMeetingWindow() {
         initComponents();
+        frame = this;
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setTitle("Add new meeting");
+        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup.add(NewMeetingWindow.newMeetingButton);
+        buttonGroup.add(NewMeetingWindow.newAppointmentButton);
+    }
+    
+    public static void setFrameVisible(boolean enabled) {
+    	frame.setVisible(enabled);
+    	frame.setLocation(100, 100);
     }
 
     /** This method is called from within the constructor to
@@ -529,41 +544,6 @@ public class NewMeetingWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewMeetingWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewMeetingWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewMeetingWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewMeetingWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new NewMeetingWindow().setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JLabel appointmentDetailsSectionLabel;
     public static javax.swing.JPanel appointmentDetailsSectionPanel;

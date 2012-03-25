@@ -9,26 +9,29 @@ import javax.swing.JScrollPane;
 import fp.components.calendarViewer.AddNewMeetingHandler;
 import fp.components.calendarViewer.DatePanelHoverHandler;
 import fp.messageHandlers.AddMeetingHandler;
+import fp.models.DateSelectionModel;
 
 public class CalendarViewerView {
 	public static DatePanel[] dayDatePanels = new DatePanel[7];
 	private static String[] dayNames = new String[]{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
 	private static final int minimumPanelWidth = 142;
+	private AddNewMeetingHandler meetingHandler;
 	
-	public CalendarViewerView() {
+	public CalendarViewerView(AddNewMeetingHandler meetingHandler) {
 		CalendarView.calendarViewerLayeredPane.getParent().setBackground(Color.white);
+		this.meetingHandler = meetingHandler;
 		this.createDayPanels();
 	}
 	
 	private void createDayPanels() {
-		AddNewMeetingHandler meetingHandler = new AddNewMeetingHandler();
+		
 		for(int i = 0; i < 7; i++) {
 			DatePanel currentPanel = new DatePanel();
 			dayDatePanels[i] = currentPanel;
 			currentPanel.dayNameLabel.setText(" " + dayNames[i]);
 			currentPanel.addMouseListener(new DatePanelHoverHandler(currentPanel));
 			CalendarView.calendarViewerLayeredPane.add(currentPanel, i+1);
-			currentPanel.addNewMeetingButton.addActionListener(meetingHandler);
+			currentPanel.addNewMeetingButton.addActionListener(this.meetingHandler);
 			currentPanel.addNewMeetingButton.setActionCommand("Add meeting for day " + i);
 		}
 	}
