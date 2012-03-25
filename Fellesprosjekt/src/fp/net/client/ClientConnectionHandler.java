@@ -41,8 +41,7 @@ public class ClientConnectionHandler {
 	}
 
 	public void sendMessage(Message message) {
-		try {
-			this.connectionHandler.sendMessage(message);
-		} catch (IOException e) {e.printStackTrace();}
+		System.out.println("client sends message: " + message);
+		this.connectionHandler.sendMessage(message);
 	}
 }

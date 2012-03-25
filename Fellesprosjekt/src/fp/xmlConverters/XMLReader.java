@@ -1,35 +1,15 @@
 package fp.xmlConverters;
 
-import java.util.HashMap;
-
 import nu.xom.Attribute;
 import nu.xom.Builder;
 import nu.xom.Document;
 import nu.xom.Element;
-import fp.dataObjects.User;
+import nu.xom.Elements;
 import fp.messageParsers.Message;
 import fp.messageParsers.MessageType;
-import fp.net.ConnectionHandler;
 
 public class XMLReader {
-
-
-private static HashMap<String, MessageType> getMessageType = new HashMap<String, MessageType>();;
-	
-	public static void initiateGetMessageType(){
-		getMessageType.put("getUser", MessageType.getUser);
-		getMessageType.put("getMeeting", MessageType.getMeeting);
-		getMessageType.put("getMeetingsInWeek", MessageType.getMeetingsInWeek);
-		getMessageType.put("addMeeting", MessageType.addMeeting);
-		getMessageType.put("addFavourite", MessageType.addFavourite);
-		getMessageType.put("updateMeeting", MessageType.updateMeeting);
-		getMessageType.put("removeMeeting", MessageType.removeMeeting);
-	}
-
 	public static Message convertXMLMessageIntoMessage(String XMLMessage) {
-		if (getMessageType.size() == 0){
-			initiateGetMessageType();
-		}
 		Document doc = null;
 		try {
 			Builder parser = new Builder(false);
@@ -47,7 +27,11 @@ private static HashMap<String, MessageType> getMessageType = new HashMap<String,
 		Element data = root.getFirstChildElement("data");
 
 		Message message = new Message(Enum.valueOf(MessageType.class, messageType.getValue()));
-		message.addDataElement(data);
+
+		Elements dataElements = data.getChildElements();
+		for(int i = 0; i < dataElements.size(); i++) {
+			message.addDataElement(dataElements.get(i));
+		}
 
 		return message;
 	}

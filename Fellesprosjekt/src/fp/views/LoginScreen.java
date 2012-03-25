@@ -19,14 +19,22 @@ import javax.swing.JFrame;
  */
 public class LoginScreen extends javax.swing.JFrame {
 
-    /** Creates new form LoginScreen */
+    private static JFrame loginScreen;
+    
+	/** Creates new form LoginScreen */
     public LoginScreen() {
         initComponents();
         this.setResizable(false);
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Log in");
         LoginScreen.loginButton.setEnabled(false);
+        loginScreen = this;
     }
+    
+    public static void close() {
+		loginScreen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		loginScreen.dispose();
+	}
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -118,4 +126,5 @@ public class LoginScreen extends javax.swing.JFrame {
     public static javax.swing.JLabel usernameLabel;
     public static javax.swing.JTextPane usernameTextPane;
     // End of variables declaration//GEN-END:variables
+	
 }

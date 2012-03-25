@@ -55,7 +55,8 @@ public class UserConverter {
 		element.appendChild(email);
 		return element;
 	}
-
+	
+	//it may have been better here to use the same method name (convertXMLToUser()) here, as it basically does the same, and allows anyone using the class to enter different parameter types at will -> ease of use
 	public static User toUser(String xml) throws java.io.IOException,
 			java.text.ParseException, nu.xom.ParsingException {
 		nu.xom.Document doc;

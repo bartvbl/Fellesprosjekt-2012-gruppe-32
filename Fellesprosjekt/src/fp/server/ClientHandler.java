@@ -44,6 +44,7 @@ public class ClientHandler implements Runnable {
 		try {
 			String passwordSalt = RandomStringGenerator.generateString();
 			Message message = InitialHandshakePacketBuilder.generateInviteMessage(passwordSalt);
+			this.clientContext.passwordSalt = passwordSalt;
 			this.connectionHandler.sendMessage(message);
 			while((isRunning) && (!this.shutdownRequested)) {
 				this.handleMessages();

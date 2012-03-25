@@ -8,6 +8,7 @@ public class ServerClientContext {
 	public final ConnectionHandler connectionHandler;
 	public User user = null;
 	private boolean isLoggedIn;
+	public String passwordSalt;
 	
 	public ServerClientContext(ConnectionHandler connectionHandler){
 		this.connectionHandler = connectionHandler;

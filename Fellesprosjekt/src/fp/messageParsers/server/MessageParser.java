@@ -29,7 +29,7 @@ public class MessageParser {
 		typeForHandlerMap.put(MessageType.getMeetingsInWeek, new GetMeetingsInWeekHandler());
 		typeForHandlerMap.put(MessageType.getUser, new GetUserHandler());
 		typeForHandlerMap.put(MessageType.addFavourite, new AddFavouriteMeetingHandler());
-		
+		typeForHandlerMap.put(MessageType.loginRequest, new UserLoginHandler());
 	}
 	
 	public static void parseMessage(Message message, ServerClientContext clientContext) throws SQLException{

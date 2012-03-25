@@ -9,7 +9,8 @@ import fp.util.StringHasher;
 
 public class LoginRequestSender {
 	public static void sendLoginRequest(String userName, String password, String salt) {
-		String hashedPassword = StringHasher.hashPassword(password, salt);
+		System.out.println("sending login request..");
+		String hashedPassword = StringHasher.hashPassword(StringHasher.hashPassword(password, ""), salt);
 		Message message = buildMessage(userName, hashedPassword);
 		ClientConnector.sendMessage(message);
 	}
@@ -24,7 +25,6 @@ public class LoginRequestSender {
 		Element passwordElement = new Element("password");
 		passwordElement.addAttribute(new Attribute("value", hashedPassword));
 		message.addDataElement(passwordElement);
-		
 		return message;
 	}
 }

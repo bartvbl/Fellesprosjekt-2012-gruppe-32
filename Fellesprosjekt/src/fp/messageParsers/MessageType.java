@@ -10,5 +10,7 @@ public enum MessageType {
 	getMeetingsInWeek, 
 	inviteClient, 
 	connectionRequestAccepted, 
-	loginRequest
+	loginRequest, 
+	loginRequestAccepted, 
+	loginRequestRejected
 }

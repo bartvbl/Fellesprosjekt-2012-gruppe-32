@@ -20,4 +20,8 @@ public class Message {
 	public ArrayList<Element> getDataElements() {
 		return elementsList;
 	}
+	
+	public String toString() {
+		return "Message of type " + type;
+	}
 }

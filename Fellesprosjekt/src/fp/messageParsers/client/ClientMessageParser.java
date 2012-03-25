@@ -25,5 +25,7 @@ public class ClientMessageParser {
 	public static void initialize() {
 		if(isInitialized) {return;}
 		messageHandlers.put(MessageType.inviteClient, new SaltMessageHandler());
+		messageHandlers.put(MessageType.loginRequestRejected, new RejectedMessageHandler());
+		messageHandlers.put(MessageType.loginRequestAccepted, new LoginAcceptedHandler());
 	}
 }

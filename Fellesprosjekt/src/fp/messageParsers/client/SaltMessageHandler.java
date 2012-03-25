@@ -11,8 +11,9 @@ import fp.views.LoginScreen;
 public class SaltMessageHandler implements ClientMessageHandler {
 	public void handleMessage(Message message, ClientConnectionContext context) {
 		ArrayList<Element> data = message.getDataElements();
-		Element saltTag = data.get(0).getFirstChildElement("PasswordSalt");
+		Element saltTag = data.get(0);
 		String saltValue = saltTag.getAttributeValue("value");
+		System.out.println("received salt value: " + saltValue);
 		context.passwordSalt = saltValue;
 		LoginScreen.loginButton.setEnabled(true);
 	}
