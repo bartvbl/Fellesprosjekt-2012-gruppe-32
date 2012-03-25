@@ -10,6 +10,7 @@ import fp.dataObjects.Notification;
 import fp.dataObjects.User;
 import fp.database.DatabaseConnection;
 import fp.databaseReaders.NotificationReader;
+import fp.databaseReaders.UserReader;
 import fp.messageHandlers.MessageHandler;
 import fp.messageParsers.Message;
 import fp.messageParsers.MessageType;
@@ -31,11 +32,8 @@ public class UserLoginHandler implements MessageHandler {
 		try {set.next();}
 		catch(SQLException e) {return;}
 		
-		System.out.println("used salt: " + clientContext.passwordSalt);
 		String correctPasswordHash = StringHasher.hashPassword(set.getString("Password"), clientContext.passwordSalt);
-		User user = new User(set.getInt("UserID"), set.getString("UserName"), null, set.getString("FirstName"), set.getString("LastName"), set.getString("Email"), set.getString("PhoneNumber"));
-		System.out.println("user password: " + correctPasswordHash);
-		System.out.println("entered password: " + password);
+		User user = UserReader.readUserFromResultSet(set);
 		
 		if(correctPasswordHash.equals(password)) {
 			clientContext.user = user;
@@ -49,15 +47,18 @@ public class UserLoginHandler implements MessageHandler {
 	}
 
 	private void sendPendingNotifications(ServerClientContext context) {
+		Message returnMessage = new Message(MessageType.meetingNotification);
 		try {
-			Message returnMessage = new Message(MessageType.meetingNotification);
 			ResultSet result = DatabaseConnection.executeReadQuery("SELECT * FROM Notifications WHERE UserID="+context.user.userID+" AND AcceptedMeeting=NULL");
 			while(result.next()) {
 				Notification notification = NotificationReader.readNotificationLine(result);
 				Element dataElement = NotificationConverter.convertNotificationToXML(notification);
 				returnMessage.addDataElement(dataElement);
 			}
-			context.connectionHandler.sendMessage(returnMessage);
-		} catch (SQLException e) {/*this exception is also thrown if no results were found*/}
+			
+		} catch (SQLException e) {
+			//will be thrown if there are no notifications for the client -> the message is still sent so the client can reflect this in the UI
+		}
+		context.connectionHandler.sendMessage(returnMessage);
 	}
 }

@@ -22,6 +22,9 @@ public class MeetingNotificationHandler implements ClientMessageHandler {
 
 	public void handleMessage(Message message, ClientConnectionContext context) {
 		ArrayList<Element> dataElements = message.getDataElements();
+		if(dataElements.size() == 0) {
+			this.eventDispatcher.dispatchEvent(new Event<Object>(EventType.NO_NEW_NOTIFICATIONS));
+		}
 		for(Element dataElement : dataElements) {
 			Notification notification = NotificationConverter.convertXMLToNotification(dataElement);
 			this.eventDispatcher.dispatchEvent(new Event<Notification>(EventType.NOTIFICATION_RECEIVED, notification));

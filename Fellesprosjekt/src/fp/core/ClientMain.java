@@ -7,6 +7,7 @@ import fp.components.calendarViewer.CalendarViewerController;
 import fp.components.calendarViewer.CalendarViewerHandler;
 import fp.components.calendarViewer.ChangeWeekButtonHandler;
 import fp.components.loginScreen.LoginScreenHandler;
+import fp.components.notifications.NotificationsController;
 import fp.components.smallCalendar.SmallCalendarController;
 import fp.components.smallCalendar.SmallCalendarHandler;
 import fp.events.EventDispatcher;
@@ -52,6 +53,8 @@ public class ClientMain {
 		ClientConnector connector = new ClientConnector(eventDispatcher);
 		new ClientConnectionReceiverWorker(connector);
 		new LoginScreenHandler();
+		
+		new NotificationsController(eventDispatcher);
 	}
 	
 	private void createCalendarViewControllers() {
