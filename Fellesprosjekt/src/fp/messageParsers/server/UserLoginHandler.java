@@ -6,13 +6,18 @@ import java.util.ArrayList;
 
 import nu.xom.Element;
 
+import fp.dataObjects.Notification;
 import fp.dataObjects.User;
 import fp.database.DatabaseConnection;
+import fp.databaseReaders.NotificationReader;
 import fp.messageHandlers.MessageHandler;
 import fp.messageParsers.Message;
+import fp.messageParsers.MessageType;
+import fp.net.client.ClientConnectionContext;
 import fp.packetBuilders.InitialHandshakePacketBuilder;
 import fp.server.ServerClientContext;
 import fp.util.StringHasher;
+import fp.xmlConverters.NotificationConverter;
 
 public class UserLoginHandler implements MessageHandler {
 
@@ -36,9 +41,23 @@ public class UserLoginHandler implements MessageHandler {
 			clientContext.user = user;
 			Message replymessage = InitialHandshakePacketBuilder.generateLoggedInMessage(user);
 			clientContext.connectionHandler.sendMessage(replymessage);
+			this.sendPendingNotifications(clientContext);
 		} else {
 			Message replymessage = InitialHandshakePacketBuilder.generateInvalidLoginMessage();
 			clientContext.connectionHandler.sendMessage(replymessage);
-		}
+		}	
+	}
+
+	private void sendPendingNotifications(ServerClientContext context) {
+		try {
+			Message returnMessage = new Message(MessageType.meetingNotification);
+			ResultSet result = DatabaseConnection.executeReadQuery("SELECT * FROM Notifications WHERE UserID="+context.user.userID+" AND AcceptedMeeting=NULL");
+			while(result.next()) {
+				Notification notification = NotificationReader.readNotificationLine(result);
+				Element dataElement = NotificationConverter.convertNotificationToXML(notification);
+				returnMessage.addDataElement(dataElement);
+			}
+			context.connectionHandler.sendMessage(returnMessage);
+		} catch (SQLException e) {/*this exception is also thrown if no results were found*/}
 	}
 }

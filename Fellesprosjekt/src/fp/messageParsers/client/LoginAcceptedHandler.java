@@ -26,21 +26,6 @@ public class LoginAcceptedHandler implements ClientMessageHandler {
 		LoginScreen.close();
 		User user = UserConverter.convertXMLToUser(message.getDataElements().get(0));
 		context.user = user;
-		this.sendPendingNotifications(context);
-	}
-
-	private void sendPendingNotifications(ClientConnectionContext context) {
-		try {
-			Message returnMessage = new Message(MessageType.meetingNotification);
-			ResultSet result = DatabaseConnection.executeReadQuery("SELECT * FROM Notifications WHERE UserID="+context.user.userID+" AND AcceptedMeeting=NULL");
-			while(result.next()) {
-				Notification notification = NotificationReader.readNotificationLine(result);
-				Element dataElement = NotificationConverter.convertNotificationToXML(notification);
-				returnMessage.addDataElement(dataElement);
-			}
-			context.connectionHandler.sendMessage(returnMessage);
-		} catch (SQLException e) {/*this exception is also thrown if no results were found*/}
-		
 	}
 
 }

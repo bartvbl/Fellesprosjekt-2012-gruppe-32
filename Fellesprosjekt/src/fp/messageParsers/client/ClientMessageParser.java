@@ -2,6 +2,7 @@ package fp.messageParsers.client;
 
 import java.util.HashMap;
 
+import fp.events.EventDispatcher;
 import fp.messageParsers.Message;
 import fp.messageParsers.MessageType;
 import fp.net.client.ClientConnectionContext;
@@ -10,8 +11,8 @@ public class ClientMessageParser {
 	private static boolean isInitialized = false;
 	private static HashMap<MessageType, ClientMessageHandler> messageHandlers = new HashMap<MessageType, ClientMessageHandler>();
 	
-	public ClientMessageParser() {
-		initialize();
+	public ClientMessageParser(EventDispatcher eventDispatcher) {
+		initialize(eventDispatcher);
 	}
 	
 	public static void parseMessage(Message message, ClientConnectionContext connectionContext) {
@@ -22,10 +23,11 @@ public class ClientMessageParser {
 		}
 	}
 
-	public static void initialize() {
+	public static void initialize(EventDispatcher eventDispatcher) {
 		if(isInitialized) {return;}
 		messageHandlers.put(MessageType.inviteClient, new SaltMessageHandler());
 		messageHandlers.put(MessageType.loginRequestRejected, new RejectedMessageHandler());
 		messageHandlers.put(MessageType.loginRequestAccepted, new LoginAcceptedHandler());
+		messageHandlers.put(MessageType.meetingNotification, new MeetingNotificationHandler(eventDispatcher));
 	}
 }

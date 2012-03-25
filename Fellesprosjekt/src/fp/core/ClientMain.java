@@ -48,13 +48,7 @@ public class ClientMain {
 		
 		new FavouritesView();
 		
-		RandomStringGenerator.generateString();
-		RandomStringGenerator.generateString();
-		RandomStringGenerator.generateString();
-		RandomStringGenerator.generateString();
-		RandomStringGenerator.generateString();
-		
-		new ClientMessageParser();
+		new ClientMessageParser(eventDispatcher);
 		ClientConnector connector = new ClientConnector(eventDispatcher);
 		new ClientConnectionReceiverWorker(connector);
 		new LoginScreenHandler();
