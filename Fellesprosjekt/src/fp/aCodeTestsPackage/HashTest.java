@@ -1,4 +1,4 @@
-package fp.AndersTestKode;
+package fp.aCodeTestsPackage;
 
 import fp.util.StringHasher;
 

@@ -1,4 +1,4 @@
-package fp.AndersTestKode;
+package fp.aCodeTestsPackage;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
