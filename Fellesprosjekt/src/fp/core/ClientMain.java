@@ -63,6 +63,8 @@ public class ClientMain {
 		
 		new NotificationsModel(eventDispatcher);
 		new NotificationsController(eventDispatcher);
+		
+		new NewMeetingWindow();
 	}
 	
 	private void createCalendarViewControllers() {

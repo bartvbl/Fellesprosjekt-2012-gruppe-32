@@ -18,7 +18,10 @@ public class EventParser {
 	public static void parseEvents(ArrayList<ServerEvent<?>> eventList, ServerClientContext context) {
 		if(eventList == null){return;}
 		for(ServerEvent<?> event : eventList) {
-			
+			ServerEventHandler handler = eventHandlerMap.get(event.eventType);
+			if(handler != null) {
+				handler.handleEvent(event, context);
+			}
 		}
 	}
 
