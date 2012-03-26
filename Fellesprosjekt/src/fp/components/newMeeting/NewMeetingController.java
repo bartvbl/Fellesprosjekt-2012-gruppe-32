@@ -108,6 +108,9 @@ public class NewMeetingController extends AbstractComponentController {
 	
 	public void setLocation(String location){
 		model.setLocation(location);
-	}	
-
+	}
+	
+	public void setMeetingType(Meeting.MeetingType meetingType) {
+		model.setMeetingtype(meetingType);
+	}
 }
