@@ -13,6 +13,7 @@ import fp.events.EventType;
 import fp.messageParsers.Message;
 import fp.net.client.ClientConnectionContext;
 import fp.xmlConverters.MeetingConverter;
+import fp.xmlConverters.MeetingNotificationConverter;
 import fp.xmlConverters.NotificationConverter;
 
 public class MeetingNotificationHandler implements ClientMessageHandler {
@@ -29,9 +30,8 @@ public class MeetingNotificationHandler implements ClientMessageHandler {
 			this.eventDispatcher.dispatchEvent(new Event<Object>(EventType.NO_NEW_NOTIFICATIONS));
 		}
 		for(int i = 0; i < dataElements.size(); i += 2) {
-			Notification notification = NotificationConverter.convertXMLToNotification(dataElements.get(i));
-			Meeting meeting = MeetingConverter.convertXMLToMeeting(dataElements.get(i+1));
-			this.eventDispatcher.dispatchEvent(new Event<MeetingNotification>(EventType.NOTIFICATION_RECEIVED, new MeetingNotification(meeting, notification)));
+			MeetingNotification notification = MeetingNotificationConverter.converXMLToMeetingNofitication(dataElements.get(i));
+			this.eventDispatcher.dispatchEvent(new Event<MeetingNotification>(EventType.NOTIFICATION_RECEIVED, notification));
 		}
 	}
 
