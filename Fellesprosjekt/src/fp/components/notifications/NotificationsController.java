@@ -34,7 +34,7 @@ public class NotificationsController implements EventHandler {
 				this.disableNotificationsButton();
 			case WINDOW_RESIZED:
 				this.redrawNotificationsPanel();
-			case NOTIFICATION_RECEIVED:
+			case NOTIFICATIONS_UPDATE_REQUESTED:
 				this.redrawNotificationsPanel();
 		}
 	}
