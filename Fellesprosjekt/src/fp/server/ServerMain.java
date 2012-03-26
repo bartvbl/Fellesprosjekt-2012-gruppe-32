@@ -10,6 +10,8 @@ import java.util.concurrent.Executors;
 import fp.database.DatabaseConnection;
 import fp.events.ConcurrentEventDispatcher;
 import fp.events.EventType;
+import fp.messageParsers.server.MessageParser;
+import fp.server.events.EventParser;
 
 public class ServerMain implements Runnable{
 	private ServerSocket serverSocket = null;
@@ -21,6 +23,8 @@ public class ServerMain implements Runnable{
 	public ServerMain()
 	{
 		this.eventDispatcher = new ConcurrentEventDispatcher();
+		new MessageParser(this.eventDispatcher);
+		new EventParser();
 	}
 
 	public void initialize()

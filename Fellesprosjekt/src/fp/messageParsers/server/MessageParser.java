@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 import fp.dataObjects.ServerUserData;
+import fp.events.ConcurrentEventDispatcher;
 import fp.messageHandlers.AddFavouriteMeetingHandler;
 
 import fp.messageHandlers.AddMeetingHandler;
@@ -20,9 +21,14 @@ public class MessageParser {
 	
 	private static HashMap<MessageType, MessageHandler> typeForHandlerMap = new HashMap<MessageType, MessageHandler>();
 	
+	public MessageParser(ConcurrentEventDispatcher eventDispatcher) {
+		if (typeForHandlerMap.size() == 0){
+			initiate(eventDispatcher);
+		}
+	}
 	
-	public static void initiate(){
-		typeForHandlerMap.put(MessageType.addMeeting, new AddMeetingHandler());
+	public static void initiate(ConcurrentEventDispatcher eventDispatcher){
+		typeForHandlerMap.put(MessageType.addMeeting, new AddMeetingHandler(eventDispatcher));
 		typeForHandlerMap.put(MessageType.getMeeting, new GetMeetingHandler());
 		typeForHandlerMap.put(MessageType.updateMeeting, new UpdateMeetingHandler());
 		typeForHandlerMap.put(MessageType.getMeeting, new GetMeetingHandler());
@@ -33,9 +39,6 @@ public class MessageParser {
 	}
 	
 	public static void parseMessage(Message message, ServerClientContext clientContext) throws SQLException{
-		if (typeForHandlerMap.size() == 0){
-			initiate();
-		}
 		System.out.println(message.type);
 		typeForHandlerMap.get(message.type).handleMessage(message, clientContext);
 	}
