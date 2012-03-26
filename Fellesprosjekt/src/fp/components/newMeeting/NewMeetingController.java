@@ -17,7 +17,7 @@ import fp.messageParsers.MessageType;
 import fp.views.NewMeetingWindow;
 import fp.xmlConverters.MeetingConverter;
 
-public class NewMeetingController extends AbstractComponentController implements PropertyChangeListener {
+public class NewMeetingController extends AbstractComponentController {
 
 	NewMeetingModel meeting;
 	ArrayList<User> users;
@@ -25,7 +25,6 @@ public class NewMeetingController extends AbstractComponentController implements
 	public NewMeetingController(EventDispatcher eventDispatcher,NewMeetingModel meeting){
 		super(ComponentControllerType.NEW_MEETING_VIEW, eventDispatcher);
 		this.meeting = meeting;
-		meeting.addPropertyChangeListener(this);
 	}
 	
 	public void create(){
@@ -72,47 +71,5 @@ public class NewMeetingController extends AbstractComponentController implements
 		
 	}
 
-	@Override
-	public void propertyChange(PropertyChangeEvent evt) {
-		if(evt.getPropertyName() == NewMeetingModel.DESCRIPTION){
-			
-		}
-		else if(evt.getPropertyName() == NewMeetingModel.CREATE_MEETING){
-			create();
-		}
-		else if(evt.getPropertyName() == NewMeetingModel.INVITED){
-			
-		}		
-		else if(evt.getPropertyName() == NewMeetingModel.PARTICIPANT_SEARCH){
-			//NewMeetingWindow.participantSearchResultList.get
-		}		
-		else if(evt.getPropertyName() == NewMeetingModel.MEETING_ROOM_SEARCH){
-			
-		}
-		else if(evt.getPropertyName() == NewMeetingModel.MEETING_TYPE){
-			if(evt.getNewValue() == MeetingType.appointment){
-				NewMeetingWindow.participantSearchResultList.setEnabled(false);
-				NewMeetingWindow.participantSearchTextPane.setEnabled(false);
-			}
-			else{
-				NewMeetingWindow.participantSearchResultList.setEnabled(true);
-				NewMeetingWindow.participantSearchTextPane.setEnabled(true);
-			}
-		}
-		else if(evt.getPropertyName() == NewMeetingModel.LOCATION_TYPE){
-			if(evt.getNewValue() == LocationType.location){
-				NewMeetingWindow.meetingRoomSearchResultList.setEnabled(false);
-				NewMeetingWindow.locationSearchTextPane.setEnabled(false);
-			}
-			else{
-				NewMeetingWindow.meetingRoomSearchResultList.setEnabled(true);
-				NewMeetingWindow.locationSearchTextPane.setEnabled(true);
-			}
-		}
-		else if(evt.getPropertyName() == NewMeetingModel.LOCATION){
-			
-		}
-		
-	}
 
 }
