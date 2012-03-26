@@ -24,6 +24,7 @@ public class NotificationsView extends JPanel {
 		this.add(mainScrollPane, BorderLayout.CENTER);
 		
 		CalendarView.mainLayeredPane.add(this, 3);		
+		panelInstance = this;
 	}
 
 	public static NotificationsView getInstance() {

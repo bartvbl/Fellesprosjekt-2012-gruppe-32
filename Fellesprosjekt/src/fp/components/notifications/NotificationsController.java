@@ -16,13 +16,16 @@ public class NotificationsController implements EventHandler {
 	private NotificationsViewController notificationsController;
 	private NotificationsModel model;
 	
+	private static final int NOTIFICATIONS_PANEL_OFFSET_X = 200;
+	private static final int NOTIFICATIONS_PANEL_OFFSET_Y = 200;
+	
 	public NotificationsController(EventDispatcher eventDispatcher, NotificationsModel model) {
 		this.eventDispatcher = eventDispatcher;
+		this.notificationsController = new NotificationsViewController(model);
 		this.eventDispatcher.addEventListener(this, EventType.NO_NEW_NOTIFICATIONS);
 		this.eventDispatcher.addEventListener(this, EventType.WINDOW_RESIZED);
 		this.eventDispatcher.addEventListener(this, EventType.NOTIFICATIONS_UPDATE_REQUESTED);
 		this.model = model;
-		this.notificationsController = new NotificationsViewController(model);
 	}
 
 	public void handleEvent(Event<?> event) {
@@ -42,20 +45,21 @@ public class NotificationsController implements EventHandler {
 		CalendarView.pendingNotificationsButton.setEnabled(false);
 	}
 	
-	private void redrawNotificationsPanel() {
+	private void redrawNotificationsPanel() {System.out.println("updating notifications");
 		int numberOfNotifications = this.model.getNumActiveNotifications();
 		if(numberOfNotifications != 0) {
 			CalendarView.pendingNotificationsButton.setText("Notifications ("+numberOfNotifications+")");
 			CalendarView.pendingNotificationsButton.setIcon(newNotificationsIcon);
 			CalendarView.pendingNotificationsButton.setEnabled(true);
 		}
-		this.updateNotificationsPanel();
 		this.notificationsController.redraw();
+		this.updateNotificationsPanel();
 	}
 
 	private void updateNotificationsPanel() {
 		NotificationsView view = NotificationsView.getInstance();
 		view.setVisible(CalendarView.pendingNotificationsButton.isSelected());
 		
+		//view.setLocation(arg0, arg1)
 	}
 }

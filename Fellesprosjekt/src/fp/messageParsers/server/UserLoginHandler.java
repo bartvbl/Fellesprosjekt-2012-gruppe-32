@@ -44,10 +44,12 @@ public class UserLoginHandler implements MessageHandler {
 			correctPasswordHash = StringHasher.hashPassword(set.getString("Password"), clientContext.passwordSalt);
 			user = UserReader.readUserFromResultSet(set);
 		}
-		catch(SQLException e) {
+		catch(SQLException e) {e.printStackTrace();
 			this.sendInvalidLoginMessage(clientContext);
 			return;
 		}
+		
+		System.out.println("correct password: " + set.getString("Password"));
 		
 		if(correctPasswordHash.equals(password)) {
 			clientContext.user = user;
@@ -67,7 +69,7 @@ public class UserLoginHandler implements MessageHandler {
 	private void sendPendingNotifications(ServerClientContext context) {
 		Message returnMessage = new Message(MessageType.meetingNotification);
 		try {
-			ResultSet result = DatabaseConnection.executeReadQuery("SELECT * FROM Notifications WHERE UserID="+context.user.userID+" AND AcceptedMeeting=NULL");
+			ResultSet result = DatabaseConnection.executeReadQuery("SELECT * FROM Notifications WHERE UserID="+context.user.userID+" AND AcceptedMeeting='Undecided'");
 			while(result.next()) {
 				Notification notification = NotificationReader.readNotificationLine(result);
 				Meeting meeting = this.getMeetingByID(notification.meetingID);

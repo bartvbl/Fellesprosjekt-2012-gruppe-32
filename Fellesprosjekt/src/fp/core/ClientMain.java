@@ -1,5 +1,6 @@
 package fp.core;
 
+import prototype.calendarApp.views.CalendarView;
 import fp.componentControllers.CalendarViewResizeController;
 import fp.componentHandlers.AddNewMeetingButtonHandler;
 import fp.componentHandlers.CalendarViewResizeHandler;

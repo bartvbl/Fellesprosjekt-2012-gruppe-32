@@ -11,6 +11,7 @@ import fp.dataObjects.Meeting.MeetingStatus;
 public class MeetingReader {
 
 	public static Meeting readMeetingFromResultSet(ResultSet result) throws SQLException {
+		System.out.println("reading_: " + result.getString("LocationType"));
 		LocationType type = Enum.valueOf(LocationType.class, result.getString("LocationType"));
 		MeetingStatus meetingStatus = Enum.valueOf(MeetingStatus.class, result.getString("Status"));
 		MeetingType meetingType = Enum.valueOf(MeetingType.class, result.getString("MeetingType"));

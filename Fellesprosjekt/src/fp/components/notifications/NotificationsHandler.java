@@ -3,11 +3,10 @@ package fp.components.notifications;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import prototype.calendarApp.views.CalendarView;
 import fp.events.Event;
 import fp.events.EventDispatcher;
 import fp.events.EventType;
-import fp.views.NotificationsView;
+import fp.views.CalendarView;
 
 public class NotificationsHandler implements ActionListener {
 	private EventDispatcher eventDispatcher;
@@ -18,11 +17,12 @@ public class NotificationsHandler implements ActionListener {
 	}
 
 	private void addEventListeners() {
-		CalendarView.pendingInvitationsButton.addActionListener(this);
+		System.out.println("listener added");
+		CalendarView.pendingNotificationsButton.addActionListener(this);
 	}
 
 	public void actionPerformed(ActionEvent event) {
-		if(event.getSource() == CalendarView.pendingInvitationsButton) {
+		if(event.getSource() == CalendarView.pendingNotificationsButton) {
 			this.eventDispatcher.dispatchEvent(new Event<Object>(EventType.NOTIFICATIONS_UPDATE_REQUESTED));
 		}
 	}
