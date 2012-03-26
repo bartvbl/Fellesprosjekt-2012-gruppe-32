@@ -47,7 +47,7 @@ public class Testing1 {
 		// TODO Auto-generated method stub
 		Meeting meeting = new Meeting(5, "Test", "Hjemme", LocationType.location, "2012-12-12 00:00:00", "2012-12-15 00:00:00", Status.active, 1, 0, MeetingType.appointment);
 		Element element = MeetingConverter.convertMeetingToXML(meeting);
-		//Message message = new Message(MessageType.addMeeting, element);
+		Message message = new Message(MessageType.addMeeting, element);
 		AddMeetingHandler amh = new AddMeetingHandler();
 		
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
