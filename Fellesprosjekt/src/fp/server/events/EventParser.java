@@ -1,15 +1,24 @@
 package fp.server.events;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import fp.events.EventType;
 import fp.events.ServerEvent;
+import fp.events.ServerEventHandler;
 import fp.server.ServerClientContext;
 
 public class EventParser {
-
-	public static void parseEvents(ArrayList<ServerEvent<?>> eventList, ServerClientContext context) {
-		// TODO Auto-generated method stub
+	private static HashMap<EventType, ServerEventHandler> eventHandlerMap = new HashMap<EventType, ServerEventHandler>();
+	
+	public EventParser() {
 		
+	}
+	
+	public static void parseEvents(ArrayList<ServerEvent<?>> eventList, ServerClientContext context) {
+		for(ServerEvent<?> event : eventList) {
+			
+		}
 	}
 
 }
