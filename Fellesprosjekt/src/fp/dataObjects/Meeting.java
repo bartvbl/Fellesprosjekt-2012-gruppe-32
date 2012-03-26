@@ -21,8 +21,8 @@ public class Meeting {
 
 	public final String startTime;
 	public final String endTime;
-	public final Status status;
-	public enum Status{
+	public final MeetingStatus status;
+	public enum MeetingStatus{
 		active{
 			public String toString(){
 				return "active";
@@ -52,7 +52,7 @@ public class Meeting {
 	
 	public Meeting(int meetingID, String description, String location,
 			LocationType locationType, String startTime, String endTime,
-			Status status, int creatorID, int roomID, MeetingType meetingtype) {
+			MeetingStatus status, int creatorID, int roomID, MeetingType meetingtype) {
 		this.meetingID = meetingID;
 		this.description = description;
 		this.location = location;

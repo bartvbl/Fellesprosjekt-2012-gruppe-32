@@ -54,8 +54,10 @@ public class ClientHandler implements Runnable {
 			main.removeHandler(this);
 		} catch (IOException e) {
 			this.main.writeMessageInWindow(e.getMessage());
+			e.printStackTrace();
 		} catch (SQLException e) {
 			this.main.writeMessageInWindow(e.getMessage());
+			e.printStackTrace();
 		}
 		
 	}

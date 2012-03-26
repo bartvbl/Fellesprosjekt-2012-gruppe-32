@@ -7,7 +7,7 @@ import nu.xom.Elements;
 import fp.dataObjects.Meeting;
 import fp.dataObjects.Meeting.LocationType;
 import fp.dataObjects.Meeting.MeetingType;
-import fp.dataObjects.Meeting.Status;
+import fp.dataObjects.Meeting.MeetingStatus;
 import fp.dataObjects.ServerUserData;
 import fp.dataObjects.User;
 import fp.messageHandlers.AddMeetingHandler;
