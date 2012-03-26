@@ -7,8 +7,13 @@ import java.util.ArrayList;
 import nu.xom.Element;
 
 import fp.dataObjects.Meeting;
+import fp.dataObjects.Meeting.LocationType;
+import fp.dataObjects.Meeting.MeetingStatus;
+import fp.dataObjects.Meeting.MeetingType;
 import fp.dataObjects.MeetingNotification;
 import fp.dataObjects.Notification;
+import fp.dataObjects.Notification.NotificationStatus;
+import fp.dataObjects.Notification.NotificationType;
 import fp.dataObjects.User;
 import fp.database.DatabaseConnection;
 import fp.databaseReaders.MeetingReader;
@@ -73,6 +78,12 @@ public class UserLoginHandler implements MessageHandler {
 		} catch (SQLException e) {
 			//will be thrown if there are no notifications for the client -> the message is still sent so the client can reflect this in the UI
 		}
+		
+		Meeting meeting = new Meeting(12, "some meeting", "nowhere", LocationType.location, "yesterday", "endTime", MeetingStatus.active, 2, -1, MeetingType.appointment);
+		Notification notification = new Notification(12, 12, NotificationStatus.Undecided, NotificationType.newMeeting);
+		MeetingNotification meetingNotification = new MeetingNotification(meeting, notification);
+		returnMessage.addDataElement(MeetingNotificationConverter.convertMeetingotificationToXML(meetingNotification));
+		
 		context.connectionHandler.sendMessage(returnMessage);
 	}
 	
