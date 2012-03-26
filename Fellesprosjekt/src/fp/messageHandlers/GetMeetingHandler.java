@@ -13,7 +13,7 @@ import fp.dataObjects.ServerUserData;
 import fp.dataObjects.User;
 import fp.dataObjects.Meeting.LocationType;
 import fp.dataObjects.Meeting.MeetingType;
-import fp.dataObjects.Meeting.Status;
+import fp.dataObjects.Meeting.MeetingStatus;
 import fp.database.DatabaseConnection;
 import fp.messageParsers.Message;
 import fp.server.ServerClientContext;
@@ -36,7 +36,7 @@ public class GetMeetingHandler implements MessageHandler{
 		LocationType locationType=null;
 		String startTime=null;
 		String endTime=null;
-		Status status=null;
+		MeetingStatus status=null;
 		int creatorID=0;
 		int roomID=0;
 		MeetingType meetingType=null;
@@ -56,7 +56,7 @@ public class GetMeetingHandler implements MessageHandler{
 			locationType = Enum.valueOf(LocationType.class, resultSet.getString("LocationType"));
 			startTime = resultSet.getString("StartTime");
 			endTime = resultSet.getString("EndTime");
-			status = Enum.valueOf(Status.class, resultSet.getString("Status"));
+			status = Enum.valueOf(MeetingStatus.class, resultSet.getString("Status"));
 			creatorID = resultSet.getInt("CreatorID");
 			roomID = resultSet.getInt("RoomID");
 			meetingType = Enum.valueOf(MeetingType.class, resultSet.getString("Meetingtype"));

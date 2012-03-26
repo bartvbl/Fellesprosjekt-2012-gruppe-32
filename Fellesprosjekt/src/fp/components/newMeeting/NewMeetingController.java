@@ -35,6 +35,7 @@ public class NewMeetingController extends AbstractComponentController {
 		message.addDataElement(meetingData);
 		
 		//connection til server og send melding til den/database
+		System.out.println("SENDER MELDING!!!!!");
 		
 		
 	}

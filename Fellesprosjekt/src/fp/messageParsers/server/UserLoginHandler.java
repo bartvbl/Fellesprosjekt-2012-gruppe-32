@@ -6,9 +6,12 @@ import java.util.ArrayList;
 
 import nu.xom.Element;
 
+import fp.dataObjects.Meeting;
+import fp.dataObjects.MeetingNotification;
 import fp.dataObjects.Notification;
 import fp.dataObjects.User;
 import fp.database.DatabaseConnection;
+import fp.databaseReaders.MeetingReader;
 import fp.databaseReaders.NotificationReader;
 import fp.databaseReaders.UserReader;
 import fp.messageHandlers.MessageHandler;
@@ -18,6 +21,7 @@ import fp.net.client.ClientConnectionContext;
 import fp.packetBuilders.InitialHandshakePacketBuilder;
 import fp.server.ServerClientContext;
 import fp.util.StringHasher;
+import fp.xmlConverters.MeetingNotificationConverter;
 import fp.xmlConverters.NotificationConverter;
 
 public class UserLoginHandler implements MessageHandler {
@@ -61,13 +65,20 @@ public class UserLoginHandler implements MessageHandler {
 			ResultSet result = DatabaseConnection.executeReadQuery("SELECT * FROM Notifications WHERE UserID="+context.user.userID+" AND AcceptedMeeting=NULL");
 			while(result.next()) {
 				Notification notification = NotificationReader.readNotificationLine(result);
-				Element dataElement = NotificationConverter.convertNotificationToXML(notification);
-				returnMessage.addDataElement(dataElement);
+				Meeting meeting = this.getMeetingByID(notification.meetingID);
+				MeetingNotification meetingNotification = new MeetingNotification(meeting, notification);
+				returnMessage.addDataElement(MeetingNotificationConverter.convertMeetingotificationToXML(meetingNotification));
 			}
 			
 		} catch (SQLException e) {
 			//will be thrown if there are no notifications for the client -> the message is still sent so the client can reflect this in the UI
 		}
 		context.connectionHandler.sendMessage(returnMessage);
+	}
+	
+	private Meeting getMeetingByID(int meetingID) throws SQLException {
+		ResultSet result = DatabaseConnection.executeReadQuery("SELECT * FROM Meeting WHERE MeetingID="+meetingID);
+		result.next();
+		return MeetingReader.readMeetingFromResultSet(result);
 	}
 }

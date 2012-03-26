@@ -53,7 +53,6 @@ public class ClientMain {
 		new CalendarViewerHandler(eventDispatcher, calendarViewerController);
 		new ChangeWeekButtonHandler(eventDispatcher, calendarViewerController);
 		new AddNewMeetingButtonHandler(eventDispatcher);
-		
 		new FavouritesView();
 		
 		new ClientMessageParser(eventDispatcher);
@@ -65,6 +64,8 @@ public class ClientMain {
 		new NotificationsController(eventDispatcher);
 		
 		new NewMeetingWindow();
+		
+		new NewMeetingHandler(eventDispatcher, new NewMeetingController(eventDispatcher, new NewMeetingModel()));
 	}
 	
 	private void createCalendarViewControllers() {

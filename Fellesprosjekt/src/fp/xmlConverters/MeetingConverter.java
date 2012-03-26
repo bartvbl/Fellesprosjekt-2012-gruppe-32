@@ -4,7 +4,7 @@ import nu.xom.Element;
 import fp.dataObjects.Meeting;
 import fp.dataObjects.Meeting.LocationType;
 import fp.dataObjects.Meeting.MeetingType;
-import fp.dataObjects.Meeting.Status;
+import fp.dataObjects.Meeting.MeetingStatus;
 
 public class MeetingConverter {
 
@@ -86,7 +86,7 @@ public class MeetingConverter {
 	public static Meeting convertXMLToMeeting(Element meetingElement) {
 		String meetingID = null, description = null, location = null, startTime = null, endTime = null, locType = null, meetType = null, stat = null, creatorID = null, roomID = null;
 		LocationType locationType = null;
-		Status status = null;
+		MeetingStatus status = null;
 		MeetingType meetingType = null;
 		
 		Element element = meetingElement.getFirstChildElement("meetingID");
@@ -146,10 +146,10 @@ public class MeetingConverter {
 		if (element != null) {
 			stat = element.getValue();
 			if(stat.equals("active")){
-				status = Status.active;
+				status = MeetingStatus.active;
 			}
 			else{
-				status = Status.cancelled;
+				status = MeetingStatus.cancelled;
 			}
 		}
 		return new Meeting(Integer.parseInt(meetingID), description, location, locationType, startTime, endTime, status, Integer.parseInt(creatorID), Integer.parseInt(roomID), meetingType);
