@@ -24,6 +24,7 @@ public class NewMeetingController extends AbstractComponentController {
 	
 	public void create(){
 		//opprett melding
+		model.createMeeting();
 		model.getMeeting();
 		Element meetingData = MeetingConverter.convertMeetingToXML(model.getMeeting());
 		Message message = new Message(MessageType.addMeeting);
