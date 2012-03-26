@@ -78,12 +78,6 @@ public class UserLoginHandler implements MessageHandler {
 		} catch (SQLException e) {
 			//will be thrown if there are no notifications for the client -> the message is still sent so the client can reflect this in the UI
 		}
-		
-		Meeting meeting = new Meeting(12, "some meeting", "nowhere", LocationType.location, "yesterday", "endTime", MeetingStatus.active, 2, -1, MeetingType.appointment);
-		Notification notification = new Notification(12, 12, NotificationStatus.Undecided, NotificationType.newMeeting);
-		MeetingNotification meetingNotification = new MeetingNotification(meeting, notification);
-		returnMessage.addDataElement(MeetingNotificationConverter.convertMeetingotificationToXML(meetingNotification));
-		
 		context.connectionHandler.sendMessage(returnMessage);
 	}
 	
