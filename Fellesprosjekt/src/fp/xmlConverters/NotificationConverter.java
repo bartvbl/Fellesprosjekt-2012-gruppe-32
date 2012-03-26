@@ -27,10 +27,10 @@ public static Element convertNotificationToXML(Notification notification) {
 	meetingID.appendChild(notification.meetingID + "");
 	
 	Element acceptedMeeting = new Element("acceptedMeeting");
-	acceptedMeeting.appendChild(notification.aM.toString());
+	acceptedMeeting.appendChild(notification.notificationStatus.toString());
 	
 	Element notificationType = new Element("NotificationType");
-	notificationType.appendChild(notification.nT.toString());
+	notificationType.appendChild(notification.notificationType.toString());
 
 	element.appendChild(userID);
 	element.appendChild(meetingID);

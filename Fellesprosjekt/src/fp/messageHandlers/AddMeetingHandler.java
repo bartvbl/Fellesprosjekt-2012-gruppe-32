@@ -6,6 +6,9 @@ import nu.xom.Element;
 import nu.xom.Elements;
 
 import fp.dataObjects.Meeting;
+import fp.dataObjects.MeetingNotification;
+import fp.dataObjects.Notification;
+import fp.dataObjects.Notification.NotificationType;
 import fp.dataObjects.ServerUserData;
 import fp.dataObjects.User;
 import fp.database.DatabaseConnection;
@@ -46,7 +49,9 @@ public class AddMeetingHandler implements MessageHandler {
 			User user = UserConverter.convertXMLToUser(participants.get(i));
 			DatabaseConnection.executeWriteQuery("INSERT INTO Notifications VALUES ("+user.userID+", " + meetingID + ", NULL, 'newMeeting')");
 			if(user.userID != clientContext.user.userID) {
-				this.eventDispatcher.dispatchEvent(new ServerEvent<Meeting>(EventType.SERVER_MEETING_REGISTERED, registeredMeeting, user.userID));
+				Notification registeredNotification = new Notification(user.userID, meetingID, null, NotificationType.newMeeting);
+				MeetingNotification notification = new MeetingNotification(registeredMeeting, registeredNotification);
+				this.eventDispatcher.dispatchEvent(new ServerEvent<MeetingNotification>(EventType.SERVER_MEETING_REGISTERED, notification, user.userID));
 			}
 		}
 	}

@@ -4,12 +4,15 @@ import java.util.ArrayList;
 
 import nu.xom.Element;
 
+import fp.dataObjects.Meeting;
+import fp.dataObjects.MeetingNotification;
 import fp.dataObjects.Notification;
 import fp.events.Event;
 import fp.events.EventDispatcher;
 import fp.events.EventType;
 import fp.messageParsers.Message;
 import fp.net.client.ClientConnectionContext;
+import fp.xmlConverters.MeetingConverter;
 import fp.xmlConverters.NotificationConverter;
 
 public class MeetingNotificationHandler implements ClientMessageHandler {
@@ -25,9 +28,10 @@ public class MeetingNotificationHandler implements ClientMessageHandler {
 		if(dataElements.size() == 0) {
 			this.eventDispatcher.dispatchEvent(new Event<Object>(EventType.NO_NEW_NOTIFICATIONS));
 		}
-		for(Element dataElement : dataElements) {
-			Notification notification = NotificationConverter.convertXMLToNotification(dataElement);
-			this.eventDispatcher.dispatchEvent(new Event<Notification>(EventType.NOTIFICATION_RECEIVED, notification));
+		for(int i = 0; i < dataElements.size(); i += 2) {
+			Notification notification = NotificationConverter.convertXMLToNotification(dataElements.get(i));
+			Meeting meeting = MeetingConverter.convertXMLToMeeting(dataElements.get(i+1));
+			this.eventDispatcher.dispatchEvent(new Event<MeetingNotification>(EventType.NOTIFICATION_RECEIVED, new MeetingNotification(meeting, notification)));
 		}
 	}
 
