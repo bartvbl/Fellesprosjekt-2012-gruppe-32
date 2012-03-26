@@ -36,7 +36,6 @@ public static Element convertNotificationToXML(Notification notification) {
 	element.appendChild(meetingID);
 	element.appendChild(acceptedMeeting);
 	element.appendChild(notificationType);
-
 	return element;
 }
 

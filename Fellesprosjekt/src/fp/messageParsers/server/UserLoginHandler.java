@@ -72,7 +72,7 @@ public class UserLoginHandler implements MessageHandler {
 				Notification notification = NotificationReader.readNotificationLine(result);
 				Meeting meeting = this.getMeetingByID(notification.meetingID);
 				MeetingNotification meetingNotification = new MeetingNotification(meeting, notification);
-				returnMessage.addDataElement(MeetingNotificationConverter.convertMeetingotificationToXML(meetingNotification));
+				returnMessage.addDataElement(MeetingNotificationConverter.convertMeetingNotificationToXML(meetingNotification));
 			}
 			
 		} catch (SQLException e) {

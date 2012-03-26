@@ -84,6 +84,7 @@ public class MeetingConverter {
 	    }
 	
 	public static Meeting convertXMLToMeeting(Element meetingElement) {
+		System.out.println("converting meeting: " + meetingElement.toXML());
 		String meetingID = "-1", description = null, location = null, startTime = null, endTime = null, locType = null, meetType = null, stat = null, creatorID = "-1", roomID = "-1";
 		LocationType locationType = null;
 		MeetingStatus status = null;

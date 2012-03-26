@@ -15,6 +15,7 @@ import fp.components.newMeeting.NewMeetingModel;
 import fp.components.notifications.NotificationsController;
 import fp.components.notifications.NotificationsHandler;
 import fp.components.notifications.NotificationsModel;
+import fp.components.notifications.NotificationsMouseHandler;
 import fp.components.smallCalendar.SmallCalendarController;
 import fp.components.smallCalendar.SmallCalendarHandler;
 import fp.events.EventDispatcher;

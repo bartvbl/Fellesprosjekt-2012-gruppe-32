@@ -16,9 +16,6 @@ public class NotificationsController implements EventHandler {
 	private NotificationsViewController notificationsController;
 	private NotificationsModel model;
 	
-	private static final int NOTIFICATIONS_PANEL_OFFSET_X = 200;
-	private static final int NOTIFICATIONS_PANEL_OFFSET_Y = 200;
-	
 	public NotificationsController(EventDispatcher eventDispatcher, NotificationsModel model) {
 		this.eventDispatcher = eventDispatcher;
 		this.notificationsController = new NotificationsViewController(model);
@@ -51,6 +48,8 @@ public class NotificationsController implements EventHandler {
 			CalendarView.pendingNotificationsButton.setText("Notifications ("+numberOfNotifications+")");
 			CalendarView.pendingNotificationsButton.setIcon(newNotificationsIcon);
 			CalendarView.pendingNotificationsButton.setEnabled(true);
+		} else {
+			this.disableNotificationsButton();
 		}
 		this.notificationsController.redraw();
 		this.updateNotificationsPanel();
@@ -58,8 +57,8 @@ public class NotificationsController implements EventHandler {
 
 	private void updateNotificationsPanel() {
 		NotificationsView view = NotificationsView.getInstance();
-		view.setVisible(CalendarView.pendingNotificationsButton.isSelected());
-		
-		//view.setLocation(arg0, arg1)
+		boolean notificationsButtonIsEnabled = CalendarView.pendingNotificationsButton.isSelected();
+		view.setVisible(notificationsButtonIsEnabled);
+		CalendarView.calendarViewerScrollPane.setEnabled(!notificationsButtonIsEnabled);
 	}
 }

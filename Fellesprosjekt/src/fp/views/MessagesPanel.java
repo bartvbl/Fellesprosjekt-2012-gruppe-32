@@ -10,6 +10,10 @@
  */
 package fp.views;
 
+import java.awt.Dimension;
+
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Bart
@@ -19,6 +23,7 @@ public class MessagesPanel extends javax.swing.JPanel {
     /** Creates new form MessagesPanel */
     public MessagesPanel() {
         initComponents();
+        this.setPreferredSize(new Dimension(300, 42));
     }
 
     /** This method is called from within the constructor to
@@ -36,7 +41,7 @@ public class MessagesPanel extends javax.swing.JPanel {
         infoLabel = new javax.swing.JLabel();
         makeFavouriteButton = new javax.swing.JToggleButton();
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(prototype.calendarApp.views.CalendarApp.class).getContext().getResourceMap(MessagesPanel.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(fp.views.CalendarApp.class).getContext().getResourceMap(MessagesPanel.class);
         setBackground(resourceMap.getColor("Form.background")); // NOI18N
         setBorder(null);
         setForeground(resourceMap.getColor("Form.foreground")); // NOI18N
@@ -66,7 +71,7 @@ public class MessagesPanel extends javax.swing.JPanel {
         makeFavouriteButton.setText(resourceMap.getString("makeFavouriteButton.text")); // NOI18N
         makeFavouriteButton.setContentAreaFilled(false);
         makeFavouriteButton.setName("makeFavouriteButton"); // NOI18N
-        makeFavouriteButton.setSelectedIcon(resourceMap.getIcon("makeFavouriteButton.selectedIcon")); // NOI18N
+        makeFavouriteButton.setSelectedIcon(new ImageIcon("res/star2.png")); // NOI18N
 
         
         //byttet om på accept og decline button slik at de kommer i riktig rekkefølge

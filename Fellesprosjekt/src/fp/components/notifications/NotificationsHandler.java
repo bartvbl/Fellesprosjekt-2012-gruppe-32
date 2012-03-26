@@ -7,6 +7,7 @@ import fp.events.Event;
 import fp.events.EventDispatcher;
 import fp.events.EventType;
 import fp.views.CalendarView;
+import fp.views.NotificationsView;
 
 public class NotificationsHandler implements ActionListener {
 	private EventDispatcher eventDispatcher;
@@ -18,6 +19,7 @@ public class NotificationsHandler implements ActionListener {
 
 	private void addEventListeners() {
 		CalendarView.pendingNotificationsButton.addActionListener(this);
+		NotificationsView.getInstance().addMouseListener(new NotificationsMouseHandler());
 	}
 
 	public void actionPerformed(ActionEvent event) {

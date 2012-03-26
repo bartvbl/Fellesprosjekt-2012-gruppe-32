@@ -19,7 +19,7 @@ public class NewMeetingNotificationEventHandler implements ServerEventHandler {
 		MeetingNotification notification = (MeetingNotification) event.getEventParameterObject();
 		Message message = new Message(MessageType.meetingNotification);
 		
-		Element notificationElement = MeetingNotificationConverter.convertMeetingotificationToXML(notification);
+		Element notificationElement = MeetingNotificationConverter.convertMeetingNotificationToXML(notification);
 		
 		message.addDataElement(notificationElement);
 		

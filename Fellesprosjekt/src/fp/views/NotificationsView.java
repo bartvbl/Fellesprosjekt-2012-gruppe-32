@@ -1,9 +1,11 @@
 package fp.views;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.border.LineBorder;
 
 import fp.components.InteractiveList;
 
@@ -23,7 +25,9 @@ public class NotificationsView extends JPanel {
 		this.mainScrollPane = scrollPane;
 		this.add(mainScrollPane, BorderLayout.CENTER);
 		
-		CalendarView.mainLayeredPane.add(this, 3);		
+		//this.setBorder(new LineBorder(Color.black));
+		
+		CalendarView.mainLayeredPane.add(this, 0);		
 		panelInstance = this;
 	}
 
