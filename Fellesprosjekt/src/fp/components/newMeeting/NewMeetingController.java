@@ -5,9 +5,14 @@ import nu.xom.Element;
 
 import fp.componentControllers.AbstractComponentController;
 import fp.componentControllers.ComponentControllerType;
+import fp.dataObjects.Meeting;
+import fp.dataObjects.Meeting.LocationType;
+import fp.dataObjects.Meeting.MeetingStatus;
+import fp.dataObjects.Meeting.MeetingType;
 import fp.events.EventDispatcher;
 import fp.messageParsers.Message;
 import fp.messageParsers.MessageType;
+import fp.net.client.ClientConnectionContext;
 import fp.xmlConverters.MeetingConverter;
 
 public class NewMeetingController extends AbstractComponentController {
@@ -24,13 +29,15 @@ public class NewMeetingController extends AbstractComponentController {
 	
 	public void create(){
 		//opprett melding
-		model.getMeeting();
+		model.createMeeting();
 		Element meetingData = MeetingConverter.convertMeetingToXML(model.getMeeting());
 		Message message = new Message(MessageType.addMeeting);
 		message.addDataElement(meetingData);
 		
 		//connection til server og send melding til den/database
+		ClientConnectionContext.getInstance().connectionHandler.sendMessage(message);
 		System.out.println("SENDER MELDING!!!!!");
+		
 		
 		
 	}
