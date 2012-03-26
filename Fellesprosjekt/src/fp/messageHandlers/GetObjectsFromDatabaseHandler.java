@@ -82,7 +82,7 @@ public class GetObjectsFromDatabaseHandler {
 	
 	//Returnerer et XML element med alle m¿terom som matcher s¿ket
 	
-	public static Element meetingRoomSearch(int capasity, String fromDateTime, String toDateTimte) throws SQLException{
+	public static Element meetingRoomSearch(int capacity, String fromDateTime, String toDateTime) throws SQLException{
 		
 		Element meetingRoomElement = new Element("MeetingRoomElement");
 		
@@ -90,7 +90,7 @@ public class GetObjectsFromDatabaseHandler {
 		int size = 0;
 		String name = null;
 		
-		String query = 	"SELECT * FROM MeetingRoom WHERE  Size >= '" + capasity + "' AND RoomID NOT IN (SELECT mR.RoomID, mR.Size, mR.RoomName FROM MeetingRoom AS mR AND Meeting as M WHERE mR.RoomID = M.RoomID AND (('" + fromDateTime + "' > M.StartTime AND '" + fromDateTime + "' < M.endTime) OR ('" + toDateTimte + "' > M.StartTime AND '" + toDateTimte + "' < M.endTime)));";
+		String query = 	"SELECT * FROM MeetingRoom WHERE Size >= " + capacity + " " + "AND RoomID NOT IN (SELECT RoomID FROM Meeting WHERE (('" + fromDateTime + "' >= StartTime AND '" + fromDateTime + "' < Endtime) OR ('" + fromDateTime + "' < StartTime AND '" + toDateTime + "' > StartTime)));";
 		
 		ResultSet rs = DatabaseConnection.executeReadQuery(query);
 		while(rs.next()){

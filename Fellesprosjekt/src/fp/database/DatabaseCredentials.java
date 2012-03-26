@@ -9,9 +9,15 @@ public class DatabaseCredentials {
 	private static final String URL_TYPE = "URL";
 	private static final String USERNAME_TYPE = "USERNAME";
 	private static final String PASSWORD_TYPE = "PASSWORD";
-	private String url = "jdbc:";// = "jdbc:mysql://mysql.idi.ntnu.no/tronboe_fp";
-	private String username;// = "tronboe_fp";
-	private String password;// = "password";
+///<<<<<<< HEAD
+	private String url = "jdbc:mysql://mysql.stud.ntnu.no/tronboe_fellesprosjekt";
+	private String username = "tronboe_fp";
+	private String password = "password";
+//=======
+	//private String url = "jdbc:";// = "jdbc:mysql://mysql.idi.ntnu.no/tronboe_fp";
+	//private String username;// = "tronboe_fp";
+	//private String password;// = "password";
+//>>>>>>> branch 'master' of https://andersboe@github.com/bartvbl/Fellesprosjekt-2012-gruppe-32.git
 
 	public void loadFromFile(String src) {
 		try {

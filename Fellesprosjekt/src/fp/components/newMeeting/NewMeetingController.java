@@ -26,7 +26,6 @@ public class NewMeetingController extends AbstractComponentController implements
 		super(ComponentControllerType.NEW_MEETING_VIEW, eventDispatcher);
 		this.meeting = meeting;
 		meeting.addPropertyChangeListener(this);
-		
 	}
 	
 	public void create(){
