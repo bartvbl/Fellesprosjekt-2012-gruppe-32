@@ -1,6 +1,7 @@
 package fp.AndersTestKode;
 
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -45,6 +46,8 @@ public class Testing1 {
 	public static void main(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		
 		// TODO Auto-generated method stub
+		
+		/*
 		Meeting meeting = new Meeting(5, "Test", "Hjemme", LocationType.location, "2012-12-12 00:00:00", "2012-12-15 00:00:00", Status.active, 1, 0, MeetingType.appointment);
 		Element element = MeetingConverter.convertMeetingToXML(meeting);
 		Message message = new Message(MessageType.addMeeting, element);
@@ -64,9 +67,9 @@ public class Testing1 {
 			// TODO: handle exception
 			System.out.println(e);
 		}
-			
-		//DatabaseConnection.connect();
-
+			*/
+		DatabaseConnection.connect();
+		DatabaseConnection.
 		
 	}
 	
