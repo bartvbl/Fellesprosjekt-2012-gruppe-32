@@ -1,19 +1,16 @@
 package fp.components.newMeeting;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
+
 import java.util.ArrayList;
 
 import fp.dataObjects.Meeting;
 import fp.dataObjects.Meeting.LocationType;
 import fp.dataObjects.Meeting.MeetingType;
-import fp.dataObjects.Meeting.Status;
 import fp.dataObjects.MeetingRoom;
 
 public class NewMeetingModel {
 	
 	private Meeting meeting;
-	private PropertyChangeSupport pcs;
 	
 	private String description;
 	private String location;
@@ -46,7 +43,6 @@ public class NewMeetingModel {
 	public final static String CREATE_MEETING = "create_meeting";
 
 	public NewMeetingModel(){
-		pcs = new PropertyChangeSupport(this);
 		description = null;
 		location = null;
 		locationType = null;
@@ -62,24 +58,16 @@ public class NewMeetingModel {
 		meetingRoomSearch = null;
 		invited = new ArrayList<String>();
 	}
-	
-	public void addPropertyChangeListener(PropertyChangeListener listener){
-		pcs.addPropertyChangeListener(listener);
-	}
-	
+
 	public void addInvited(String participant){
 		if(!invited.contains(participant)){
-			ArrayList<String> oldInv = invited;
 			invited.add(participant);
-			pcs.firePropertyChange(INVITED, oldInv, invited);
 		}
 	}
 	
 	public void removeInvited(String participant){
 		if(invited.contains(participant)){
-			ArrayList<String> oldInv = invited;
 			invited.remove(participant);
-			pcs.firePropertyChange(INVITED, oldInv, invited);
 		}
 	}
 	
@@ -88,9 +76,7 @@ public class NewMeetingModel {
 	}
 
 	public void setParticipantSearch(String participantSearch) {
-		String oldValue = this.participantSearch;
 		this.participantSearch = participantSearch;
-		pcs.firePropertyChange(PARTICIPANT_SEARCH, oldValue, this.participantSearch);
 	}
 
 	public String getMeetingRoomSearch() {
@@ -98,13 +84,8 @@ public class NewMeetingModel {
 	}
 
 	public void setMeetingRoomSearch(String meetingRoomSearch) {
-		String oldValue = this.meetingRoomSearch;
 		this.meetingRoomSearch = meetingRoomSearch;
-		pcs.firePropertyChange(MEETING_ROOM_SEARCH, oldValue, this.meetingRoomSearch);
-		if(locationType == LocationType.location){
-			locationType = LocationType.meetingroom;
-			pcs.firePropertyChange(LOCATION_TYPE, LocationType.location, LocationType.meetingroom);
-		}
+		locationType = LocationType.meetingroom;
 	}
 
 	public String getStartDate() {
@@ -112,7 +93,6 @@ public class NewMeetingModel {
 	}
 
 	public void setStartDate(String startDate) {
-//		String oldvalue = this.startDate;
 		this.startDate = startDate;
 	}
 
@@ -126,7 +106,6 @@ public class NewMeetingModel {
 
 	public void createMeeting(){
 		meeting = new Meeting(0, description, location, locationType, fullStartTime, fullEndTime, null, 0, roomID, meetingtype);
-		pcs.firePropertyChange(CREATE_MEETING, null, meeting);
 	}
 	
 	public Meeting getMeeting() {
@@ -142,13 +121,8 @@ public class NewMeetingModel {
 		return location;
 	}
 	public void setLocation(String location) {
-		String oldValue = this.location;
 		this.location = location;
-		pcs.firePropertyChange(LOCATION, oldValue, this.location);
-		if(!(locationType == LocationType.location)){
-			locationType = LocationType.location;
-			pcs.firePropertyChange(LOCATION_TYPE, LocationType.meetingroom, LocationType.location);
-		}
+		locationType = LocationType.location;
 	}
 	public LocationType getLocationType() {
 		return locationType;
@@ -175,9 +149,7 @@ public class NewMeetingModel {
 		return meetingtype;
 	}
 	public void setMeetingtype(MeetingType meetingtype) {
-		MeetingType oldValue = this.meetingtype;
 		this.meetingtype = meetingtype;
-		pcs.firePropertyChange(MEETING_TYPE, oldValue, this.meetingtype);
 	}
 
 	public void setMeetingRooms(ArrayList<MeetingRoom> meetingRooms) {
@@ -187,5 +159,4 @@ public class NewMeetingModel {
 	public ArrayList<MeetingRoom> getMeetingRooms() {
 		return meetingRooms;
 	}
-	
 }

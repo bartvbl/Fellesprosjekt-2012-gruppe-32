@@ -45,12 +45,7 @@ public class ClientMain {
 		
 		DateSelectionModel dateSelectionModel = new DateSelectionModel();
 		SmallCalendarController smallCalendar = new SmallCalendarController(eventDispatcher, dateSelectionModel);
-		new SmallCalendarHandler(this.eventDispatcher, smallCalendar);
-		
-		new NewMeetingWindow();
-		NewMeetingModel model = new NewMeetingModel();
-		new NewMeetingHandler(eventDispatcher, model);
-		new NewMeetingController(eventDispatcher, model);
+		new SmallCalendarHandler(this.eventDispatcher, smallCalendar);		
 		
 		new CalendarViewerView(new AddNewMeetingHandler(dateSelectionModel, eventDispatcher));
 
