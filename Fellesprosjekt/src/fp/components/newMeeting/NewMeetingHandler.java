@@ -32,18 +32,18 @@ public class NewMeetingHandler extends AbstractComponentHandler implements Actio
 	public void actionPerformed(ActionEvent event) {
 		if(event.getSource() == NewMeetingWindow.createButton) {
 			controller.create();
-		} else if(event.getSource() == NewMeetingWindow.cancelButton) {
-			controller.cancel();
-		} else if(event.getSource() == NewMeetingWindow.addParticipantButton) {
-			if(!NewMeetingWindow.participantSearchResultList.isSelectionEmpty()) {
-				User user = (User) NewMeetingWindow.participantSearchResultList.getSelectedValue();
-				controller.addParticipant(user);
-			}
-		} else if(event.getSource() == NewMeetingWindow.removeParticipantButton) {
-			if(!NewMeetingWindow.invitedParticipantsList.isSelectionEmpty()) {
-				User user = (User) NewMeetingWindow.invitedParticipantsList.getSelectedValue();
-				controller.removeParticipant(user);
-			}
+//		} else if(event.getSource() == NewMeetingWindow.cancelButton) {
+//			controller.cancel();
+//		} else if(event.getSource() == NewMeetingWindow.addParticipantButton) {
+//			if(!NewMeetingWindow.participantSearchResultList.isSelectionEmpty()) {
+//				User user = (User) NewMeetingWindow.participantSearchResultList.getSelectedValue();
+//				controller.addParticipant(user);
+//			}
+//		} else if(event.getSource() == NewMeetingWindow.removeParticipantButton) {
+//			if(!NewMeetingWindow.invitedParticipantsList.isSelectionEmpty()) {
+//				User user = (User) NewMeetingWindow.invitedParticipantsList.getSelectedValue();
+//				controller.removeParticipant(user);
+//			}
 		}
 	}
 
@@ -54,7 +54,7 @@ public class NewMeetingHandler extends AbstractComponentHandler implements Actio
 		NewMeetingWindow.newAppointmentButton.addActionListener(this);
 		NewMeetingWindow.newMeetingButton.addActionListener(this);
 		NewMeetingWindow.meetingRoomSearchResultList.getSelectionModel().addListSelectionListener(this);
-		NewMeetingWindow.participantSearchResultList.getSelectionModel().addListSelectionListener(this);
+		//NewMeetingWindow.participantSearchResultList.getSelectionModel().addListSelectionListener(this);
 		NewMeetingWindow.startDateTextPane.addKeyListener(this);
 		NewMeetingWindow.startTimeTextPane.addKeyListener(this);
 		NewMeetingWindow.endDateTextPane.addKeyListener(this);
@@ -68,16 +68,16 @@ public class NewMeetingHandler extends AbstractComponentHandler implements Actio
 	@Override
 	public void valueChanged(ListSelectionEvent event) {
 		DefaultListSelectionModel listModel = (DefaultListSelectionModel)event.getSource();
-		if(listModel == NewMeetingWindow.meetingRoomSearchResultList.getSelectionModel()){
-			if(listModel.getLeadSelectionIndex() != -1) {
-				controller.setRoomID((Integer) NewMeetingWindow.meetingRoomSearchResultList.getSelectedValue());
-			}	
-		}
-		else if(listModel == NewMeetingWindow.participantSearchResultList.getSelectionModel()){
-			if(listModel.getLeadSelectionIndex() != -1) {
-				
-			}
-		}
+//		if(listModel == NewMeetingWindow.meetingRoomSearchResultList.getSelectionModel()){
+//			if(listModel.getLeadSelectionIndex() != -1) {
+//				controller.setRoomID((Integer) NewMeetingWindow.meetingRoomSearchResultList.getSelectedValue());
+//			}	
+//		}
+//		else if(listModel == NewMeetingWindow.participantSearchResultList.getSelectionModel()){
+//			if(listModel.getLeadSelectionIndex() != -1) {
+//				
+//			}
+//		}
 	}
 
 	@Override
@@ -88,30 +88,30 @@ public class NewMeetingHandler extends AbstractComponentHandler implements Actio
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		if(e.getSource()==NewMeetingWindow.appointmentTitleTextPane){
-			controller.setDescription(NewMeetingWindow.appointmentTitleTextPane.getText());
-		}
-		else if(e.getSource()==NewMeetingWindow.startDateTextPane){
-			controller.setStartDate(NewMeetingWindow.startDateTextPane.getText());
-		}
-		else if(e.getSource()==NewMeetingWindow.startTimeTextPane){
-			controller.setStartTime(NewMeetingWindow.startTimeTextPane.getText());
-		}
-		else if(e.getSource()==NewMeetingWindow.endDateTextPane){
-			controller.setEndDate(NewMeetingWindow.endDateTextPane.getText());
-		}
-		else if(e.getSource()==NewMeetingWindow.endTimeTextPane){
-			controller.setEndTime(NewMeetingWindow.endTimeTextPane.getText());
-		}
-		else if(e.getSource()==NewMeetingWindow.participantSearchTextPane){
-			controller.setParticipantSearch(NewMeetingWindow.participantSearchTextPane.getText());
-		}		
-		else if(e.getSource()==NewMeetingWindow.locationSearchTextPane){
-			controller.setMeetingRoomSearch(NewMeetingWindow.locationSearchTextPane.getText());
-		}
-		else if(e.getSource()==NewMeetingWindow.manualLocationTextPane){
-			controller.setLocation(NewMeetingWindow.manualLocationTextPane.getText());
-		}
+//		if(e.getSource()==NewMeetingWindow.appointmentTitleTextPane){
+//			controller.setDescription(NewMeetingWindow.appointmentTitleTextPane.getText());
+//		}
+//		else if(e.getSource()==NewMeetingWindow.startDateTextPane){
+//			controller.setStartDate(NewMeetingWindow.startDateTextPane.getText());
+//		}
+//		else if(e.getSource()==NewMeetingWindow.startTimeTextPane){
+//			controller.setStartTime(NewMeetingWindow.startTimeTextPane.getText());
+//		}
+//		else if(e.getSource()==NewMeetingWindow.endDateTextPane){
+//			controller.setEndDate(NewMeetingWindow.endDateTextPane.getText());
+//		}
+//		else if(e.getSource()==NewMeetingWindow.endTimeTextPane){
+//			controller.setEndTime(NewMeetingWindow.endTimeTextPane.getText());
+//		}
+//		else if(e.getSource()==NewMeetingWindow.participantSearchTextPane){
+//			controller.setParticipantSearch(NewMeetingWindow.participantSearchTextPane.getText());
+//		}		
+//		else if(e.getSource()==NewMeetingWindow.locationSearchTextPane){
+//			controller.setMeetingRoomSearch(NewMeetingWindow.locationSearchTextPane.getText());
+//		}
+//		else if(e.getSource()==NewMeetingWindow.manualLocationTextPane){
+//			controller.setLocation(NewMeetingWindow.manualLocationTextPane.getText());
+//		}
 		
 	}
 
