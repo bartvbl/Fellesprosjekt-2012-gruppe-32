@@ -1,36 +1,29 @@
 package fp.components.newMeeting;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
 import nu.xom.Element;
 
 import fp.componentControllers.AbstractComponentController;
 import fp.componentControllers.ComponentControllerType;
-import fp.dataObjects.Meeting.LocationType;
-import fp.dataObjects.Meeting.MeetingType;
-import fp.dataObjects.User;
 import fp.events.EventDispatcher;
 import fp.messageParsers.Message;
 import fp.messageParsers.MessageType;
-import fp.views.NewMeetingWindow;
 import fp.xmlConverters.MeetingConverter;
 
 public class NewMeetingController extends AbstractComponentController {
 
-	NewMeetingModel meeting;
-	ArrayList<User> users;
+	NewMeetingModel model;
 	
-	public NewMeetingController(EventDispatcher eventDispatcher,NewMeetingModel meeting){
+	public NewMeetingController(EventDispatcher eventDispatcher, NewMeetingModel meeting){
 		super(ComponentControllerType.NEW_MEETING_VIEW, eventDispatcher);
-		this.meeting = meeting;
+		this.model = meeting;
 	}
 	
 	public void create(){
 		//opprett melding
-		meeting.getMeeting();
-		Element meetingData = MeetingConverter.convertMeetingToXML(meeting.getMeeting());
+		model.getMeeting();
+		Element meetingData = MeetingConverter.convertMeetingToXML(model.getMeeting());
 		Message message = new Message(MessageType.addMeeting);
 		message.addDataElement(meetingData);
 		
@@ -73,38 +66,39 @@ public class NewMeetingController extends AbstractComponentController {
 	}
 	
 	public void setRoomID(int id){
-		
+		model.setRoomID(id);
 	}
 
 	public void setDescription(String description){
-		
+		model.setDescription(description);
 	}
 	
 	public void setStartDate(String date){
-		
+		model.setStartDate(date);
 	}
 	
 	public void setStartTime(String time){
-		
+		model.setStartTime(time);
 	}
 	
 	public void setEndDate(String date){
-		
+		model.setEndDate(date);
 	}
 	
 	public void setEndTime(String time){
-		
+		model.setEndTime(time);
 	}
+	
 	public void setParticipantSearch(String searchText){
-		
+		model.setParticipantSearch(searchText);
 	}	
 	
 	public void setMeetingRoomSearch(String searchText){
-		
+		model.setMeetingRoomSearch(searchText);
 	}
 	
 	public void setLocation(String location){
-		
+		model.setLocation(location);
 	}	
 
 }
