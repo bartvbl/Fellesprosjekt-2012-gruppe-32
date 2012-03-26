@@ -19,25 +19,23 @@ import fp.views.SmallCalendarPanel;
 
 public class NewMeetingHandler extends AbstractComponentHandler implements ActionListener, ListSelectionListener, KeyListener{
 	
-	NewMeetingModel model;
+	NewMeetingController controller;
 
-	public NewMeetingHandler(EventDispatcher eventDispatcher, NewMeetingModel model) {
+	public NewMeetingHandler(EventDispatcher eventDispatcher, NewMeetingController controller) {
 		super(ComponentHandlerType.NEW_MEETING_VIEW, eventDispatcher);
-		this.model = model;
+		this.controller = controller;
 		this.addEventListeners();
 		}
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if(event.getSource() == NewMeetingWindow.createButton) {
-			model.createMeeting();
+			controller.create();
 		} else if(event.getSource() == NewMeetingWindow.cancelButton) {
-			cancelMeeting();
+			controller.cancel();
 		}
 	}
-	
-	public void cancelMeeting(){
-	}
+
 	
 	public void addEventListeners(){
 		NewMeetingWindow.createButton.addActionListener(this);
@@ -61,7 +59,7 @@ public class NewMeetingHandler extends AbstractComponentHandler implements Actio
 		DefaultListSelectionModel listModel = (DefaultListSelectionModel)event.getSource();
 		if(listModel == NewMeetingWindow.meetingRoomSearchResultList.getSelectionModel()){
 			if(listModel.getLeadSelectionIndex() != -1) {
-				model.setRoomID((Integer) NewMeetingWindow.meetingRoomSearchResultList.getSelectedValue());
+				controller.setRoomID((Integer) NewMeetingWindow.meetingRoomSearchResultList.getSelectedValue());
 			}	
 		}
 		else if(listModel == NewMeetingWindow.participantSearchResultList.getSelectionModel()){
@@ -80,28 +78,28 @@ public class NewMeetingHandler extends AbstractComponentHandler implements Actio
 	@Override
 	public void keyReleased(KeyEvent e) {
 		if(e.getSource()==NewMeetingWindow.appointmentTitleTextPane){
-			model.setDescription(NewMeetingWindow.appointmentTitleTextPane.getText());
+			controller.setDescription(NewMeetingWindow.appointmentTitleTextPane.getText());
 		}
 		else if(e.getSource()==NewMeetingWindow.startDateTextPane){
-			model.setStartDate(NewMeetingWindow.startDateTextPane.getText());
+			controller.setStartDate(NewMeetingWindow.startDateTextPane.getText());
 		}
 		else if(e.getSource()==NewMeetingWindow.startTimeTextPane){
-			model.setStartTime(NewMeetingWindow.startTimeTextPane.getText());
+			controller.setStartTime(NewMeetingWindow.startTimeTextPane.getText());
 		}
 		else if(e.getSource()==NewMeetingWindow.endDateTextPane){
-			model.setEndDate(NewMeetingWindow.endDateTextPane.getText());
+			controller.setEndDate(NewMeetingWindow.endDateTextPane.getText());
 		}
 		else if(e.getSource()==NewMeetingWindow.endTimeTextPane){
-			model.setEndTime(NewMeetingWindow.endTimeTextPane.getText());
+			controller.setEndTime(NewMeetingWindow.endTimeTextPane.getText());
 		}
 		else if(e.getSource()==NewMeetingWindow.participantSearchTextPane){
-			model.setParticipantSearch(NewMeetingWindow.participantSearchTextPane.getText());
+			controller.setParticipantSearch(NewMeetingWindow.participantSearchTextPane.getText());
 		}		
 		else if(e.getSource()==NewMeetingWindow.locationSearchTextPane){
-			model.setMeetingRoomSearch(NewMeetingWindow.locationSearchTextPane.getText());
+			controller.setMeetingRoomSearch(NewMeetingWindow.locationSearchTextPane.getText());
 		}
 		else if(e.getSource()==NewMeetingWindow.manualLocationTextPane){
-			model.setLocation(NewMeetingWindow.manualLocationTextPane.getText());
+			controller.setLocation(NewMeetingWindow.manualLocationTextPane.getText());
 		}
 		
 	}
