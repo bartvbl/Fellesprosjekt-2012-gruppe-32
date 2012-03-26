@@ -39,7 +39,6 @@ public class MessageParser {
 	}
 	
 	public static void parseMessage(Message message, ServerClientContext clientContext) throws SQLException{
-		System.out.println(message.type);
 		typeForHandlerMap.get(message.type).handleMessage(message, clientContext);
 	}
 

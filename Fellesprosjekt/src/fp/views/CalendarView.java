@@ -41,7 +41,6 @@ public class CalendarView extends FrameView {
         
         CalendarView.jframe = this.getFrame();
         
-        System.out.println("CalendarView created.");
     }
 	
 	public static JFrame getJFrame() {

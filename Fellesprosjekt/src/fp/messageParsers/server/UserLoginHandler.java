@@ -49,8 +49,6 @@ public class UserLoginHandler implements MessageHandler {
 			return;
 		}
 		
-		System.out.println("correct password: " + set.getString("Password"));
-		
 		if(correctPasswordHash.equals(password)) {
 			clientContext.user = user;
 			Message replymessage = InitialHandshakePacketBuilder.generateLoggedInMessage(user);

@@ -17,7 +17,6 @@ public class NotificationsHandler implements ActionListener {
 	}
 
 	private void addEventListeners() {
-		System.out.println("listener added");
 		CalendarView.pendingNotificationsButton.addActionListener(this);
 	}
 

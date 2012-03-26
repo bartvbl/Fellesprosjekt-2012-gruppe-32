@@ -45,7 +45,7 @@ public class NotificationsController implements EventHandler {
 		CalendarView.pendingNotificationsButton.setEnabled(false);
 	}
 	
-	private void redrawNotificationsPanel() {System.out.println("updating notifications");
+	private void redrawNotificationsPanel() {
 		int numberOfNotifications = this.model.getNumActiveNotifications();
 		if(numberOfNotifications != 0) {
 			CalendarView.pendingNotificationsButton.setText("Notifications ("+numberOfNotifications+")");
