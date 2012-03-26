@@ -1,6 +1,5 @@
 package fp.components.newMeeting;
 
-import java.util.ArrayList;
 
 import nu.xom.Element;
 
@@ -15,9 +14,12 @@ public class NewMeetingController extends AbstractComponentController {
 
 	NewMeetingModel model;
 	
-	public NewMeetingController(EventDispatcher eventDispatcher, NewMeetingModel meeting){
+	public NewMeetingController(EventDispatcher eventDispatcher){
 		super(ComponentControllerType.NEW_MEETING_VIEW, eventDispatcher);
-		this.model = meeting;
+	}
+	
+	public void setModel(NewMeetingModel model){
+		this.model = model;
 	}
 	
 	public void create(){

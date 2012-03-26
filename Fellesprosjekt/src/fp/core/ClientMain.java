@@ -65,7 +65,7 @@ public class ClientMain {
 		
 		new NewMeetingWindow();
 		
-		new NewMeetingHandler(eventDispatcher, new NewMeetingController(eventDispatcher, new NewMeetingModel()));
+		new NewMeetingHandler(eventDispatcher, new NewMeetingController(eventDispatcher));
 	}
 	
 	private void createCalendarViewControllers() {

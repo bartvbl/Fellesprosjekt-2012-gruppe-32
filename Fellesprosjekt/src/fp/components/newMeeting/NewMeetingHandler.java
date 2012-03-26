@@ -14,11 +14,12 @@ import fp.componentHandlers.ComponentHandlerType;
 import fp.dataObjects.User;
 import fp.events.Event;
 import fp.events.EventDispatcher;
+import fp.events.EventHandler;
 import fp.events.EventType;
 import fp.views.NewMeetingWindow;
 import fp.views.SmallCalendarPanel;
 
-public class NewMeetingHandler extends AbstractComponentHandler implements ActionListener, ListSelectionListener, KeyListener{
+public class NewMeetingHandler extends AbstractComponentHandler implements ActionListener, ListSelectionListener, KeyListener, EventHandler{
 	
 	NewMeetingController controller;
 
@@ -50,6 +51,7 @@ public class NewMeetingHandler extends AbstractComponentHandler implements Actio
 
 	
 	public void addEventListeners(){
+		this.eventDispatcher.addEventListener(this, EventType.SHOW_NEW_MEETING);
 		NewMeetingWindow.createButton.addActionListener(this);
 		NewMeetingWindow.cancelButton.addActionListener(this);
 		NewMeetingWindow.newAppointmentButton.addActionListener(this);
@@ -114,6 +116,14 @@ public class NewMeetingHandler extends AbstractComponentHandler implements Actio
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void handleEvent(Event<?> event) {
+		switch(event.eventType) {
+			case SHOW_NEW_MEETING:
+				controller.setModel(new NewMeetingModel());
+	}
 	}
 
 }
