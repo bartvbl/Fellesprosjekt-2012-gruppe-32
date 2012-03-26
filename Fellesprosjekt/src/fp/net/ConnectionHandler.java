@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import fp.messageParsers.Message;
-import fp.messageParsers.MessageParser;
+import fp.messageParsers.server.MessageParser;
 import fp.xmlConverters.XMLReader;
 import fp.xmlConverters.XMLWriter;
 
@@ -34,11 +34,13 @@ public class ConnectionHandler {
 		return null;
 	}
 	
-	public void sendMessage(Message message) throws IOException{
+	public void sendMessage(Message message){
 		String convertedMessage = XMLWriter.convertMessageIntoXMLElement(message);
-		this.bufferedWriter.write(convertedMessage);
-		this.bufferedWriter.newLine();
-		this.bufferedWriter.flush();
+		try {
+			this.bufferedWriter.write(convertedMessage);
+			this.bufferedWriter.newLine();
+			this.bufferedWriter.flush();
+		} catch (IOException e) {e.printStackTrace();}
 	}
 	
 	public void closeConnection() throws IOException {

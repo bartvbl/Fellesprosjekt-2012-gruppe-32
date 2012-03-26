@@ -13,6 +13,7 @@ public class SmallCalendarModel {
 	public SmallCalendarModel() {
 		this.calendar = java.util.Calendar.getInstance();
 		this.calendar.setFirstDayOfWeek(Calendar.MONDAY);
+		this.calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 	}
 	
 	public void incrementMonth() {

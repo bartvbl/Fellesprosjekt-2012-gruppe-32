@@ -14,7 +14,7 @@ public class UpdateMeetingHandler implements MessageHandler {
 	@Override
 	public void handleMessage(Message message, ServerClientContext clientContext) throws SQLException {
 		
-		Meeting meeting = MeetingConverter.convertXMLToMeeting(message.getData());
+		Meeting meeting = MeetingConverter.convertXMLToMeeting(message.getDataElements().get(0));
 		
 		String sqlQurey = "UPDATE Meeting SET description='" 	+ meeting.description + "', status = '" + meeting.status + "', startTime = '"
 																+ meeting.startTime + "', endTime = '" + meeting.endTime + "', location = '" 

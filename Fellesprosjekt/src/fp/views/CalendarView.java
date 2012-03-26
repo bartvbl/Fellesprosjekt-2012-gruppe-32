@@ -175,7 +175,7 @@ public class CalendarView extends FrameView {
         favouritesTabbedPane.addTab(resourceMap.getString("appointmentsScrollPane.TabConstraints.tabTitle"), appointmentsScrollPane); // NOI18N
 
         favouritesLabel.setFont(resourceMap.getFont("favouritesLabel.font")); // NOI18N
-        favouritesLabel.setIcon(resourceMap.getIcon("favouritesLabel.icon")); // NOI18N
+        favouritesLabel.setIcon(new ImageIcon("res/star2.png")); // NOI18N
         favouritesLabel.setText(resourceMap.getString("favouritesLabel.text")); // NOI18N
         favouritesLabel.setName("favouritesLabel"); // NOI18N
 

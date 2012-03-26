@@ -4,9 +4,9 @@ public class Notification {
 	
 	public final int userID;
 	public final int meetingID;
-	public final acceptedMeeting aM;
-	public final notificationType nT;
-	public enum acceptedMeeting{
+	public final NotificationStatus aM;
+	public final NotificationType nT;
+	public enum NotificationStatus{
 		Yes {
 		public String toString(){
 			return "Yes";
@@ -18,7 +18,7 @@ public class Notification {
 			}
 		}
 	};
-	public enum notificationType{
+	public enum NotificationType{
 		newMeeting{
 			public String toString(){ 
 				return "newMeeting";
@@ -36,7 +36,7 @@ public class Notification {
 		}
 	};
 	
-	public Notification(int userID, int meetingID, acceptedMeeting aM, notificationType nT){
+	public Notification(int userID, int meetingID, NotificationStatus aM, NotificationType nT){
 		this.userID = userID;
 		this.meetingID = meetingID;
 		this.aM = aM;

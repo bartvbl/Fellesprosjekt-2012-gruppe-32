@@ -4,6 +4,8 @@
 
 package fp.views;
 
+import javax.swing.JFrame;
+
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 
@@ -15,12 +17,26 @@ import fp.core.ClientMain;
  */
 public class CalendarApp extends SingleFrameApplication {
 
-    /**
+    private static CalendarView calendarView;
+	private static LoginScreen loginScreen;
+
+	/**
      * At startup create and show the main frame of the application.
      */
     @Override protected void startup() {
-        show(new CalendarView(this));
+        calendarView = new CalendarView(this);
+        loginScreen = new LoginScreen();
+        show(loginScreen);
         new ClientMain();
+    }
+    
+    public void showMainWindow() {
+    	show(calendarView);
+    	JFrame frame = calendarView.getFrame();
+    	frame.setVisible(false);
+    	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	frame.setExtendedState(JFrame.NORMAL);
+    	frame.setVisible(true);
     }
 
     /**

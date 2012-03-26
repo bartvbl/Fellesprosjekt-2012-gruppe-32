@@ -2,17 +2,16 @@ package fp.components.newMeeting;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import nu.xom.Element;
+
 import fp.componentControllers.AbstractComponentController;
 import fp.componentControllers.ComponentControllerType;
 import fp.dataObjects.Meeting.LocationType;
 import fp.dataObjects.Meeting.MeetingType;
 import fp.dataObjects.User;
 import fp.events.EventDispatcher;
-import fp.messageHandlers.GetObjectsFromDatabaseHandler;
 import fp.messageParsers.Message;
 import fp.messageParsers.MessageType;
 import fp.views.NewMeetingWindow;
@@ -33,7 +32,9 @@ public class NewMeetingController extends AbstractComponentController implements
 	public void create(){
 		//opprett melding
 		meeting.getMeeting();
-		Message message1 = new Message(MessageType.addMeeting, MeetingConverter.convertMeetingToXML(meeting.getMeeting()));
+		Element meetingData = MeetingConverter.convertMeetingToXML(meeting.getMeeting());
+		Message message = new Message(MessageType.addMeeting);
+		message.addDataElement(meetingData);
 		
 		//connection til server og send melding til den/database
 		

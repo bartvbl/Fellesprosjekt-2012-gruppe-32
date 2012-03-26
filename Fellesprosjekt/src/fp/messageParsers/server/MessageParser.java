@@ -1,4 +1,4 @@
-package fp.messageParsers;
+package fp.messageParsers.server;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -12,6 +12,8 @@ import fp.messageHandlers.GetMeetingsInWeekHandler;
 import fp.messageHandlers.GetUserHandler;
 import fp.messageHandlers.MessageHandler;
 import fp.messageHandlers.UpdateMeetingHandler;
+import fp.messageParsers.Message;
+import fp.messageParsers.MessageType;
 import fp.server.ServerClientContext;
 
 public class MessageParser {
@@ -27,7 +29,7 @@ public class MessageParser {
 		typeForHandlerMap.put(MessageType.getMeetingsInWeek, new GetMeetingsInWeekHandler());
 		typeForHandlerMap.put(MessageType.getUser, new GetUserHandler());
 		typeForHandlerMap.put(MessageType.addFavourite, new AddFavouriteMeetingHandler());
-		
+		typeForHandlerMap.put(MessageType.loginRequest, new UserLoginHandler());
 	}
 	
 	public static void parseMessage(Message message, ServerClientContext clientContext) throws SQLException{

@@ -65,7 +65,7 @@ public class CalendarDateConstructor {
 		calendar.setFirstDayOfWeek(Calendar.MONDAY);
 		calendar.set(Calendar.YEAR, year);
 		calendar.set(Calendar.WEEK_OF_YEAR, week);
-		calendar.add(Calendar.DAY_OF_MONTH, -2);
+		calendar.add(Calendar.DAY_OF_MONTH, -6);
 		int[] dateNumberList = new int[7];
 		for(int i = 0; i < 7; i++) {
 			dateNumberList[i] = calendar.get(Calendar.DAY_OF_MONTH);
@@ -75,14 +75,13 @@ public class CalendarDateConstructor {
 	}
 
 	public static String generateMonthString(Calendar calendar) {
-		calendar.add(Calendar.DAY_OF_MONTH, -2);
 		String monthString = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.UK);
 		int currentMonth = calendar.get(Calendar.MONTH);
 		calendar.add(Calendar.DAY_OF_MONTH, 6);
 		if(calendar.get(Calendar.MONTH) != currentMonth) {
 			monthString += "/" + calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.UK);
 		}
-		calendar.add(Calendar.DAY_OF_MONTH, -4);
+		calendar.add(Calendar.DAY_OF_MONTH, -6);
 		return monthString;
 	}
 

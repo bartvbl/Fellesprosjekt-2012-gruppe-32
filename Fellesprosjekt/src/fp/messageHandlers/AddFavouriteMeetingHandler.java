@@ -13,7 +13,7 @@ public class AddFavouriteMeetingHandler implements MessageHandler {
 	@Override
 	public void handleMessage(Message message, ServerClientContext clientContext) throws SQLException {
 		
-		Meeting meeting = MeetingConverter.convertXMLToMeeting(message.getData());
+		Meeting meeting = MeetingConverter.convertXMLToMeeting(message.getDataElements().get(0));
 		
 		String sqlQurey = "INSERT INTO UserFavourites VALUES('"+ clientContext.user.userID+"' , 'appointment', NULL, '" + meeting.meetingID+"');";
 		

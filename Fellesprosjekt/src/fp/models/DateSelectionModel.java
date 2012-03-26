@@ -15,6 +15,7 @@ public class DateSelectionModel {
 		this.calendar.setFirstDayOfWeek(Calendar.MONDAY);
 		this.selectedWeekNumber = this.calendar.get(Calendar.WEEK_OF_YEAR);
 		this.selectedYearNumber = this.calendar.get(Calendar.YEAR);
+		this.calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 	}
 	
 	public int getSelectedYear() {
