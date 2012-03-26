@@ -110,7 +110,7 @@ public class NewMeetingModel {
 	}
 
 	public void createMeeting(){
-		meeting = new Meeting(0, description, location, locationType, fullStartTime, fullEndTime, null, 0, roomID, meetingtype);
+		meeting = new Meeting(0, description, location, locationType, fullStartTime, fullEndTime, Meeting.MeetingStatus.active, 0, roomID, meetingtype);
 	}
 	
 	public Meeting getMeeting() {
