@@ -1,5 +1,7 @@
 package fp.events;
 
+import fp.dataObjects.Meeting;
+
 public class ServerEvent<EventParamsDataType> extends Event {
 
 	public final int destinationUserID;
