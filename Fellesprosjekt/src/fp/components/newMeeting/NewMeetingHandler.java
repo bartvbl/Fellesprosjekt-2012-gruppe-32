@@ -34,17 +34,18 @@ public class NewMeetingHandler extends AbstractComponentHandler implements Actio
 			controller.create();
 		} else if(event.getSource() == NewMeetingWindow.cancelButton) {
 			controller.cancel();
-		} else if(event.getSource() == NewMeetingWindow.addParticipantButton) {
-			if(!NewMeetingWindow.participantSearchResultList.isSelectionEmpty()) {
-				User user = (User) NewMeetingWindow.participantSearchResultList.getSelectedValue();
-				controller.addParticipant(user);
-			}
-		} else if(event.getSource() == NewMeetingWindow.removeParticipantButton) {
-			if(!NewMeetingWindow.invitedParticipantsList.isSelectionEmpty()) {
-				User user = (User) NewMeetingWindow.invitedParticipantsList.getSelectedValue();
-				controller.removeParticipant(user);
-			}
-		}
+		} 
+//		else if(event.getSource() == NewMeetingWindow.addParticipantButton) {
+//			if(!NewMeetingWindow.participantSearchResultList.isSelectionEmpty()) {
+//				User user = (User) NewMeetingWindow.participantSearchResultList.getSelectedValue();
+//				controller.addParticipant(user);
+//			}
+//		} else if(event.getSource() == NewMeetingWindow.removeParticipantButton) {
+//			if(!NewMeetingWindow.invitedParticipantsList.isSelectionEmpty()) {
+//				User user = (User) NewMeetingWindow.invitedParticipantsList.getSelectedValue();
+//				controller.removeParticipant(user);
+//			}
+//		}
 	}
 
 	
@@ -54,7 +55,6 @@ public class NewMeetingHandler extends AbstractComponentHandler implements Actio
 		NewMeetingWindow.newAppointmentButton.addActionListener(this);
 		NewMeetingWindow.newMeetingButton.addActionListener(this);
 		NewMeetingWindow.meetingRoomSearchResultList.getSelectionModel().addListSelectionListener(this);
-		NewMeetingWindow.participantSearchResultList.getSelectionModel().addListSelectionListener(this);
 		NewMeetingWindow.startDateTextPane.addKeyListener(this);
 		NewMeetingWindow.startTimeTextPane.addKeyListener(this);
 		NewMeetingWindow.endDateTextPane.addKeyListener(this);
@@ -72,11 +72,6 @@ public class NewMeetingHandler extends AbstractComponentHandler implements Actio
 			if(listModel.getLeadSelectionIndex() != -1) {
 				controller.setRoomID((Integer) NewMeetingWindow.meetingRoomSearchResultList.getSelectedValue());
 			}	
-		}
-		else if(listModel == NewMeetingWindow.participantSearchResultList.getSelectionModel()){
-			if(listModel.getLeadSelectionIndex() != -1) {
-				
-			}
 		}
 	}
 
@@ -111,8 +106,7 @@ public class NewMeetingHandler extends AbstractComponentHandler implements Actio
 		}
 		else if(e.getSource()==NewMeetingWindow.manualLocationTextPane){
 			controller.setLocation(NewMeetingWindow.manualLocationTextPane.getText());
-		}
-		
+		}	
 	}
 
 	@Override

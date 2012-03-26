@@ -70,6 +70,40 @@ public class NewMeetingController extends AbstractComponentController {
 		
 		
 	}
+	
+	public void setRoomID(int id){
+		
+	}
 
+	public void setDescription(String description){
+		
+	}
+	
+	public void setStartDate(String date){
+		
+	}
+	
+	public void setStartTime(String time){
+		
+	}
+	
+	public void setEndDate(String date){
+		
+	}
+	
+	public void setEndTime(String time){
+		
+	}
+	public void setParticipantSearch(String searchText){
+		
+	}	
+	
+	public void setMeetingRoomSearch(String searchText){
+		
+	}
+	
+	public void setLocation(String location){
+		
+	}	
 
 }
