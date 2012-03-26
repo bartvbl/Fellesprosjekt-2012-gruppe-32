@@ -7,16 +7,7 @@ public class Notification {
 	public final NotificationStatus notificationStatus;
 	public final NotificationType notificationType;
 	public enum NotificationStatus{
-		Yes {
-		public String toString(){
-			return "Yes";
-			}
-		},
-		No {
-			public String toString(){
-				return "No";
-			}
-		}
+		Yes, No, Undecided
 	};
 	public enum NotificationType{
 		newMeeting{

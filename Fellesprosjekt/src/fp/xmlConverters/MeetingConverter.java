@@ -84,7 +84,7 @@ public class MeetingConverter {
 	    }
 	
 	public static Meeting convertXMLToMeeting(Element meetingElement) {
-		String meetingID = null, description = null, location = null, startTime = null, endTime = null, locType = null, meetType = null, stat = null, creatorID = null, roomID = null;
+		String meetingID = "-1", description = null, location = null, startTime = null, endTime = null, locType = null, meetType = null, stat = null, creatorID = "-1", roomID = "-1";
 		LocationType locationType = null;
 		MeetingStatus status = null;
 		MeetingType meetingType = null;

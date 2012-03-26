@@ -7,8 +7,13 @@ import java.util.ArrayList;
 import nu.xom.Element;
 
 import fp.dataObjects.Meeting;
+import fp.dataObjects.Meeting.LocationType;
+import fp.dataObjects.Meeting.MeetingStatus;
+import fp.dataObjects.Meeting.MeetingType;
 import fp.dataObjects.MeetingNotification;
 import fp.dataObjects.Notification;
+import fp.dataObjects.Notification.NotificationStatus;
+import fp.dataObjects.Notification.NotificationType;
 import fp.dataObjects.User;
 import fp.database.DatabaseConnection;
 import fp.databaseReaders.MeetingReader;
