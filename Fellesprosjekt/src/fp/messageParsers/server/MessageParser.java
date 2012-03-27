@@ -14,6 +14,7 @@ import fp.messageHandlers.GetUserHandler;
 import fp.messageHandlers.MessageHandler;
 import fp.messageHandlers.NotificationResponseHandler;
 import fp.messageHandlers.SearchMeetingHandler;
+import fp.messageHandlers.SearchMeetingRoomHandler;
 import fp.messageHandlers.SearchUserHandler;
 import fp.messageHandlers.UpdateMeetingHandler;
 import fp.messageParsers.Message;
