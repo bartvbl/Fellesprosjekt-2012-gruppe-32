@@ -43,9 +43,8 @@ public class MeetingListRequestHandler implements MessageHandler {
 			String dateString = getFormattedDateString(date.year, date.week, date.dayInWeek);
 			DayMeetingList meetingList = this.getDayMeetingList(date, dateString, clientContext);
 			meetingLists.add(meetingList);
-			System.out.println("processing day: " + date);
 		}
-		this.sendResponseMessage(meetingLists);
+		this.sendResponseMessage(meetingLists, clientContext);
 	}
 
 	//synchronized, as the Calendar and SimpleDateFormat classes are not thread safe
@@ -81,12 +80,13 @@ public class MeetingListRequestHandler implements MessageHandler {
 		return meetingList;
 	}
 	
-	private void sendResponseMessage(ArrayList<DayMeetingList> meetingLists) {
+	private void sendResponseMessage(ArrayList<DayMeetingList> meetingLists, ServerClientContext context) {
 		Message responseMessage = new Message(MessageType.listMeetingsResponse);
 		for(DayMeetingList meetingList : meetingLists) {
 			Element dayMeetingElement = DayMeetingConverter.convertDayMeetingToXML(meetingList);
 			responseMessage.addDataElement(dayMeetingElement);
 		}
+		context.connectionHandler.sendMessage(responseMessage);
 	}
 
 }
