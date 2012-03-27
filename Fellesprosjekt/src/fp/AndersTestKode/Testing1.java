@@ -17,6 +17,8 @@ import fp.dataObjects.Meeting.MeetingType;
 //import fp.dataObjects.Meeting.Status;
 import fp.database.DatabaseConnection;
 import fp.messageHandlers.AddMeetingHandler;
+import fp.messageHandlers.GetMeetingHandler;
+import fp.messageHandlers.GetMeetingsInWeekHandler;
 import fp.messageHandlers.RemoveMeetingHandler;
 import fp.messageHandlers.UpdateMeetingHandler;
 import fp.messageParsers.Message;
@@ -73,17 +75,30 @@ public class Testing1 {
 		}
 			*/
 		Meeting meeting = new Meeting(2, "lol", "ol", LocationType.Location, "1111-11-11 11:11:11", "1111-11-11 11:11:11", MeetingStatus.Active, 123, 123, MeetingType.appointment);
-		Element xml = MeetingConverter.convertMeetingToXML(meeting);
+		Element xml2 = MeetingConverter.convertMeetingToXML(meeting);
+		
+		Element xml = new Element("data");	
+		Element fromDate = new Element("fromDate");
+		fromDate.appendChild("2012-04-01 00:00:00");
+		Element toDate = new Element("toDate");
+		toDate.appendChild("2013-04-30 00:00:00");
+		
+		xml.appendChild(fromDate);
+		xml.appendChild(toDate);
+	
+		
 		Message message = new Message(MessageType.removeMeeting);
 		message.addDataElement(xml);
 		
-		UpdateMeetingHandler asd = new UpdateMeetingHandler();
+		GetMeetingsInWeekHandler asd = new GetMeetingsInWeekHandler();
+		GetMeetingHandler dsa = new GetMeetingHandler();
 		
 		try {
 			DatabaseConnection.connect();
 			System.out.println("remove");
 			asd.handleMessage(message, null);
-			System.out.println("fjernet");
+			//dsa.handleMessage(message, null);
+			System.out.println("ferdig");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
