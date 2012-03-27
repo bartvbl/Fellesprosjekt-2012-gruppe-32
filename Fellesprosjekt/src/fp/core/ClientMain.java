@@ -9,6 +9,7 @@ import fp.components.calendarViewer.CalendarViewerController;
 import fp.components.calendarViewer.CalendarViewerHandler;
 import fp.components.calendarViewer.ChangeWeekButtonHandler;
 import fp.components.loginScreen.LoginScreenHandler;
+import fp.components.meetingDisplay.CalendarViewerMeetingUpdater;
 import fp.components.newMeeting.NewMeetingController;
 import fp.components.newMeeting.NewMeetingHandler;
 import fp.components.newMeeting.NewMeetingModel;
@@ -70,6 +71,8 @@ public class ClientMain {
 		new NewMeetingWindow();
 		
 		new NewMeetingHandler(eventDispatcher, new NewMeetingController(eventDispatcher));
+		
+		new CalendarViewerMeetingUpdater(eventDispatcher, dateSelectionModel);
 	}
 	
 	private void createCalendarViewControllers() {

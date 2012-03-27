@@ -17,27 +17,15 @@ public class SmallCalendarModel {
 	}
 	
 	public void incrementMonth() {
-		int currentMonth = this.calendar.get(Calendar.MONTH);
-		currentMonth++;
-		if(currentMonth > 11) {
-			currentMonth = 0;
-			this.calendar.set(Calendar.YEAR, this.calendar.get(Calendar.YEAR) + 1);
-		}
-		this.calendar.set(Calendar.MONTH, currentMonth);
+		this.calendar.add(Calendar.MONTH, 1);
 	}
 	
 	public void decrementMonth() {
-		int currentMonth = this.calendar.get(Calendar.MONTH);
-		currentMonth--;
-		if(currentMonth < 0) {
-			currentMonth = 11;
-			this.calendar.set(Calendar.YEAR, this.calendar.get(Calendar.YEAR) - 1);
-		}
-		this.calendar.set(Calendar.MONTH, currentMonth);
+		this.calendar.add(Calendar.MONTH, -1);
 	}
 	
 	public int[][] getDateRows() {
-		return CalendarDateConstructor.getDateMatrix(this.calendar);
+		return CalendarDateConstructor.getDateMatrix(getMonth(), getYear());
 	}
 	
 	public String getMonthName() {
@@ -48,7 +36,11 @@ public class SmallCalendarModel {
 		return this.calendar.get(Calendar.YEAR);
 	}
 	
+	public int getMonth() {
+		return this.calendar.get(Calendar.MONTH);
+	}
+	
 	public int[] getWeekNumbersOfCurrentMonth() {
-		return CalendarDateConstructor.getWeekListOfCurrentMonth(calendar);
+		return CalendarDateConstructor.getWeekListOfCurrentMonth(getMonth(), getYear());
 	}
 }
