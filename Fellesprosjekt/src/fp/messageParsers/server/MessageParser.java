@@ -13,6 +13,8 @@ import fp.messageHandlers.GetMeetingsInWeekHandler;
 import fp.messageHandlers.GetUserHandler;
 import fp.messageHandlers.MessageHandler;
 import fp.messageHandlers.NotificationResponseHandler;
+import fp.messageHandlers.SearchMeetingHandler;
+import fp.messageHandlers.SearchUserHandler;
 import fp.messageHandlers.UpdateMeetingHandler;
 import fp.messageParsers.Message;
 import fp.messageParsers.MessageType;
@@ -38,6 +40,8 @@ public class MessageParser {
 		typeForHandlerMap.put(MessageType.addFavourite, new AddFavouriteMeetingHandler());
 		typeForHandlerMap.put(MessageType.loginRequest, new UserLoginHandler());
 		typeForHandlerMap.put(MessageType.registerNotificationResponse, new NotificationResponseHandler());
+		typeForHandlerMap.put(MessageType.searchMeetingRoom, new SearchMeetingRoomHandler());
+		typeForHandlerMap.put(MessageType.searchUser, new SearchUserHandler());
 	}
 	
 	public static void parseMessage(Message message, ServerClientContext clientContext) throws SQLException{
