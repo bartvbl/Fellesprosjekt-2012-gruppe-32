@@ -7,7 +7,7 @@ public class Meeting {
 	public final String location;
 	public final LocationType locationType;
 	public enum LocationType{
-		Meetingroom, Location 			
+		MeetingRoom, Location 			
 	}
 
 	public final String startTime;

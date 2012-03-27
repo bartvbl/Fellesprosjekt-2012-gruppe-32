@@ -39,7 +39,7 @@ public class CalendarViewerMeetingRequester implements EventHandler {
 		int weekNumber = this.model.getSelectedWeekNumber();
 		int yearNumber = this.model.getSelectedYear();
 		
-		for(int dayNumber = 0; dayNumber < 7; dayNumber++) {
+		for(int dayNumber = 1; dayNumber < 8; dayNumber++) {
 			CalendarDate date = new CalendarDate(yearNumber, weekNumber, dayNumber);
 			Element dateElement = CalendarDateConverter.convertCalendarDateToXML(date);
 			messageToSend.addDataElement(dateElement);

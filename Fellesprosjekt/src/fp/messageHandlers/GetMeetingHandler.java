@@ -43,8 +43,9 @@ public class GetMeetingHandler implements MessageHandler{
 		MeetingType meetingType=null;
 
 		
-		meeting = MeetingConverter.convertXMLToMeeting(message.getDataElements().get(0));		
-		query = "SELECT Meeting FROM MEETING WHERE MeetindID ='" + meeting.meetingID + "');";
+		meeting = MeetingConverter.convertXMLToMeeting(message.getDataElements().get(0));	
+		System.out.println(meeting.meetingID + "");
+		query = "SELECT * FROM Meeting WHERE MeetingID =" + meeting.meetingID + ";";
 		
 		DatabaseConnection.connect();
 		resultSet = DatabaseConnection.executeReadQuery(query);

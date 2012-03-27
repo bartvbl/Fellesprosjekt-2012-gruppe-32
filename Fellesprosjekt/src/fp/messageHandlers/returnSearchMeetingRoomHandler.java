@@ -34,5 +34,4 @@ public class returnSearchMeetingRoomHandler implements ClientMessageHandler {
 		}
 		eventDispatcher.dispatchEvent(new Event<ArrayList<MeetingRoom>>(EventType.SEARCH_MEETINGROOM_RESULT, rooms));
 	}
-
 }
