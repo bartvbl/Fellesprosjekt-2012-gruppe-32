@@ -1,8 +1,8 @@
 package fp.xmlConverters;
 
 import nu.xom.Element;
-import fp.components.smallCalendar.CalendarDateConstructor;
 import fp.dataObjects.User;
+import fp.util.CalendarDateConstructor;
 
 public class WeekConverter {
 	

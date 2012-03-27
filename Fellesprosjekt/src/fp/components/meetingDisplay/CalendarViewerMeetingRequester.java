@@ -1,7 +1,6 @@
 package fp.components.meetingDisplay;
 
 import nu.xom.Element;
-import fp.components.smallCalendar.CalendarDateConstructor;
 import fp.dataObjects.CalendarDate;
 import fp.events.Event;
 import fp.events.EventDispatcher;
@@ -11,6 +10,7 @@ import fp.messageParsers.Message;
 import fp.messageParsers.MessageType;
 import fp.models.DateSelectionModel;
 import fp.net.client.ClientConnector;
+import fp.util.CalendarDateConstructor;
 import fp.xmlConverters.CalendarDateConverter;
 
 public class CalendarViewerMeetingRequester implements EventHandler {

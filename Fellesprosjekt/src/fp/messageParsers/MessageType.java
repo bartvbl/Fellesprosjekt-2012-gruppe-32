@@ -20,5 +20,6 @@ public enum MessageType {
 	searchUser,
 	searchMeetingRoom, 
 	requestAppointments, 
-	listMeetingsRequest
+	listMeetingsRequest, 
+	listMeetingsResponse
 }

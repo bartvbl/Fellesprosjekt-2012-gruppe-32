@@ -3,7 +3,7 @@ package fp.models;
 import java.util.Calendar;
 import java.util.Locale;
 
-import fp.components.smallCalendar.CalendarDateConstructor;
+import fp.util.CalendarDateConstructor;
 
 public class DateSelectionModel {
 	private java.util.Calendar calendar;

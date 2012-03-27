@@ -3,12 +3,12 @@ package fp.components.calendarViewer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import fp.components.smallCalendar.CalendarDateConstructor;
 import fp.dataObjects.CalendarDate;
 import fp.events.Event;
 import fp.events.EventDispatcher;
 import fp.events.EventType;
 import fp.models.DateSelectionModel;
+import fp.util.CalendarDateConstructor;
 import fp.views.NewMeetingWindow;
 
 public class AddNewMeetingHandler implements ActionListener {

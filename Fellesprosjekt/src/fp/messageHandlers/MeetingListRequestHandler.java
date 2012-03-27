@@ -1,5 +1,7 @@
 package fp.messageHandlers;
 
+import java.awt.TrayIcon;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -8,11 +10,15 @@ import java.util.Date;
 
 import nu.xom.Element;
 
-import fp.components.smallCalendar.CalendarDateConstructor;
 import fp.dataObjects.CalendarDate;
+import fp.dataObjects.DayMeetingList;
+import fp.database.DatabaseConnection;
 import fp.messageParsers.Message;
+import fp.messageParsers.MessageType;
 import fp.server.ServerClientContext;
+import fp.util.CalendarDateConstructor;
 import fp.xmlConverters.CalendarDateConverter;
+import fp.xmlConverters.DayMeetingConverter;
 
 public class MeetingListRequestHandler implements MessageHandler {
 	
@@ -29,21 +35,51 @@ public class MeetingListRequestHandler implements MessageHandler {
 
 	public void handleMessage(Message message, ServerClientContext clientContext) throws SQLException {
 		ArrayList<Element> requestedDays = message.getDataElements();
+		ArrayList<DayMeetingList> meetingLists = new ArrayList<DayMeetingList>();
 		for(Element dayRequest : requestedDays) {	
 			CalendarDate date = CalendarDateConverter.convertXMLToCalendarDate(dayRequest);
-			//System.out.println(getFormattedDateString(date.year, date.week, date.dayInWeek));
+			String dateString = getFormattedDateString(date.year, date.week, date.dayInWeek);
+			meetingLists.add(this.getDayMeetingList(date, dateString, clientContext));
 		}
+		this.sendResponseMessage(meetingLists);
 	}
-	
+
 	//synchronized, as the Calendar and SimpleDateFormat classes are not thread safe
 	private synchronized String getFormattedDateString(int year, int week, int dayInWeek) { 
 		this.calendar.set(Calendar.YEAR, year);
 		this.calendar.set(Calendar.WEEK_OF_YEAR, week);
-		int dayNumber = CalendarDateConstructor.convertDayOfWeekIndexToCalendarDayIndex(dayInWeek);
+		int dayNumber = dayInWeek+1;//CalendarDateConstructor.convertDayOfWeekIndexToCalendarDayIndex(dayInWeek);
 		this.calendar.set(Calendar.DAY_OF_WEEK, dayNumber);
 		
 		Date currentCalendarDate = this.calendar.getTime();
 		return this.dateFormat.format(currentCalendarDate);
+	}
+	
+	private DayMeetingList getDayMeetingList(CalendarDate date, String dateString, ServerClientContext clientContext) throws SQLException {
+		ResultSet result =  DatabaseConnection.executeReadQuery("SELECT * FROM Meeting " +
+																"LEFT JOIN Notifications ON (Meeting.MeetingID = Notifications.MeetingID) " +
+																"WHERE (((" +//meeting is an appointment of the user
+																		"(Meeting.MeetingType = 'appointment')" +
+																		"AND (Meeting.CreatorID = "+clientContext.user.userID+")" +
+																	") OR (" +//meeting is a meeting that the user is taking part in
+																		"(Meeting.MeetingType = 'meeting')" +
+																		"AND (Notifications.UserID = "+clientContext.user.userID+")" +
+																")) AND (" +//meeting is on the specified day
+																	"((Meeting.EndTime > '"+dateString+" 00:00:00')" +
+																		"AND (Meeting.EndTime < '"+dateString+" 23:59:59'))" +
+																	"OR ((Meeting.StartTime > '"+dateString+" 00:00:00')" +
+																		"AND (Meeting.StartTime < '"+dateString+" 23:59:59'))" +
+																") AND " +//meeting is active
+																	"(Meeting.Status = 'Active')) ");
+		return new DayMeetingList(date);
+	}
+	
+	private void sendResponseMessage(ArrayList<DayMeetingList> meetingLists) {
+		Message responseMessage = new Message(MessageType.listMeetingsResponse);
+		for(DayMeetingList meetingList : meetingLists) {
+			Element dayMeetingElement = DayMeetingConverter.convertDayMeetingToXML(meetingList);
+			responseMessage.addDataElement(dayMeetingElement);
+		}
 	}
 
 }
