@@ -18,6 +18,7 @@ import fp.dataObjects.Meeting.MeetingType;
 import fp.database.DatabaseConnection;
 import fp.messageHandlers.AddMeetingHandler;
 import fp.messageHandlers.RemoveMeetingHandler;
+import fp.messageHandlers.UpdateMeetingHandler;
 import fp.messageParsers.Message;
 import fp.messageParsers.MessageType;
 import fp.xmlConverters.MeetingConverter;
@@ -68,15 +69,16 @@ public class Testing1 {
 			System.out.println("Ferdig");
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println(e);
+			System.out.println(e)3
 		}
 			*/
-		Meeting meeting = new Meeting(1, "lol", "ol", LocationType.Location, "lol", "lol", MeetingStatus.Active, 123, 123, MeetingType.appointment);
+		Meeting meeting = new Meeting(2, "lol", "ol", LocationType.Location, "1111-11-11 11:11:11", "1111-11-11 11:11:11", MeetingStatus.Active, 123, 123, MeetingType.appointment);
 		Element xml = MeetingConverter.convertMeetingToXML(meeting);
 		Message message = new Message(MessageType.removeMeeting);
 		message.addDataElement(xml);
 		
-		RemoveMeetingHandler asd = new RemoveMeetingHandler();
+		UpdateMeetingHandler asd = new UpdateMeetingHandler();
+		
 		try {
 			DatabaseConnection.connect();
 			System.out.println("remove");
