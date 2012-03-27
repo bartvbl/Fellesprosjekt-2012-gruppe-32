@@ -3,6 +3,8 @@ package fp.components.newMeeting;
 
 import java.util.ArrayList;
 
+import javax.swing.DefaultListModel;
+
 import nu.xom.Element;
 import nu.xom.Elements;
 import fp.componentControllers.AbstractComponentController;
@@ -15,6 +17,7 @@ import fp.dataObjects.MeetingRoom;
 import fp.events.Event;
 import fp.events.EventDispatcher;
 import fp.events.EventHandler;
+import fp.events.EventType;
 import fp.messageParsers.Message;
 import fp.messageParsers.MessageType;
 import fp.net.client.ClientConnectionContext;
@@ -25,10 +28,15 @@ public class NewMeetingController extends AbstractComponentController implements
 
 	NewMeetingModel model;
 	EventDispatcher eventDispatcher;
+	DefaultListModel meetingRoomSearchModel;
 	
 	public NewMeetingController(EventDispatcher eventDispatcher){
 		super(ComponentControllerType.NEW_MEETING_VIEW, eventDispatcher);
 		this.eventDispatcher = eventDispatcher;
+	}
+	
+	public void addEventListeners(){
+		eventDispatcher.addEventListener(this, EventType.SEARCH_MEETINGROOM_RESULT);
 	}
 	
 	public void setModel(NewMeetingModel model){
@@ -48,6 +56,9 @@ public class NewMeetingController extends AbstractComponentController implements
 			NewMeetingWindow.startTimeTextPane.setText(model.getStartTime());
 			NewMeetingWindow.endDateTextPane.setText(model.getEndDate());
 			NewMeetingWindow.endTimeTextPane.setText(model.getEndTime());
+			
+			meetingRoomSearchModel = new DefaultListModel();
+			NewMeetingWindow.meetingRoomSearchResultList.setModel(meetingRoomSearchModel);
 			
 			if (model.getLocationType() == null) {
 				//TODO: Write room label
@@ -106,6 +117,12 @@ public class NewMeetingController extends AbstractComponentController implements
 	}
 	
 	public void updateMeetingRoomSearch(ArrayList<MeetingRoom> result){
+		model.setMeetingRooms(result);
+		meetingRoomSearchModel.clear();
+		for (MeetingRoom meetingRoom : result) {
+			System.out.println(meetingRoom.name);
+			meetingRoomSearchModel.addElement(meetingRoom.name);
+		}
 		
 	}
 	
