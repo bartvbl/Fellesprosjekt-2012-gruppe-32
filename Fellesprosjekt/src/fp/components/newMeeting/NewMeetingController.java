@@ -81,7 +81,7 @@ public class NewMeetingController extends AbstractComponentController {
 	
 	public void searchForMeetingRoom(){
 		
-		ClientConnectionContext.getInstance().connectionHandler.sendMessage(message);
+//		ClientConnectionContext.getInstance().connectionHandler.sendMessage(message);
 		
 	}
 	
