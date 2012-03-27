@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import fp.events.EventDispatcher;
 import fp.messageHandlers.client.SearchMeetingRoomReturnMessageHandler;
+import fp.messageHandlers.client.SearchUserReturnMessageHandler;
 import fp.messageParsers.Message;
 import fp.messageParsers.MessageType;
 import fp.net.client.ClientConnectionContext;
@@ -31,5 +32,6 @@ public class ClientMessageParser {
 		messageHandlers.put(MessageType.loginRequestAccepted, new LoginAcceptedHandler());
 		messageHandlers.put(MessageType.meetingNotification, new MeetingNotificationHandler(eventDispatcher));
 		messageHandlers.put(MessageType.searchMeetingRoom, new SearchMeetingRoomReturnMessageHandler(eventDispatcher));
+		messageHandlers.put(MessageType.searchUser, new SearchUserReturnMessageHandler(eventDispatcher));
 	}
 }
