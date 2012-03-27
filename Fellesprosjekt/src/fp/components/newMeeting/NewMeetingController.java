@@ -1,6 +1,8 @@
 package fp.components.newMeeting;
 
 
+import java.util.ArrayList;
+
 import nu.xom.Element;
 
 import fp.componentControllers.AbstractComponentController;
@@ -9,19 +11,24 @@ import fp.dataObjects.Meeting;
 import fp.dataObjects.Meeting.LocationType;
 import fp.dataObjects.Meeting.MeetingStatus;
 import fp.dataObjects.Meeting.MeetingType;
+import fp.dataObjects.MeetingRoom;
+import fp.events.Event;
 import fp.events.EventDispatcher;
+import fp.events.EventHandler;
 import fp.messageParsers.Message;
 import fp.messageParsers.MessageType;
 import fp.net.client.ClientConnectionContext;
 import fp.views.NewMeetingWindow;
 import fp.xmlConverters.MeetingConverter;
 
-public class NewMeetingController extends AbstractComponentController {
+public class NewMeetingController extends AbstractComponentController implements EventHandler{
 
 	NewMeetingModel model;
+	EventDispatcher eventDispatcher;
 	
 	public NewMeetingController(EventDispatcher eventDispatcher){
 		super(ComponentControllerType.NEW_MEETING_VIEW, eventDispatcher);
+		this.eventDispatcher = eventDispatcher;
 	}
 	
 	public void setModel(NewMeetingModel model){
@@ -98,6 +105,11 @@ public class NewMeetingController extends AbstractComponentController {
 		}
 	}
 	
+	public void updateMeetingRoomSearch(ArrayList<MeetingRoom> result){
+		
+	}
+	
+	
 	
 	public void searchForUsers(){
 		
@@ -155,5 +167,13 @@ public class NewMeetingController extends AbstractComponentController {
 	
 	public void setMeetingType(Meeting.MeetingType meetingType) {
 		model.setMeetingtype(meetingType);
+	}
+
+	@Override
+	public void handleEvent(Event<?> event) {
+		switch(event.eventType) {
+		case SEARCH_MEETINGROOM_RESULT:
+			this.updateMeetingRoomSearch((ArrayList<MeetingRoom>) event.getEventParameterObject());
+	}		
 	}
 }
