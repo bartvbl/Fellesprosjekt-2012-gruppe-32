@@ -1,5 +1,6 @@
 package fp.AndersTestKode;
 
+import java.rmi.RemoteException;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,10 +12,12 @@ import com.mysql.jdbc.Connection;
 
 import fp.dataObjects.Meeting;
 import fp.dataObjects.Meeting.LocationType;
+import fp.dataObjects.Meeting.MeetingStatus;
 import fp.dataObjects.Meeting.MeetingType;
 //import fp.dataObjects.Meeting.Status;
 import fp.database.DatabaseConnection;
 import fp.messageHandlers.AddMeetingHandler;
+import fp.messageHandlers.RemoveMeetingHandler;
 import fp.messageParsers.Message;
 import fp.messageParsers.MessageType;
 import fp.xmlConverters.MeetingConverter;
@@ -68,11 +71,18 @@ public class Testing1 {
 			System.out.println(e);
 		}
 			*/
-		DatabaseConnection.connect();
+		Meeting meeting = new Meeting(1, "lol", "ol", LocationType.Location, "lol", "lol", MeetingStatus.Active, 123, 123, MeetingType.appointment);
+		Element xml = MeetingConverter.convertMeetingToXML(meeting);
+		Message message = new Message(MessageType.removeMeeting);
+		message.addDataElement(xml);
+		
+		RemoveMeetingHandler asd = new RemoveMeetingHandler();
 		try {
-			//DatabaseConnection.executeWriteQuery("INSERT INTO MeetingRoom VALUES(6,'Rom6',6)");
-			
-		} catch (Exception e) {
+			DatabaseConnection.connect();
+			System.out.println("remove");
+			asd.handleMessage(message, null);
+			System.out.println("fjernet");
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
