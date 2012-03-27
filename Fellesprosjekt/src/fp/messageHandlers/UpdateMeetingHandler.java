@@ -6,6 +6,7 @@ import fp.dataObjects.Meeting;
 import fp.dataObjects.ServerUserData;
 import fp.database.DatabaseConnection;
 import fp.messageParsers.Message;
+import fp.messageParsers.MessageType;
 import fp.server.ServerClientContext;
 import fp.xmlConverters.MeetingConverter;
 
@@ -16,14 +17,17 @@ public class UpdateMeetingHandler implements MessageHandler {
 		
 		Meeting meeting = MeetingConverter.convertXMLToMeeting(message.getDataElements().get(0));
 		
-		String sqlQurey = "UPDATE Meeting SET description='" 	+ meeting.description + "', status = '" + meeting.status + "', startTime = '"
+		String sqlQurey = "UPDATE Meeting SET description='" 
+																+ meeting.description + "', status = '" + meeting.status + "', startTime = '"
 																+ meeting.startTime + "', endTime = '" + meeting.endTime + "', location = '" 
-																+ meeting.location + "', locationTyoe = '" + meeting.locationType + "', roomID = '"
-																+ meeting.roomID + "', creatorID = '" + meeting.creatorID + "', meetingType = '"
-																+ meeting.meetingType + "' WHERE meetingID = '" + meeting.meetingID + "';";
+																+ meeting.location + "', locationType = '" + meeting.locationType + "', roomID = "
+																+ meeting.roomID + ", creatorID = " + meeting.creatorID + ", meetingType = '"
+																+ meeting.meetingType + "' WHERE meetingID = " + meeting.meetingID + ";";
 
 		DatabaseConnection.executeWriteQuery(sqlQurey);
 		
+		Message result = new Message(MessageType.updateMeeting);
+		clientContext.connectionHandler.sendMessage(result);
 
 	}
 
