@@ -16,7 +16,7 @@ public class RemoveMeetingHandler implements MessageHandler {
 	public void handleMessage(Message message, ServerClientContext clientContext) throws SQLException {
 		Meeting meeting = MeetingConverter.convertXMLToMeeting(message.getDataElements().get(0));
 		
-		String query = "REMOVE MEETING FROM MEETING WHERE MeetingID = " + meeting.meetingID + ";";
+		String query = "DELETE FROM Meeting WHERE MeetingID = " + meeting.meetingID + ";";
 		DatabaseConnection.executeWriteQuery(query);
 		
 		Message result = new Message(MessageType.removeMeeting);
