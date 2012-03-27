@@ -7,33 +7,13 @@ public class Meeting {
 	public final String location;
 	public final LocationType locationType;
 	public enum LocationType{
-		meetingroom {
-			public String toString(){
-				return "meetingroom";
-			}
-		},
-		location {
-			public String toString(){
-				return "location";
-			}
-		}			
+		Meetingroom, Location 			
 	}
 
 	public final String startTime;
 	public final String endTime;
 	public final MeetingStatus status;
-	public enum MeetingStatus{
-		active{
-			public String toString(){
-				return "active";
-			}
-		},
-		cancelled{
-			public String toString(){
-				return "cancelled";
-			}
-		}
-	}
+	public enum MeetingStatus{Active, Cancelled};
 	public final int creatorID;
 	public final int roomID;
 	public final MeetingType meetingType;

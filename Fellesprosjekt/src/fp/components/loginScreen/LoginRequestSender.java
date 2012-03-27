@@ -9,7 +9,6 @@ import fp.util.StringHasher;
 
 public class LoginRequestSender {
 	public static void sendLoginRequest(String userName, String password, String salt) {
-		System.out.println("sending login request..");
 		String hashedPassword = StringHasher.hashPassword(StringHasher.hashPassword(password, ""), salt);
 		Message message = buildMessage(userName, hashedPassword);
 		ClientConnector.sendMessage(message);

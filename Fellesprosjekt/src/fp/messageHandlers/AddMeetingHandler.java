@@ -6,6 +6,7 @@ import nu.xom.Element;
 import nu.xom.Elements;
 
 import fp.dataObjects.Meeting;
+import fp.dataObjects.Meeting.MeetingType;
 import fp.dataObjects.MeetingNotification;
 import fp.dataObjects.Notification;
 import fp.dataObjects.Notification.NotificationType;
@@ -42,6 +43,8 @@ public class AddMeetingHandler implements MessageHandler {
 		int meetingID = DatabaseConnection.exectuteWriteQueryAndReturnID(query);
 		
 		Meeting registeredMeeting = new Meeting(meetingID, meeting.description, meeting.location, meeting.locationType, meeting.startTime, meeting.endTime, meeting.status, clientContext.user.userID, meeting.roomID, meeting.meetingType);
+		
+		if(registeredMeeting.meetingType == MeetingType.appointment) {return;}
 		
 		Element participantsElement = message.getDataElements().get(1);
 		Elements participants = participantsElement.getChildElements();

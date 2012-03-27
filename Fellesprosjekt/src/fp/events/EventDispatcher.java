@@ -8,7 +8,7 @@ public class EventDispatcher {
 
 	public void dispatchEvent(Event<?> event) {
 		if (!eventTypeExists(event.eventType)) {
-			System.out.println("WARNING: dispatch attempted of event with event type '" + event.eventType
+			System.err.println("WARNING: dispatch attempted of event with event type '" + event.eventType
 					+ "', which has no listeners");
 			return;
 		} else {

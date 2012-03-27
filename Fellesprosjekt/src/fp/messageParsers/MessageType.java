@@ -13,5 +13,6 @@ public enum MessageType {
 	loginRequest, 
 	loginRequestAccepted, 
 	loginRequestRejected, 
-	meetingNotification
+	meetingNotification, 
+	registerNotificationResponse
 }

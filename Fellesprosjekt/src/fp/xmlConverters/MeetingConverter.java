@@ -84,6 +84,7 @@ public class MeetingConverter {
 	    }
 	
 	public static Meeting convertXMLToMeeting(Element meetingElement) {
+		System.out.println("converting meeting: " + meetingElement.toXML());
 		String meetingID = "-1", description = null, location = null, startTime = null, endTime = null, locType = null, meetType = null, stat = null, creatorID = "-1", roomID = "-1";
 		LocationType locationType = null;
 		MeetingStatus status = null;
@@ -121,36 +122,15 @@ public class MeetingConverter {
 		}
 		element = meetingElement.getFirstChildElement("meetingType");
 		if (element != null) {
-			meetType = element.getValue();
-			if(meetType.equals("meeting")){
-				meetingType = MeetingType.meeting;
-			}
-			else{
-				meetingType = MeetingType.appointment;
-			}
+			meetingType = Enum.valueOf(MeetingType.class, element.getValue());
 		}	
-			
-			
 		element = meetingElement.getFirstChildElement("locationType");
 		if (element != null) {
-			locType = element.getValue();
-			if(locType.equals("meetingroom")){
-				locationType = LocationType.meetingroom;
-			}
-			else{
-				locationType = LocationType.location;
-			}
-					
+			locationType = Enum.valueOf(LocationType.class, element.getValue());		
 		}
 		element = meetingElement.getFirstChildElement("status");
 		if (element != null) {
-			stat = element.getValue();
-			if(stat.equals("active")){
-				status = MeetingStatus.active;
-			}
-			else{
-				status = MeetingStatus.cancelled;
-			}
+			status = Enum.valueOf(MeetingStatus.class, element.getValue());
 		}
 		return new Meeting(Integer.parseInt(meetingID), description, location, locationType, startTime, endTime, status, Integer.parseInt(creatorID), Integer.parseInt(roomID), meetingType);
 		

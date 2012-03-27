@@ -51,14 +51,14 @@ public class NewMeetingModel {
 		description = null;
 		location = null;
 		locationType = null;
-		startTime = null;
-		endTime = null;
-		fullStartTime = null;
-		fullEndTime = null;
-		roomID = 0;
-		meetingtype = null;
+		startTime = "0:0:0";
+		endTime = "0:0:0";
 		startDate = startCalenderDate.toString();
 		endDate = endCalenderDate.toString();
+		fullStartTime = startDate+" "+startTime;
+		fullEndTime = endDate+" "+endTime;
+		roomID = 0;
+		meetingtype = null;
 		participantSearch = null;
 		meetingRoomSearch = null;
 		invited = new ArrayList<String>();
@@ -90,7 +90,7 @@ public class NewMeetingModel {
 
 	public void setMeetingRoomSearch(String meetingRoomSearch) {
 		this.meetingRoomSearch = meetingRoomSearch;
-		locationType = LocationType.meetingroom;
+		locationType = LocationType.Meetingroom;
 	}
 
 	public String getStartDate() {
@@ -110,7 +110,7 @@ public class NewMeetingModel {
 	}
 
 	public void createMeeting(){
-		meeting = new Meeting(0, description, location, locationType, fullStartTime, fullEndTime, null, 0, roomID, meetingtype);
+		meeting = new Meeting(0, description, location, locationType, fullStartTime, fullEndTime, Meeting.MeetingStatus.Active, 0, roomID, meetingtype);
 	}
 	
 	public Meeting getMeeting() {
@@ -127,7 +127,7 @@ public class NewMeetingModel {
 	}
 	public void setLocation(String location) {
 		this.location = location;
-		locationType = LocationType.location;
+		locationType = LocationType.Location;
 	}
 	public LocationType getLocationType() {
 		return locationType;
