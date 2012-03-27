@@ -7,11 +7,14 @@ public enum MessageType {
 	getMeeting, 
 	getUser, 
 	addFavourite, 
-	getMeetingsInWeek, 
+	getMeetingsInWeek,
 	inviteClient, 
 	connectionRequestAccepted, 
 	loginRequest, 
 	loginRequestAccepted, 
 	loginRequestRejected, 
-	meetingNotification
+	meetingNotification, 
+	registerNotificationResponse,
+	searchUser,
+	searchMeetingRoom
 }

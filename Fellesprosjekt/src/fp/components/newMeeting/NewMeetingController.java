@@ -13,6 +13,7 @@ import fp.events.EventDispatcher;
 import fp.messageParsers.Message;
 import fp.messageParsers.MessageType;
 import fp.net.client.ClientConnectionContext;
+import fp.views.NewMeetingWindow;
 import fp.xmlConverters.MeetingConverter;
 
 public class NewMeetingController extends AbstractComponentController {
@@ -25,27 +26,53 @@ public class NewMeetingController extends AbstractComponentController {
 	
 	public void setModel(NewMeetingModel model){
 		this.model = model;
+		
+		if (model != null) {
+			if (model.getMeetingtype() == null) {
+				//TODO: unset the toggled button
+			} else if (model.getMeetingtype() == Meeting.MeetingType.appointment) {
+				NewMeetingWindow.newAppointmentButton.setSelected(true);
+			} else if (model.getMeetingtype() == Meeting.MeetingType.meeting) {
+				NewMeetingWindow.newMeetingButton.setSelected(true);
+			}
+			
+			NewMeetingWindow.appointmentTitleTextPane.setText(model.getDescription());
+			NewMeetingWindow.startDateTextPane.setText(model.getStartDate());
+			NewMeetingWindow.startTimeTextPane.setText(model.getStartTime());
+			NewMeetingWindow.endDateTextPane.setText(model.getEndDate());
+			NewMeetingWindow.endTimeTextPane.setText(model.getEndTime());
+			
+			if (model.getLocationType() == null) {
+				//TODO: Write room label
+				NewMeetingWindow.manualLocationTextPane.setText("");
+			} else if (model.getLocationType() == LocationType.Meetingroom) {
+				//TODO: Write room label
+				NewMeetingWindow.manualLocationTextPane.setText("");
+			} else if (model.getLocationType() == LocationType.Location) {
+				//TODO: Write room label
+				NewMeetingWindow.manualLocationTextPane.setText(model.getLocation());
+			}
+		}
 	}
 	
 	public void create(){
 		//opprett melding
-		
-		model.getMeeting();
+		model.createMeeting();
 		Element meetingData = MeetingConverter.convertMeetingToXML(model.getMeeting());
 		Message message = new Message(MessageType.addMeeting);
 		message.addDataElement(meetingData);
 		
 		//connection til server og send melding til den/database
 		ClientConnectionContext.getInstance().connectionHandler.sendMessage(message);
+
 		System.out.println("SENDER MELDING!!!!!");
-		
-		
-		
 	}
 	
 	
 	
 	public void cancel(){
+		setModel(null);
+		NewMeetingWindow.setFrameVisible(false);
 		
 		//lukk vinduet
 		//super.kill();
@@ -54,6 +81,7 @@ public class NewMeetingController extends AbstractComponentController {
 	
 	public void searchForMeetingRoom(){
 		
+//		ClientConnectionContext.getInstance().connectionHandler.sendMessage(message);
 		
 	}
 	
@@ -110,6 +138,9 @@ public class NewMeetingController extends AbstractComponentController {
 	
 	public void setLocation(String location){
 		model.setLocation(location);
-	}	
-
+	}
+	
+	public void setMeetingType(Meeting.MeetingType meetingType) {
+		model.setMeetingtype(meetingType);
+	}
 }

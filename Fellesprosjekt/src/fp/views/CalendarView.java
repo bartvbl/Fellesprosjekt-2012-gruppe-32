@@ -40,6 +40,7 @@ public class CalendarView extends FrameView {
         appointmentsScrollPane.setBorder(null);
         
         CalendarView.jframe = this.getFrame();
+        
     }
 	
 	public static JFrame getJFrame() {

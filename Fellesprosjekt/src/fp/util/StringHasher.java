@@ -32,7 +32,6 @@ public class StringHasher {
 		}
 		String hashedString = new String(charSequence);
 		String escapedString = StringEscapeUtils.escapeXml(hashedString);
-		System.out.println("hashed String: " + escapedString);
 		return escapedString;
 	}
 	

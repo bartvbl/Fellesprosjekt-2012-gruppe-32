@@ -11,6 +11,8 @@ import javax.swing.event.ListSelectionListener;
 
 import fp.componentHandlers.AbstractComponentHandler;
 import fp.componentHandlers.ComponentHandlerType;
+import fp.dataObjects.CalendarDate;
+import fp.dataObjects.Meeting;
 import fp.dataObjects.User;
 import fp.events.Event;
 import fp.events.EventDispatcher;
@@ -35,7 +37,11 @@ public class NewMeetingHandler extends AbstractComponentHandler implements Actio
 			controller.create();
 		} else if(event.getSource() == NewMeetingWindow.cancelButton) {
 			controller.cancel();
-		} 
+		} else if(event.getSource() == NewMeetingWindow.newAppointmentButton) {
+			controller.setMeetingType(Meeting.MeetingType.appointment);
+		} else if(event.getSource() == NewMeetingWindow.newMeetingButton) {
+			controller.setMeetingType(Meeting.MeetingType.meeting);
+		}
 //		else if(event.getSource() == NewMeetingWindow.addParticipantButton) {
 //			if(!NewMeetingWindow.participantSearchResultList.isSelectionEmpty()) {
 //				User user = (User) NewMeetingWindow.participantSearchResultList.getSelectedValue();
@@ -122,8 +128,9 @@ public class NewMeetingHandler extends AbstractComponentHandler implements Actio
 	public void handleEvent(Event<?> event) {
 		switch(event.eventType) {
 			case SHOW_NEW_MEETING:
-				controller.setModel(new NewMeetingModel());
-	}
+				controller.setModel(new NewMeetingModel((CalendarDate) event.getEventParameterObject()));
+				break;
+		}
 	}
 
 }
