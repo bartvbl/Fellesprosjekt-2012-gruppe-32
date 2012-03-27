@@ -45,7 +45,7 @@ public class NewMeetingController extends AbstractComponentController {
 			if (model.getLocationType() == null) {
 				//TODO: Write room label
 				NewMeetingWindow.manualLocationTextPane.setText("");
-			} else if (model.getLocationType() == LocationType.Meetingroom) {
+			} else if (model.getLocationType() == LocationType.MeetingRoom) {
 				//TODO: Write room label
 				NewMeetingWindow.manualLocationTextPane.setText("");
 			} else if (model.getLocationType() == LocationType.Location) {

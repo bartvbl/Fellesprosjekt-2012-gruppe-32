@@ -96,7 +96,7 @@ public class NewMeetingModel {
 
 	public void setMeetingRoomSearch(String meetingRoomSearch) {
 		this.meetingRoomSearch = meetingRoomSearch;
-		locationType = LocationType.Meetingroom;
+		locationType = LocationType.MeetingRoom;
 	}
 
 	public String getStartDate() {
