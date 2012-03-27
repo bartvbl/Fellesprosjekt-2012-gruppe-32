@@ -25,7 +25,7 @@ public class NotificationsViewController {
 	public NotificationsViewController(NotificationsModel model) {
 		new NotificationsView();
 		this.model = model;
-		this.notificationResponseHandler = new NotificationResponseHandler();
+		this.notificationResponseHandler = new NotificationResponseHandler(model);
 	}
 
 	public void redraw() {
@@ -36,7 +36,7 @@ public class NotificationsViewController {
 			Meeting meeting = notification.meeting;
 			
 			this.updateMessagesPanelLabels(meeting, messagesPanel);
-			this.addActionListeners(meeting, messagesPanel);
+			this.addActionListeners(i, messagesPanel);
 			NotificationsView.invitationsList.addInteractiveItem(messagesPanel);
 		}
 		this.updatePanelPosition();
@@ -49,10 +49,10 @@ public class NotificationsViewController {
 														+ " - " + DateStringConverter.getTimeString(meeting.endTime));
 	}
 	
-	private void addActionListeners(Meeting meeting, MessagesPanel messagesPanel) {
-		messagesPanel.acceptButton.setActionCommand(meeting.meetingID + " Yes");
+	private void addActionListeners(int buttonIndex, MessagesPanel messagesPanel) {
+		messagesPanel.acceptButton.setActionCommand(buttonIndex + " Yes");
 		messagesPanel.acceptButton.addActionListener(this.notificationResponseHandler);
-		messagesPanel.declineButton.setActionCommand(meeting.meetingID + " No");
+		messagesPanel.declineButton.setActionCommand(buttonIndex + " No");
 		messagesPanel.declineButton.addActionListener(this.notificationResponseHandler);
 	}
 

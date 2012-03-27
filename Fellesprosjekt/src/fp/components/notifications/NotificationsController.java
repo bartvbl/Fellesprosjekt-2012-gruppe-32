@@ -40,6 +40,7 @@ public class NotificationsController implements EventHandler {
 		CalendarView.pendingNotificationsButton.setText("Notifications (0)");
 		CalendarView.pendingNotificationsButton.setIcon(noNewNotificationsIcon);
 		CalendarView.pendingNotificationsButton.setEnabled(false);
+		CalendarView.pendingNotificationsButton.setSelected(false);
 	}
 	
 	private void redrawNotificationsPanel() {

@@ -29,7 +29,7 @@ public static Element convertNotificationToXML(Notification notification) {
 	Element acceptedMeeting = new Element("acceptedMeeting");
 	acceptedMeeting.appendChild(notification.notificationStatus.toString());
 	
-	Element notificationType = new Element("NotificationType");
+	Element notificationType = new Element("notificationType");
 	notificationType.appendChild(notification.notificationType.toString());
 
 	element.appendChild(userID);
@@ -51,7 +51,6 @@ public Notification toNotification(String xml) throws java.io.IOException, java.
     }
 
 public static Notification convertXMLToNotification(Element notificationElement) {
-	
 	String userID = null, meetingID = null;
 	NotificationStatus notificationStatus = null;
 	NotificationType nofiticationType = null;
