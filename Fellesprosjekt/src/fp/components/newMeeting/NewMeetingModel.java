@@ -52,6 +52,14 @@ public class NewMeetingModel {
 		meetingRooms = new ArrayList<MeetingRoom>();
 	}
 
+	public String getFullStartTime() {
+		return fullStartTime;
+	}
+
+	public String getFullEndTime() {
+		return fullEndTime;
+	}
+
 	public void addInvited(String participant){
 		if(!invited.contains(participant)){
 			invited.add(participant);
@@ -62,6 +70,14 @@ public class NewMeetingModel {
 		if(invited.contains(participant)){
 			invited.remove(participant);
 		}
+	}
+	
+	public ArrayList<String> getInvited(){
+		return this.invited;
+	}
+	
+	public int getNumberOfInvited(){
+		return invited.size();
 	}
 	
 	public String getParticipantSearch() {
