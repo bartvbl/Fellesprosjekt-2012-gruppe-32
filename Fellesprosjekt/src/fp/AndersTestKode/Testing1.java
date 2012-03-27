@@ -81,7 +81,7 @@ public class Testing1 {
 		Element fromDate = new Element("fromDate");
 		fromDate.appendChild("2012-04-01 00:00:00");
 		Element toDate = new Element("toDate");
-		toDate.appendChild("2013-04-30 00:00:00");
+		toDate.appendChild("2012-04-30 00:00:00");
 		
 		xml.appendChild(fromDate);
 		xml.appendChild(toDate);
