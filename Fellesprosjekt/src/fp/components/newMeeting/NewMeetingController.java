@@ -78,22 +78,24 @@ public class NewMeetingController extends AbstractComponentController {
 	}
 	
 	public void searchForMeetingRoom(){
-		int cap = model.getNumberOfInvited();
-		String from = model.getFullStartTime();
-		String to = model.getFullEndTime();
-		Element data = new Element("searchForMeetingRoom");
-		Element capacity = new Element("capacity");
-		capacity.appendChild(Integer.toString(cap));
-		Element toDateTime = new Element("toDateTime");
-		toDateTime.appendChild(to);
-		Element fromDateTime = new Element("fromDateTime");
-		fromDateTime.appendChild(from);
-		data.appendChild(capacity);
-		data.appendChild(fromDateTime);
-		data.appendChild(toDateTime);
-		Message message = new Message(MessageType.searchMeetingRoom);
-		message.addDataElement(data);
-		ClientConnectionContext.getInstance().connectionHandler.sendMessage(message);
+		if(model.getMeetingtype()==MeetingType.meeting){
+			int cap = model.getNumberOfInvited();
+			String from = model.getFullStartTime();
+			String to = model.getFullEndTime();
+			Element data = new Element("searchForMeetingRoom");
+			Element capacity = new Element("capacity");
+			capacity.appendChild(Integer.toString(cap));			
+			Element toDateTime = new Element("toDateTime");
+			toDateTime.appendChild(to);
+			Element fromDateTime = new Element("fromDateTime");
+			fromDateTime.appendChild(from);
+			data.appendChild(capacity);
+			data.appendChild(fromDateTime);
+			data.appendChild(toDateTime);
+			Message message = new Message(MessageType.searchMeetingRoom);
+			message.addDataElement(data);
+			ClientConnectionContext.getInstance().connectionHandler.sendMessage(message);
+		}
 	}
 	
 	

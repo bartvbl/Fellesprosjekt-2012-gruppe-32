@@ -13,13 +13,11 @@ import fp.componentHandlers.AbstractComponentHandler;
 import fp.componentHandlers.ComponentHandlerType;
 import fp.dataObjects.CalendarDate;
 import fp.dataObjects.Meeting;
-import fp.dataObjects.User;
 import fp.events.Event;
 import fp.events.EventDispatcher;
 import fp.events.EventHandler;
 import fp.events.EventType;
 import fp.views.NewMeetingWindow;
-import fp.views.SmallCalendarPanel;
 
 public class NewMeetingHandler extends AbstractComponentHandler implements ActionListener, ListSelectionListener, KeyListener, EventHandler{
 	
@@ -41,6 +39,7 @@ public class NewMeetingHandler extends AbstractComponentHandler implements Actio
 			controller.setMeetingType(Meeting.MeetingType.appointment);
 		} else if(event.getSource() == NewMeetingWindow.newMeetingButton) {
 			controller.setMeetingType(Meeting.MeetingType.meeting);
+			controller.searchForMeetingRoom();
 		}
 //		else if(event.getSource() == NewMeetingWindow.addParticipantButton) {
 //			if(!NewMeetingWindow.participantSearchResultList.isSelectionEmpty()) {
@@ -96,15 +95,19 @@ public class NewMeetingHandler extends AbstractComponentHandler implements Actio
 		}
 		else if(e.getSource()==NewMeetingWindow.startDateTextPane){
 			controller.setStartDate(NewMeetingWindow.startDateTextPane.getText());
+			controller.searchForMeetingRoom();
 		}
 		else if(e.getSource()==NewMeetingWindow.startTimeTextPane){
 			controller.setStartTime(NewMeetingWindow.startTimeTextPane.getText());
+			controller.searchForMeetingRoom();
 		}
 		else if(e.getSource()==NewMeetingWindow.endDateTextPane){
 			controller.setEndDate(NewMeetingWindow.endDateTextPane.getText());
+			controller.searchForMeetingRoom();
 		}
 		else if(e.getSource()==NewMeetingWindow.endTimeTextPane){
 			controller.setEndTime(NewMeetingWindow.endTimeTextPane.getText());
+			controller.searchForMeetingRoom();
 		}
 		else if(e.getSource()==NewMeetingWindow.participantSearchTextPane){
 			controller.setParticipantSearch(NewMeetingWindow.participantSearchTextPane.getText());
