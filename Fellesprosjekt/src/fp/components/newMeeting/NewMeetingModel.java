@@ -30,20 +30,6 @@ public class NewMeetingModel {
 	private String meetingRoomSearch;
 	private ArrayList<String> invited;
 	private ArrayList<MeetingRoom> meetingRooms;
-	
-	public final static String DESCRIPTION = "desc";
-	public final static String LOCATION = "loc";
-	public final static String LOCATION_TYPE= "loctyp";
-	public final static String START_TIME = "start_time";
-	public final static String END_TIME = "end_time";
-	public final static String ROOM_ID = "room_id";
-	public final static String MEETING_TYPE = "meetyp";
-	public final static String START_DATE = "start_date";
-	public final static String END_DATE = "end_date";
-	public final static String INVITED = "inv";
-	public final static String PARTICIPANT_SEARCH = "part_search";
-	public final static String MEETING_ROOM_SEARCH = "meet_search";
-	public final static String CREATE_MEETING = "create_meeting";
 
 	public NewMeetingModel(CalendarDate date){
 		startCalenderDate = date;
@@ -62,6 +48,7 @@ public class NewMeetingModel {
 		participantSearch = null;
 		meetingRoomSearch = null;
 		invited = new ArrayList<String>();
+		meetingRooms = new ArrayList<MeetingRoom>();
 	}
 
 	public void addInvited(String participant){
@@ -99,6 +86,7 @@ public class NewMeetingModel {
 
 	public void setStartDate(String startDate) {
 		this.startDate = startDate;
+		this.fullStartTime = startDate+" "+startTime;
 	}
 
 	public String getEndDate() {
@@ -107,6 +95,7 @@ public class NewMeetingModel {
 
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
+		this.fullEndTime = endDate+" "+endTime;
 	}
 
 	public void createMeeting(){
@@ -137,12 +126,14 @@ public class NewMeetingModel {
 	}
 	public void setStartTime(String startTime) {
 		this.startTime = startTime;
+		this.fullStartTime = startDate+" "+startTime;
 	}
 	public String getEndTime() {
 		return endTime;
 	}
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
+		this.fullEndTime = endDate+" "+endTime;
 	}
 	public int getRoomID() {
 		return roomID;
