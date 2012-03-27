@@ -10,7 +10,7 @@ public class DatePanelController {
 	private DatePanel datePanel;
 	private DayMeetingList currentMeetingList = null;
 	private int MINUTES_IN_DAY = 1440;
-	private int MIN_PANEL_HEIGHT = 100;
+	private int MIN_PANEL_HEIGHT = 60;
 
 	public DatePanelController(DatePanel datePanel) {
 		this.datePanel = datePanel;
@@ -33,21 +33,20 @@ public class DatePanelController {
 	}
 
 	private void setPanelBounds(MeetingPanel meetingPanel, Meeting currentMeeting) {
-		int panelHeight = this.datePanel.meetingViewLayeredPane.getBounds().height;
+		int panelHeight = this.datePanel.meetingViewLayeredPane.getBounds().height-20;//the panel really is a bit smaller
 		int panelWidth = this.datePanel.getBounds().width;
 		int startTimeInMinutes = this.getTimeInMinutes(currentMeeting.startTime);
 		int endTimeInMinutes = this.getTimeInMinutes(currentMeeting.endTime);
-		
 		int meetingDuration = endTimeInMinutes - startTimeInMinutes;
 		int meetingPanelHeight = (int) Math.max(MIN_PANEL_HEIGHT, ((double)panelHeight * ((double)meetingDuration / (double)MINUTES_IN_DAY)));
-		int offsetY = (int) ((double)panelHeight * ((double)endTimeInMinutes / (double)MINUTES_IN_DAY));
+		int offsetY = (int) ((double)panelHeight * ((double)startTimeInMinutes / (double)MINUTES_IN_DAY));
 		
 		meetingPanel.setBounds(1, offsetY, panelWidth-3, meetingPanelHeight);
 	}
 
 	private int getTimeInMinutes(String dateTimeString) {
-		int hours = Integer.parseInt(dateTimeString.substring(12,13));
-		int minutes = Integer.parseInt(dateTimeString.substring(15,16));
+		int hours = Integer.parseInt(dateTimeString.substring(11,13));
+		int minutes = Integer.parseInt(dateTimeString.substring(14,16));
 		return 60*hours + minutes;
 	}
 	
