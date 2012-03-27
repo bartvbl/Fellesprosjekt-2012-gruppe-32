@@ -33,6 +33,7 @@ public class NewMeetingController extends AbstractComponentController implements
 	public NewMeetingController(EventDispatcher eventDispatcher){
 		super(ComponentControllerType.NEW_MEETING_VIEW, eventDispatcher);
 		this.eventDispatcher = eventDispatcher;
+		addEventListeners();
 	}
 	
 	public void addEventListeners(){

@@ -16,7 +16,7 @@ public class MeetingRoomConverter {
 		roomSize.appendChild(meetingRoom.roomSize + "");
 
 		Element roomName = new Element("roomName");
-		roomSize.appendChild(meetingRoom.name);
+		roomName.appendChild(meetingRoom.name);
 
 		element.appendChild(roomID);
 		element.appendChild(roomName);
