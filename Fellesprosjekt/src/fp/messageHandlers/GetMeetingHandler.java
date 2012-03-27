@@ -16,6 +16,7 @@ import fp.dataObjects.Meeting.MeetingType;
 import fp.dataObjects.Meeting.MeetingStatus;
 import fp.database.DatabaseConnection;
 import fp.messageParsers.Message;
+import fp.messageParsers.MessageType;
 import fp.server.ServerClientContext;
 import fp.xmlConverters.MeetingConverter;
 import fp.xmlConverters.UserConverter;
@@ -65,6 +66,10 @@ public class GetMeetingHandler implements MessageHandler{
 		
 		meeting = new Meeting(meetingID, description, location, locationType, startTime, endTime, status, creatorID, roomID, meetingType);
 		data = MeetingConverter.convertMeetingToXML(meeting);
+		
+		Message result = new Message(MessageType.getMeeting);
+		result.addDataElement(data);
+		clientContext.connectionHandler.sendMessage(result);
 	}
 
 }

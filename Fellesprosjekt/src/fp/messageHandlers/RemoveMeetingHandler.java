@@ -15,6 +15,8 @@ public class RemoveMeetingHandler implements MessageHandler {
 		Meeting meeting = MeetingConverter.convertXMLToMeeting(message.getDataElements().get(0));
 		
 		String queryString = "REMOVE MEETING FROM MEETING WHERE MeetingID = '" + meeting.meetingID + "';";
+		
+		
 	}
 	
 }

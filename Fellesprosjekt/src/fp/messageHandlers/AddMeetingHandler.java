@@ -17,6 +17,7 @@ import fp.events.ConcurrentEventDispatcher;
 import fp.events.EventType;
 import fp.events.ServerEvent;
 import fp.messageParsers.Message;
+import fp.messageParsers.MessageType;
 import fp.server.ServerClientContext;
 import fp.xmlConverters.MeetingConverter;
 import fp.xmlConverters.UserConverter;
@@ -57,6 +58,8 @@ public class AddMeetingHandler implements MessageHandler {
 				this.eventDispatcher.dispatchEvent(new ServerEvent<MeetingNotification>(EventType.SERVER_MEETING_REGISTERED, notification, user.userID));
 			}
 		}
+		Message result = new Message(MessageType.addMeeting);
+		clientContext.connectionHandler.sendMessage(result);
 	}
 	
 	private String generateSQLQuery(Meeting meeting, User creator) {
