@@ -31,8 +31,7 @@ public class MeetingListRequestHandler implements MessageHandler {
 		ArrayList<Element> requestedDays = message.getDataElements();
 		for(Element dayRequest : requestedDays) {	
 			CalendarDate date = CalendarDateConverter.convertXMLToCalendarDate(dayRequest);
-			System.out.println(date);
-			System.out.println(getFormattedDateString(date.year, date.week, date.dayInWeek));
+			//System.out.println(getFormattedDateString(date.year, date.week, date.dayInWeek));
 		}
 	}
 	

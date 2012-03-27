@@ -25,6 +25,6 @@ public class CalendarDateConverter {
 		int weekValue = Integer.parseInt(dataElement.getAttribute("week").getValue());
 		int yearValue = Integer.parseInt(dataElement.getAttribute("year").getValue());
 		
-		return new CalendarDate(dayValue, weekValue, yearValue);
+		return new CalendarDate(yearValue, weekValue, dayValue);
 	}
 }
