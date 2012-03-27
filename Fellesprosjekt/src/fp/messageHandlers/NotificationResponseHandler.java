@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import fp.dataObjects.Notification;
 import fp.database.DatabaseConnection;
 import fp.messageParsers.Message;
+import fp.messageParsers.MessageType;
 import fp.server.ServerClientContext;
 import fp.xmlConverters.NotificationConverter;
 
@@ -17,6 +18,9 @@ public class NotificationResponseHandler implements MessageHandler {
 															"AND MeetingID="+updatedNotification.meetingID+" " +
 															"AND NotificationType='"+updatedNotification.notificationType+"'");
 		System.out.println("notification status updated to: " + updatedNotification.notificationStatus);
+		
+		Message result = new Message(MessageType.registerNotificationResponse);
+		clientContext.connectionHandler.sendMessage(result);
 	}
 
 }

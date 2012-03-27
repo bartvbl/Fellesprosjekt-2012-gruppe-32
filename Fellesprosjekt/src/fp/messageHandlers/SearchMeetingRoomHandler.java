@@ -16,8 +16,7 @@ import fp.xmlConverters.MeetingRoomConverter;
 public class SearchMeetingRoomHandler implements MessageHandler{
 
 	@Override
-	public void handleMessage(Message message, ServerClientContext clientContext)
-			throws SQLException {
+	public void handleMessage(Message message, ServerClientContext clientContext) throws SQLException {
 		Element data = message.getDataElements().get(0);
 		int capacity = 0;
 		String fromDateTime = null;

@@ -27,12 +27,9 @@ public class GetMeetingsInWeekHandler implements MessageHandler {
 			System.out.println(rs.getString("Description"));
 			
 		}
-		
-		
 	}
 	
 	public String extractDatesFromMessageData(Message message){
-		
 		String fromDate = null, toDate = null;
 		Element element = message.getDataElements().get(0).getFirstChildElement("fromDate");
 		if (element != null) {
