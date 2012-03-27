@@ -7,6 +7,7 @@ import fp.dataObjects.Meeting;
 import fp.dataObjects.Meeting.LocationType;
 import fp.dataObjects.Meeting.MeetingType;
 import fp.dataObjects.MeetingRoom;
+import fp.net.client.ClientConnectionContext;
 
 public class NewMeetingModel {
 	
@@ -80,6 +81,8 @@ public class NewMeetingModel {
 	}
 
 	public String getMeetingRoomSearch() {
+		
+		ClientConnectionContext.getInstance();
 		return meetingRoomSearch;
 	}
 
