@@ -13,7 +13,7 @@ public class MeetingRoom {
 	}
 	
 	public String toString(){
-		return "roomID: " + roomID + ", roomSize: " + roomSize + "roomName: " + name;
+		return name;
 	}
 
 }

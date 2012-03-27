@@ -121,13 +121,10 @@ public class NewMeetingController extends AbstractComponentController implements
 		model.setMeetingRooms(result);
 		meetingRoomSearchModel.clear();
 		for (MeetingRoom meetingRoom : result) {
-			System.out.println(meetingRoom.name);
-			meetingRoomSearchModel.addElement(meetingRoom.name);
+			meetingRoomSearchModel.addElement(meetingRoom.roomID);
 		}
 		
 	}
-	
-	
 	
 	public void searchForUsers(){
 		Element element = new Element("data");
@@ -153,6 +150,7 @@ public class NewMeetingController extends AbstractComponentController implements
 	
 	public void setRoomID(int id){
 		model.setRoomID(id);
+		NewMeetingWindow.locationSearchTextPane.setText(id + "");
 	}
 
 	public void setDescription(String description){
