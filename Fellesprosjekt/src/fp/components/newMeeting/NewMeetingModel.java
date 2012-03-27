@@ -3,6 +3,7 @@ package fp.components.newMeeting;
 
 import java.util.ArrayList;
 
+import fp.dataObjects.CalendarDate;
 import fp.dataObjects.Meeting;
 import fp.dataObjects.Meeting.LocationType;
 import fp.dataObjects.Meeting.MeetingType;
@@ -21,6 +22,8 @@ public class NewMeetingModel {
 	private MeetingType meetingtype;
 	private String startDate;
 	private String endDate;
+	private CalendarDate startCalenderDate;
+	private CalendarDate endCalenderDate;
 	private String fullStartTime;
 	private String fullEndTime;
 	private String participantSearch;
@@ -42,18 +45,20 @@ public class NewMeetingModel {
 	public final static String MEETING_ROOM_SEARCH = "meet_search";
 	public final static String CREATE_MEETING = "create_meeting";
 
-	public NewMeetingModel(){
+	public NewMeetingModel(CalendarDate date){
+		startCalenderDate = date;
+		endCalenderDate = date;
 		description = null;
 		location = null;
 		locationType = null;
 		startTime = null;
 		endTime = null;
-		roomID = 0;
-		meetingtype = null;
-		startDate = null;
-		endDate = null;
 		fullStartTime = null;
 		fullEndTime = null;
+		roomID = 0;
+		meetingtype = null;
+		startDate = startCalenderDate.toString();
+		endDate = endCalenderDate.toString();
 		participantSearch = null;
 		meetingRoomSearch = null;
 		invited = new ArrayList<String>();

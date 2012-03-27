@@ -29,15 +29,15 @@ public class NewMeetingController extends AbstractComponentController {
 	
 	public void create(){
 		//opprett melding
-		
-		model.getMeeting();
+		model.createMeeting();
 		Element meetingData = MeetingConverter.convertMeetingToXML(model.getMeeting());
 		Message message = new Message(MessageType.addMeeting);
 		message.addDataElement(meetingData);
 		
 		//connection til server og send melding til den/database
-		//ClientConnectionContext.getInstance().connectionHandler.sendMessage(mess);
-		System.out.println("SENDER MELDING!!!!!");
+
+		ClientConnectionContext.getInstance().connectionHandler.sendMessage(message);
+
 		
 		
 		

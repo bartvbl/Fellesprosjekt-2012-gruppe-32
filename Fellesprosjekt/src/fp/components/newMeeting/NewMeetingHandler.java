@@ -11,6 +11,7 @@ import javax.swing.event.ListSelectionListener;
 
 import fp.componentHandlers.AbstractComponentHandler;
 import fp.componentHandlers.ComponentHandlerType;
+import fp.dataObjects.CalendarDate;
 import fp.dataObjects.User;
 import fp.events.Event;
 import fp.events.EventDispatcher;
@@ -122,7 +123,7 @@ public class NewMeetingHandler extends AbstractComponentHandler implements Actio
 	public void handleEvent(Event<?> event) {
 		switch(event.eventType) {
 			case SHOW_NEW_MEETING:
-				controller.setModel(new NewMeetingModel());
+				controller.setModel(new NewMeetingModel((CalendarDate) event.getEventParameterObject()));
 	}
 	}
 
