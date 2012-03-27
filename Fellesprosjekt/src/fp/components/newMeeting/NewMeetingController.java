@@ -82,7 +82,7 @@ public class NewMeetingController extends AbstractComponentController {
 			int cap = model.getNumberOfInvited();
 			String from = model.getFullStartTime();
 			String to = model.getFullEndTime();
-			Element data = new Element("searchForMeetingRoom");
+			Element data = new Element("data");
 			Element capacity = new Element("capacity");
 			capacity.appendChild(Integer.toString(cap));			
 			Element toDateTime = new Element("toDateTime");
