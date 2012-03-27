@@ -5,28 +5,35 @@ import java.awt.event.ActionListener;
 
 import fp.componentHandlers.AbstractComponentHandler;
 import fp.componentHandlers.ComponentHandlerType;
+import fp.events.Event;
 import fp.events.EventDispatcher;
+import fp.events.EventType;
+import fp.models.DateSelectionModel;
 import fp.views.CalendarView;
 
 public class ChangeWeekButtonHandler extends AbstractComponentHandler implements ActionListener{
 
-	private CalendarViewerController controller;
 	
-	public ChangeWeekButtonHandler(EventDispatcher eventDispatcher, CalendarViewerController controller) {
+	private DateSelectionModel model;
+
+	public ChangeWeekButtonHandler(EventDispatcher eventDispatcher, DateSelectionModel model) {
 		super(ComponentHandlerType.CHANGE_WEEK_BUTTON, eventDispatcher);
-		this.controller = controller;
 		this.addEventListeners();
+		this.model = model;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if(event.getSource() == CalendarView.previousMonthButton) {
-			this.controller.incrementSelectedWeek();
+			this.model.incrementWeek();
+			this.eventDispatcher.dispatchEvent(new Event<Object>(EventType.SELECTED_WEEK_CHANGED));
 		} else if(event.getSource() == CalendarView.nextMonthButton) {
-			this.controller.decrementSelectedWeek();
+			this.model.decrementWeek();
+			this.eventDispatcher.dispatchEvent(new Event<Object>(EventType.SELECTED_WEEK_CHANGED));
 		} else if(event.getSource() == CalendarView.nextMonthButton) {
-			this.controller.today();
-	}
+			this.model.setCalendarToToday();
+			this.eventDispatcher.dispatchEvent(new Event<Object>(EventType.SELECTED_WEEK_CHANGED));
+		}
 	}
 	
 	private void addEventListeners() {

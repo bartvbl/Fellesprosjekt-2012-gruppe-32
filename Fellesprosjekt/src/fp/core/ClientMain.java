@@ -56,7 +56,7 @@ public class ClientMain {
 
 		CalendarViewerController calendarViewerController = new CalendarViewerController(eventDispatcher, dateSelectionModel);
 		new CalendarViewerHandler(eventDispatcher, calendarViewerController);
-		new ChangeWeekButtonHandler(eventDispatcher, calendarViewerController);
+		new ChangeWeekButtonHandler(eventDispatcher, dateSelectionModel);
 		new AddNewMeetingButtonHandler(eventDispatcher);
 		new FavouritesView();
 		
