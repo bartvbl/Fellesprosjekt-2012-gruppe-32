@@ -1,5 +1,6 @@
 package fp.core;
 
+import prototype.calendarApp.views.CalendarView;
 import fp.componentControllers.CalendarViewResizeController;
 import fp.componentHandlers.AddNewMeetingButtonHandler;
 import fp.componentHandlers.CalendarViewResizeHandler;
@@ -12,7 +13,9 @@ import fp.components.newMeeting.NewMeetingController;
 import fp.components.newMeeting.NewMeetingHandler;
 import fp.components.newMeeting.NewMeetingModel;
 import fp.components.notifications.NotificationsController;
+import fp.components.notifications.NotificationsHandler;
 import fp.components.notifications.NotificationsModel;
+import fp.components.notifications.NotificationsMouseHandler;
 import fp.components.smallCalendar.SmallCalendarController;
 import fp.components.smallCalendar.SmallCalendarHandler;
 import fp.events.EventDispatcher;
@@ -60,8 +63,9 @@ public class ClientMain {
 		new ClientConnectionReceiverWorker(connector);
 		new LoginScreenHandler();
 		
-		new NotificationsModel(eventDispatcher);
-		new NotificationsController(eventDispatcher);
+		NotificationsModel notificationsModel = new NotificationsModel(eventDispatcher);
+		new NotificationsController(eventDispatcher, notificationsModel);
+		new NotificationsHandler(eventDispatcher);
 		
 		new NewMeetingWindow();
 		

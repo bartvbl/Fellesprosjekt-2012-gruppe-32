@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import fp.views.CalendarView;
 import fp.views.DatePanel;
 
 public class DatePanelHoverHandler implements MouseListener {
@@ -16,6 +17,7 @@ public class DatePanelHoverHandler implements MouseListener {
 	}
 
 	public void mouseEntered(MouseEvent arg0) {
+		if(CalendarView.calendarViewerScrollPane.isEnabled() == false) {return;}
 		this.datePanel.setBackground(new Color(240, 240, 240));
 		this.datePanel.headerPanel.setBackground(new Color(240, 240, 240));
 		this.datePanel.panelBorder.setForeground(new Color(240, 240, 240));
@@ -23,6 +25,7 @@ public class DatePanelHoverHandler implements MouseListener {
 	}
 
 	public void mouseExited(MouseEvent arg0) {
+		if(CalendarView.calendarViewerScrollPane.isEnabled() == false) {return;}
 		this.datePanel.setBackground(Color.white);
 		this.datePanel.headerPanel.setBackground(Color.white);
 		this.datePanel.panelBorder.setForeground(Color.white);

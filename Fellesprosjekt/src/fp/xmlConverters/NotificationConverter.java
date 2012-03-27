@@ -29,14 +29,13 @@ public static Element convertNotificationToXML(Notification notification) {
 	Element acceptedMeeting = new Element("acceptedMeeting");
 	acceptedMeeting.appendChild(notification.notificationStatus.toString());
 	
-	Element notificationType = new Element("NotificationType");
+	Element notificationType = new Element("notificationType");
 	notificationType.appendChild(notification.notificationType.toString());
 
 	element.appendChild(userID);
 	element.appendChild(meetingID);
 	element.appendChild(acceptedMeeting);
 	element.appendChild(notificationType);
-
 	return element;
 }
 
@@ -52,12 +51,10 @@ public Notification toNotification(String xml) throws java.io.IOException, java.
     }
 
 public static Notification convertXMLToNotification(Element notificationElement) {
-	
 	String userID = null, meetingID = null;
-	NotificationStatus aM = null;
-	NotificationType nT = null;
+	NotificationStatus notificationStatus = null;
+	NotificationType nofiticationType = null;
 	
-
 	Element element = notificationElement.getFirstChildElement("userID");
 	if (element != null) {
 		userID = element.getValue();
@@ -68,25 +65,14 @@ public static Notification convertXMLToNotification(Element notificationElement)
 	}
 	element = notificationElement.getFirstChildElement("acceptedMeeting");
 	if (element != null) {
-		if(element.getValue().equals("Yes")){
-			aM = aM.Yes;
-		}else if(element.getValue().equals("No")){
-			nT = nT.newMeeting;
-		}
+		notificationStatus = Enum.valueOf(NotificationStatus.class, element.getValue());
 	}
 	element = notificationElement.getFirstChildElement("notificationType");
 	if (element != null) {
-		if(element.getValue().equals("newMeeting")){
-			nT = nT.newMeeting;
-		}else if(element.getValue().equals("meetingUpdated")){
-			nT = nT.meetingUpdated;
-		}else if(element.getValue().equals("meetingCancelled")){
-			nT = nT.meetingCancelled;
-		}
+		nofiticationType = Enum.valueOf(NotificationType.class, element.getValue());
 	}
 	
-	return new Notification(Integer.parseInt(userID), Integer.parseInt(meetingID), aM, nT);
-	
+	return new Notification(Integer.parseInt(userID), Integer.parseInt(meetingID), notificationStatus, nofiticationType);
 }
 
 }

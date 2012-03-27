@@ -21,11 +21,11 @@ public class DatabaseCredentials {
 				readLine(read);
 			}
 		} catch (FileNotFoundException e) {
-			System.out.println("Unable to find the configuration file for the database. "
+			System.err.println("Unable to find the configuration file for the database. "
 					+ "Please make sure " + src + " exists: " + e.getMessage());
 			e.printStackTrace();
 		} catch (IOException e) {
-			System.out.println("Unable to read the configuration file: " + e.getMessage());
+			System.err.println("Unable to read the configuration file: " + e.getMessage());
 			e.printStackTrace();
 		}
 

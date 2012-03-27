@@ -23,7 +23,7 @@ public class ConcurrentEventDispatcher {
 	{
 		if(!this.listeners.containsKey(type))
 		{
-			System.out.println("ERROR: tried to remove the event listener of type '" + type + "', which is not present in the dispatcher");
+			System.err.println("ERROR: tried to remove the event listener of type '" + type + "', which is not present in the dispatcher");
 			return;
 		}
 		CopyOnWriteArrayList<Object> list = this.listeners.get(type);
