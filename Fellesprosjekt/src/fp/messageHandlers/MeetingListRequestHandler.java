@@ -12,7 +12,9 @@ import nu.xom.Element;
 
 import fp.dataObjects.CalendarDate;
 import fp.dataObjects.DayMeetingList;
+import fp.dataObjects.Meeting;
 import fp.database.DatabaseConnection;
+import fp.databaseReaders.MeetingReader;
 import fp.messageParsers.Message;
 import fp.messageParsers.MessageType;
 import fp.server.ServerClientContext;
@@ -39,7 +41,9 @@ public class MeetingListRequestHandler implements MessageHandler {
 		for(Element dayRequest : requestedDays) {	
 			CalendarDate date = CalendarDateConverter.convertXMLToCalendarDate(dayRequest);
 			String dateString = getFormattedDateString(date.year, date.week, date.dayInWeek);
-			meetingLists.add(this.getDayMeetingList(date, dateString, clientContext));
+			DayMeetingList meetingList = this.getDayMeetingList(date, dateString, clientContext);
+			meetingLists.add(meetingList);
+			System.out.println("processing day: " + date);
 		}
 		this.sendResponseMessage(meetingLists);
 	}
@@ -48,9 +52,7 @@ public class MeetingListRequestHandler implements MessageHandler {
 	private synchronized String getFormattedDateString(int year, int week, int dayInWeek) { 
 		this.calendar.set(Calendar.YEAR, year);
 		this.calendar.set(Calendar.WEEK_OF_YEAR, week);
-		int dayNumber = dayInWeek+1;//CalendarDateConstructor.convertDayOfWeekIndexToCalendarDayIndex(dayInWeek);
-		this.calendar.set(Calendar.DAY_OF_WEEK, dayNumber);
-		
+		this.calendar.set(Calendar.DAY_OF_WEEK, dayInWeek);
 		Date currentCalendarDate = this.calendar.getTime();
 		return this.dateFormat.format(currentCalendarDate);
 	}
@@ -71,7 +73,12 @@ public class MeetingListRequestHandler implements MessageHandler {
 																		"AND (Meeting.StartTime < '"+dateString+" 23:59:59'))" +
 																") AND " +//meeting is active
 																	"(Meeting.Status = 'Active')) ");
-		return new DayMeetingList(date);
+		DayMeetingList meetingList = new DayMeetingList(date);
+		while(result.next()) {
+			Meeting meeting = MeetingReader.readMeetingFromResultSet(result);
+			meetingList.addMeeting(meeting);
+		}
+		return meetingList;
 	}
 	
 	private void sendResponseMessage(ArrayList<DayMeetingList> meetingLists) {
