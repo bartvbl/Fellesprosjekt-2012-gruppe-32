@@ -3,17 +3,14 @@ package fp.messageParsers.server;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-import fp.dataObjects.ServerUserData;
 import fp.events.ConcurrentEventDispatcher;
 import fp.messageHandlers.AddFavouriteMeetingHandler;
-
 import fp.messageHandlers.AddMeetingHandler;
 import fp.messageHandlers.GetMeetingHandler;
 import fp.messageHandlers.GetMeetingsInWeekHandler;
 import fp.messageHandlers.GetUserHandler;
 import fp.messageHandlers.MessageHandler;
 import fp.messageHandlers.NotificationResponseHandler;
-import fp.messageHandlers.SearchMeetingHandler;
 import fp.messageHandlers.SearchMeetingRoomHandler;
 import fp.messageHandlers.SearchUserHandler;
 import fp.messageHandlers.UpdateMeetingHandler;

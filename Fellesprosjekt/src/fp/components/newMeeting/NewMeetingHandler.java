@@ -79,7 +79,7 @@ public class NewMeetingHandler extends AbstractComponentHandler implements Actio
 		if(listModel == NewMeetingWindow.meetingRoomSearchResultList.getSelectionModel()){
 			if(listModel.getLeadSelectionIndex() != -1) {
 				controller.setRoomID((Integer) NewMeetingWindow.meetingRoomSearchResultList.getSelectedValue());
-			}	
+			}
 		}
 	}
 
