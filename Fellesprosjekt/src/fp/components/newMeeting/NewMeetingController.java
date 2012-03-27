@@ -4,7 +4,7 @@ package fp.components.newMeeting;
 import java.util.ArrayList;
 
 import nu.xom.Element;
-
+import nu.xom.Elements;
 import fp.componentControllers.AbstractComponentController;
 import fp.componentControllers.ComponentControllerType;
 import fp.dataObjects.Meeting;
@@ -112,9 +112,13 @@ public class NewMeetingController extends AbstractComponentController implements
 	
 	
 	public void searchForUsers(){
-		
-		
-		
+		Element element = new Element("data");
+		Element search = new Element("searchString");
+		search.appendChild(model.getParticipantSearch());
+		element.appendChild(search);
+		Message message = new Message(MessageType.searchUser);
+		message.addDataElement(element);
+		ClientConnectionContext.getInstance().connectionHandler.sendMessage(message);
 	}
 	
 	

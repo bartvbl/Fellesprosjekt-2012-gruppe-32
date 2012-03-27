@@ -18,5 +18,7 @@ public enum MessageType {
 	meetingNotification, 
 	registerNotificationResponse,
 	searchUser,
-	searchMeetingRoom
+	searchMeetingRoom, 
+	requestAppointments, 
+	listMeetingsRequest
 }

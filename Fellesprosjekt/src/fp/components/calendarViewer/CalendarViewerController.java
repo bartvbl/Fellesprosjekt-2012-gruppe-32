@@ -2,7 +2,7 @@ package fp.components.calendarViewer;
 
 import fp.componentControllers.AbstractComponentController;
 import fp.componentControllers.ComponentControllerType;
-import fp.components.meetingDisplay.CalendarViewerMeetingUpdater;
+import fp.components.meetingDisplay.CalendarViewerMeetingRequester;
 import fp.components.smallCalendar.CalendarDateConstructor;
 import fp.events.EventDispatcher;
 import fp.models.DateSelectionModel;
