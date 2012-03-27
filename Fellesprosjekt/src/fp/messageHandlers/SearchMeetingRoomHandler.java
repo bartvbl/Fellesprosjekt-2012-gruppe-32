@@ -11,16 +11,15 @@ import fp.messageParsers.Message;
 import fp.server.ServerClientContext;
 import fp.xmlConverters.MeetingRoomConverter;
 
-public class SearchMeetingHandler implements MessageHandler{
+public class SearchMeetingRoomHandler implements MessageHandler{
 
 	@Override
 	public void handleMessage(Message message, ServerClientContext clientContext)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		
 	}
 	
-	public static Element meetingRoomSearch(int capacity, String fromDateTime, String toDateTime) throws SQLException{
+	public static Element searchMeeting(int capacity, String fromDateTime, String toDateTime) throws SQLException{
 		
 		Element meetingRoomElement = new Element("MeetingRoomElement");
 		
