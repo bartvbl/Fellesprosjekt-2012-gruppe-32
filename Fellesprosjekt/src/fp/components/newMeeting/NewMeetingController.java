@@ -64,7 +64,7 @@ public class NewMeetingController extends AbstractComponentController {
 		
 		//connection til server og send melding til den/database
 		ClientConnectionContext.getInstance().connectionHandler.sendMessage(message);
-		System.out.println("SENDER MELDING!!!!!");
+		NewMeetingWindow.setFrameVisible(false);
 	}
 	
 	
