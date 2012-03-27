@@ -42,7 +42,7 @@ public class SearchMeetingRoomHandler implements MessageHandler{
 	
 	public static Element searchMeeting(int capacity, String fromDateTime, String toDateTime) throws SQLException{
 		
-		Element meetingRoomElement = new Element("MeetingRoomElement");
+		Element data = new Element("data");
 		
 		int meetingRoomID = 0;
 		int size = 0;
@@ -58,10 +58,10 @@ public class SearchMeetingRoomHandler implements MessageHandler{
 			
 			MeetingRoom meetingRoom = new MeetingRoom(meetingRoomID, size, name);
 			Element element = MeetingRoomConverter.convertMeetingRoomToXML(meetingRoom);
-			meetingRoomElement.appendChild(element);
+			data.appendChild(element);
 		}
 		
-		return meetingRoomElement; 
+		return data; 
 	}
 
 }

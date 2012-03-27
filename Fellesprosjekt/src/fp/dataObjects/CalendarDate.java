@@ -3,15 +3,15 @@ package fp.dataObjects;
 public class CalendarDate {
 	public final int year;
 	public final int week;
-	public final int date;
+	public final int dayInWeek;
 
-	public CalendarDate(int year, int week, int date) {
+	public CalendarDate(int year, int week, int dayInWeek) {
 		this.year = year;
 		this.week = week;
-		this.date = date;
+		this.dayInWeek = dayInWeek;
 	}
 	
 	public String toString(){
-		return Integer.toString(date)+"/"+Integer.toString(week)+"/"+Integer.toString(year);
+		return Integer.toString(dayInWeek)+"/"+Integer.toString(week)+"/"+Integer.toString(year);
 	}
 }

@@ -1,27 +1,34 @@
 package fp.components.newMeeting;
 
 
-import nu.xom.Element;
+import java.util.ArrayList;
 
+import nu.xom.Element;
+import nu.xom.Elements;
 import fp.componentControllers.AbstractComponentController;
 import fp.componentControllers.ComponentControllerType;
 import fp.dataObjects.Meeting;
 import fp.dataObjects.Meeting.LocationType;
 import fp.dataObjects.Meeting.MeetingStatus;
 import fp.dataObjects.Meeting.MeetingType;
+import fp.dataObjects.MeetingRoom;
+import fp.events.Event;
 import fp.events.EventDispatcher;
+import fp.events.EventHandler;
 import fp.messageParsers.Message;
 import fp.messageParsers.MessageType;
 import fp.net.client.ClientConnectionContext;
 import fp.views.NewMeetingWindow;
 import fp.xmlConverters.MeetingConverter;
 
-public class NewMeetingController extends AbstractComponentController {
+public class NewMeetingController extends AbstractComponentController implements EventHandler{
 
 	NewMeetingModel model;
+	EventDispatcher eventDispatcher;
 	
 	public NewMeetingController(EventDispatcher eventDispatcher){
 		super(ComponentControllerType.NEW_MEETING_VIEW, eventDispatcher);
+		this.eventDispatcher = eventDispatcher;
 	}
 	
 	public void setModel(NewMeetingModel model){
@@ -78,29 +85,40 @@ public class NewMeetingController extends AbstractComponentController {
 	}
 	
 	public void searchForMeetingRoom(){
-		int cap = model.getNumberOfInvited();
-		String from = model.getFullStartTime();
-		String to = model.getFullEndTime();
-		Element data = new Element("searchForMeetingRoom");
-		Element capacity = new Element("capacity");
-		capacity.appendChild(Integer.toString(cap));
-		Element toDateTime = new Element("toDateTime");
-		toDateTime.appendChild(to);
-		Element fromDateTime = new Element("fromDateTime");
-		fromDateTime.appendChild(from);
-		data.appendChild(capacity);
-		data.appendChild(fromDateTime);
-		data.appendChild(toDateTime);
-		Message message = new Message(MessageType.searchMeetingRoom);
-		message.addDataElement(data);
-		ClientConnectionContext.getInstance().connectionHandler.sendMessage(message);
+		if(model.getMeetingtype()==MeetingType.meeting){
+			int cap = model.getNumberOfInvited();
+			String from = model.getFullStartTime();
+			String to = model.getFullEndTime();
+			Element data = new Element("data");
+			Element capacity = new Element("capacity");
+			capacity.appendChild(Integer.toString(cap));			
+			Element toDateTime = new Element("toDateTime");
+			toDateTime.appendChild(to);
+			Element fromDateTime = new Element("fromDateTime");
+			fromDateTime.appendChild(from);
+			data.appendChild(capacity);
+			data.appendChild(fromDateTime);
+			data.appendChild(toDateTime);
+			Message message = new Message(MessageType.searchMeetingRoom);
+			message.addDataElement(data);
+			ClientConnectionContext.getInstance().connectionHandler.sendMessage(message);
+		}
+	}
+	
+	public void updateMeetingRoomSearch(ArrayList<MeetingRoom> result){
+		
 	}
 	
 	
+	
 	public void searchForUsers(){
-		
-		
-		
+		Element element = new Element("data");
+		Element search = new Element("searchString");
+		search.appendChild(model.getParticipantSearch());
+		element.appendChild(search);
+		Message message = new Message(MessageType.searchUser);
+		message.addDataElement(element);
+		ClientConnectionContext.getInstance().connectionHandler.sendMessage(message);
 	}
 	
 	
@@ -153,5 +171,13 @@ public class NewMeetingController extends AbstractComponentController {
 	
 	public void setMeetingType(Meeting.MeetingType meetingType) {
 		model.setMeetingtype(meetingType);
+	}
+
+	@Override
+	public void handleEvent(Event<?> event) {
+		switch(event.eventType) {
+		case SEARCH_MEETINGROOM_RESULT:
+			this.updateMeetingRoomSearch((ArrayList<MeetingRoom>) event.getEventParameterObject());
+	}		
 	}
 }

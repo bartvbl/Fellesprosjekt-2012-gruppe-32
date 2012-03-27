@@ -26,6 +26,10 @@ public class DateSelectionModel {
 		return this.selectedWeekNumber;
 	}
 	
+	public int getSelectedMonth() {
+		return this.calendar.get(Calendar.MONTH);
+	}
+	
 	public void incrementWeek() {
 		this.calendar.add(Calendar.WEEK_OF_YEAR, 1);
 	}
@@ -48,4 +52,5 @@ public class DateSelectionModel {
 	public void setCalendarToToday(){
 		this.calendar = Calendar.getInstance();
 	}
+
 }
