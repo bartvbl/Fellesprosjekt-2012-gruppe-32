@@ -2,7 +2,9 @@ package fp.messageHandlers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import nu.xom.Element;
 
@@ -39,13 +41,16 @@ public class SearchMeetingRoomHandler implements MessageHandler{
 		clientContext.connectionHandler.sendMessage(result);
 	}
 	
-	public static Element searchMeeting(int capacity, String fromDateTime, String toDateTime) throws SQLException{
+	public Element searchMeeting(int capacity, String fromDateTime, String toDateTime) throws SQLException{
 		
 		Element data = new Element("data");
 		
 		int meetingRoomID = 0;
 		int size = 0;
 		String name = null;
+		
+		fromDateTime = stupidDateFormatToDateTime(fromDateTime);
+		toDateTime = stupidDateFormatToDateTime(toDateTime);
 		
 		String query = 	"SELECT * FROM MeetingRoom WHERE Size >= " + capacity + " " + "AND RoomID NOT IN (SELECT RoomID FROM Meeting WHERE (('" + fromDateTime + "' >= StartTime AND '" + fromDateTime + "' < Endtime) OR ('" + fromDateTime + "' < StartTime AND '" + toDateTime + "' > StartTime)));";
 		
@@ -61,6 +66,25 @@ public class SearchMeetingRoomHandler implements MessageHandler{
 		}
 		
 		return data; 
+	}
+	
+	private String stupidDateFormatToDateTime(String stupidFormat) {
+		String[] dateTimeParts = stupidFormat.split(" ");
+		String[] dateParts = dateTimeParts[0].split("/");
+		String[] timeParts = dateTimeParts[1].split(":");
+		
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.YEAR, Integer.parseInt(dateParts[2]));
+		cal.set(Calendar.WEEK_OF_YEAR, Integer.parseInt(dateParts[1]));
+		cal.set(Calendar.DAY_OF_MONTH, Integer.parseInt(dateParts[0]));
+		
+		cal.set(Calendar.HOUR, Integer.parseInt(timeParts[0]));
+		cal.set(Calendar.MINUTE, Integer.parseInt(timeParts[1]));
+		cal.set(Calendar.SECOND, Integer.parseInt(timeParts[2]));
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		
+		return format.format(cal.getTime());
 	}
 
 }
