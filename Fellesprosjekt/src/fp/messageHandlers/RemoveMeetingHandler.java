@@ -6,6 +6,7 @@ import fp.dataObjects.Meeting;
 import fp.dataObjects.ServerUserData;
 import fp.database.DatabaseConnection;
 import fp.messageParsers.Message;
+import fp.messageParsers.MessageType;
 import fp.server.ServerClientContext;
 import fp.xmlConverters.MeetingConverter;
 
@@ -18,7 +19,7 @@ public class RemoveMeetingHandler implements MessageHandler {
 		String query = "REMOVE MEETING FROM MEETING WHERE MeetingID = " + meeting.meetingID + ";";
 		DatabaseConnection.executeWriteQuery(query);
 		
-		clientContext.
+		Message result = new Message(MessageType.removeMeeting);
+		clientContext.connectionHandler.sendMessage(result);
 	}
-	
 }

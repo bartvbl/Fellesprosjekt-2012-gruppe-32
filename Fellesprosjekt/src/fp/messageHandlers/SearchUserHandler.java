@@ -16,8 +16,7 @@ import fp.xmlConverters.XMLWriter;
 public class SearchUserHandler implements MessageHandler{
 
 	@Override
-	public void handleMessage(Message message, ServerClientContext clientContext)
-			throws SQLException {
+	public void handleMessage(Message message, ServerClientContext clientContext) throws SQLException {
 		ArrayList<Element> elements = message.getDataElements();
 		String searchString = "";
 		for (Element e : elements) {

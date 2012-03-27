@@ -7,6 +7,7 @@ import fp.dataObjects.ServerUserData;
 import fp.dataObjects.User;
 import fp.database.DatabaseConnection;
 import fp.messageParsers.Message;
+import fp.messageParsers.MessageType;
 import fp.server.ServerClientContext;
 import fp.xmlConverters.MeetingConverter;
 import fp.xmlConverters.UserConverter;
@@ -19,7 +20,9 @@ public class AddFavouriteUserHandler implements MessageHandler {
 		User user = UserConverter.convertXMLToUser(message.getDataElements().get(0));
 		String sqlQurey = "INSERT INTO UserFavourites VALUES('"+ clientContext.user.userID+ "' , 'user', '" + user.userID + "', NULL);";
 		DatabaseConnection.executeWriteQuery(sqlQurey);
-	
+		Message result = new Message(MessageType.addFavouriteUser);
+		clientContext.connectionHandler.sendMessage(result);
+
 	}
 	
 }

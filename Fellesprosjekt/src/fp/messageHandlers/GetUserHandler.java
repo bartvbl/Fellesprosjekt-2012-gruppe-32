@@ -10,6 +10,7 @@ import fp.dataObjects.ServerUserData;
 import fp.dataObjects.User;
 import fp.database.DatabaseConnection;
 import fp.messageParsers.Message;
+import fp.messageParsers.MessageType;
 import fp.server.ServerClientContext;
 import fp.xmlConverters.UserConverter;
 
@@ -44,7 +45,9 @@ public class GetUserHandler implements MessageHandler{
 		user = new User(userID, userName, password, firstName, lastName, email, phoneNumber);
 		data = UserConverter.convertUserToXML(user);
 		
-		
+		Message result = new Message(MessageType.getUser);
+		result.addDataElement(data);
+		clientContext.connectionHandler.sendMessage(result);
 	}
 
 	
