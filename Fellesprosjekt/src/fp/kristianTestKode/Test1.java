@@ -52,14 +52,8 @@ public class Test1 {
 		
 
 
-		try {
-			DatabaseConnection.connect();
-			System.out.println("ferdig");
-			
-		} catch (SQLException ex) {
-			// TODO Auto-generated catch block
-			ex.printStackTrace();
-		}
+		DatabaseConnection.connect();
+		System.out.println("ferdig");
 
 	}
 

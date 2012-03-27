@@ -18,7 +18,7 @@ public class DayMeetingConverter {
 		
 		for(int i = 0; i < dayMeeting.getNumberOfMeetings(); i++) {
 			Element meetingElement = MeetingConverter.convertMeetingToXML(dayMeeting.getMeeting(i));
-			dayMeetingListElement.appendChild(meetingElement);
+			meetingListElement.appendChild(meetingElement);
 		}
 		
 		return dayMeetingListElement;

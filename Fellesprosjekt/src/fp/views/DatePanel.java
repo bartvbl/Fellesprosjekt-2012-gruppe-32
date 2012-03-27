@@ -12,15 +12,24 @@ package fp.views;
 
 import javax.swing.ImageIcon;
 
+import fp.models.DatePanelController;
+
 /**
  *
  * @author Bart
  */
 public class DatePanel extends javax.swing.JPanel {
 
-    /** Creates new form DatePanel */
+    public final DatePanelController controller;
+	/** Creates new form DatePanel */
     public DatePanel() {
         initComponents();
+        this.controller = new DatePanelController(this);
+    }
+    
+    public void validate() {
+    	this.controller.redraw();
+    	super.validate();
     }
 
 
@@ -38,19 +47,23 @@ public class DatePanel extends javax.swing.JPanel {
         headerPanel = new javax.swing.JPanel();
         dateDayLabel = new javax.swing.JLabel();
         dayNameLabel = new javax.swing.JLabel();
-        panelBorder = new javax.swing.JSeparator();
         addNewMeetingButton = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        panelBorder = new javax.swing.JSeparator();
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(fp.views.CalendarApp.class).getContext().getResourceMap(DatePanel.class);
         setBackground(resourceMap.getColor("Form.background")); // NOI18N
         setEnabled(false);
         setName("Form"); // NOI18N
+        setLayout(new java.awt.BorderLayout());
 
         meetingViewLayeredPane.setName("meetingViewLayeredPane"); // NOI18N
         meetingViewLayeredPane.setOpaque(true);
+        add(meetingViewLayeredPane, java.awt.BorderLayout.CENTER);
 
         headerPanel.setBackground(resourceMap.getColor("headerPanel.background")); // NOI18N
         headerPanel.setName("headerPanel"); // NOI18N
+        headerPanel.setPreferredSize(new java.awt.Dimension(120, 40));
 
         dateDayLabel.setFont(resourceMap.getFont("dateDayLabel.font")); // NOI18N
         dateDayLabel.setText(resourceMap.getString("dateDayLabel.text")); // NOI18N
@@ -60,6 +73,18 @@ public class DatePanel extends javax.swing.JPanel {
         dayNameLabel.setText(resourceMap.getString("dayNameLabel.text")); // NOI18N
         dayNameLabel.setName("dayNameLabel"); // NOI18N
 
+        addNewMeetingButton.setIcon(new ImageIcon("res/plus_small.png")); // NOI18N
+        addNewMeetingButton.setText(resourceMap.getString("addNewMeetingButton.text")); // NOI18N
+        addNewMeetingButton.setContentAreaFilled(false);
+        addNewMeetingButton.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        addNewMeetingButton.setName("addNewMeetingButton"); // NOI18N
+        addNewMeetingButton.setRolloverIcon(new ImageIcon("res/plus_small2.png")); // NOI18N
+
+        jSeparator2.setBackground(resourceMap.getColor("jSeparator2.background")); // NOI18N
+        jSeparator2.setForeground(resourceMap.getColor("jSeparator2.foreground")); // NOI18N
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator2.setName("jSeparator2"); // NOI18N
+
         javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
         headerPanel.setLayout(headerPanelLayout);
         headerPanelLayout.setHorizontalGroup(
@@ -68,63 +93,39 @@ public class DatePanel extends javax.swing.JPanel {
                 .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(dayNameLabel)
                     .addComponent(dateDayLabel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(addNewMeetingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         headerPanelLayout.setVerticalGroup(
             headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerPanelLayout.createSequentialGroup()
                 .addComponent(dayNameLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dateDayLabel)
-                .addContainerGap(3, Short.MAX_VALUE))
+                .addComponent(dateDayLabel))
+            .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+            .addComponent(addNewMeetingButton, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        panelBorder.setBackground(resourceMap.getColor("jSeparator1.background")); // NOI18N
-        panelBorder.setForeground(resourceMap.getColor("jSeparator1.foreground")); // NOI18N
+        add(headerPanel, java.awt.BorderLayout.PAGE_START);
+
+        panelBorder.setBackground(resourceMap.getColor("panelBorder.background")); // NOI18N
+        panelBorder.setForeground(resourceMap.getColor("panelBorder.foreground")); // NOI18N
         panelBorder.setOrientation(javax.swing.SwingConstants.VERTICAL);
         panelBorder.setMinimumSize(new java.awt.Dimension(1, 10));
-        panelBorder.setName("jSeparator1"); // NOI18N
+        panelBorder.setName("panelBorder"); // NOI18N
         panelBorder.setPreferredSize(new java.awt.Dimension(2, 10));
-
-        addNewMeetingButton.setIcon(new ImageIcon("res/plus_small.png")); // NOI18N
-        addNewMeetingButton.setText(resourceMap.getString("addNewMeetingButton.text")); // NOI18N
-        addNewMeetingButton.setContentAreaFilled(false);
-        addNewMeetingButton.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        addNewMeetingButton.setName("addNewMeetingButton"); // NOI18N
-        addNewMeetingButton.setRolloverIcon(new ImageIcon("res/plus_small2.png")); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(meetingViewLayeredPane, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(addNewMeetingButton)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelBorder, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addNewMeetingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(meetingViewLayeredPane, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE))
-            .addComponent(panelBorder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
-        );
+        add(panelBorder, java.awt.BorderLayout.EAST);
     }// </editor-fold>
     // Variables declaration - do not modify
     public javax.swing.JButton addNewMeetingButton;
     public javax.swing.JLabel dateDayLabel;
     public javax.swing.JLabel dayNameLabel;
     public javax.swing.JPanel headerPanel;
-    public javax.swing.JSeparator panelBorder;
+    public javax.swing.JSeparator jSeparator2;
     public javax.swing.JLayeredPane meetingViewLayeredPane;
+    public javax.swing.JSeparator panelBorder;
     // End of variables declaration
 }
 

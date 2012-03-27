@@ -65,6 +65,7 @@ public class MeetingListRequestHandler implements MessageHandler {
 																	") OR (" +//meeting is a meeting that the user is taking part in
 																		"(Meeting.MeetingType = 'meeting')" +
 																		"AND (Notifications.UserID = "+clientContext.user.userID+")" +
+																		"AND (Notifications.AcceptedMeeting='Yes')" +
 																")) AND (" +//meeting is on the specified day
 																	"((Meeting.EndTime > '"+dateString+" 00:00:00')" +
 																		"AND (Meeting.EndTime < '"+dateString+" 23:59:59'))" +

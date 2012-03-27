@@ -24,7 +24,7 @@ public class CalendarViewerMeetingRequester implements EventHandler {
 	}
 	
 	public void handleEvent(Event<?> event) {
-		if(event.eventType == EventType.SELECTED_WEEK_CHANGED) {
+		if((event.eventType == EventType.SELECTED_WEEK_CHANGED) || (event.eventType == EventType.MEETING_UPDATE_REQUESTED)) {
 			this.sendWeekUpdateRequest();
 		}
 	}
