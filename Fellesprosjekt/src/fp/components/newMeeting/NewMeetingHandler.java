@@ -117,7 +117,8 @@ public class NewMeetingHandler extends AbstractComponentHandler implements Actio
 		}
 		else if(e.getSource()==NewMeetingWindow.manualLocationTextPane){
 			controller.setLocation(NewMeetingWindow.manualLocationTextPane.getText());
-		}	
+		}
+		else if(e.getSource()==NewMeetingWindow.)
 
 	}
 
