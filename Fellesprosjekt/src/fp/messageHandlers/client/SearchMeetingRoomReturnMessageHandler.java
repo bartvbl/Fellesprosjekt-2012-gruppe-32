@@ -1,4 +1,4 @@
-package fp.messageHandlers;
+package fp.messageHandlers.client;
 
 import java.util.ArrayList;
 
@@ -15,12 +15,12 @@ import fp.net.client.ClientConnectionContext;
 import fp.xmlConverters.MeetingConverter;
 import fp.xmlConverters.MeetingRoomConverter;
 
-public class returnSearchMeetingRoomHandler implements ClientMessageHandler {
+public class SearchMeetingRoomReturnMessageHandler implements ClientMessageHandler {
 
 	private EventDispatcher eventDispatcher;
 	private ArrayList<MeetingRoom> rooms;
 	
-	public returnSearchMeetingRoomHandler(EventDispatcher eventDispatcher) {
+	public SearchMeetingRoomReturnMessageHandler(EventDispatcher eventDispatcher) {
 		this.eventDispatcher = eventDispatcher;
 	}
 	
@@ -31,6 +31,7 @@ public class returnSearchMeetingRoomHandler implements ClientMessageHandler {
 		int size = data.getChildElements().size();
 		for (int i = 0; i < size; i++) {
 			rooms.add(MeetingRoomConverter.convertXMLToMeetingRoom((Element) data.getChild(i)));
+			System.out.println(rooms.get(i).name);
 		}
 		eventDispatcher.dispatchEvent(new Event<ArrayList<MeetingRoom>>(EventType.SEARCH_MEETINGROOM_RESULT, rooms));
 	}
