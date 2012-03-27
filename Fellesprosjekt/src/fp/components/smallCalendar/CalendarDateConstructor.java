@@ -4,14 +4,29 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class CalendarDateConstructor {
+	private static Calendar calendar = null;
+	
+	private static Calendar getCalendar() {
+		if(calendar == null){
+			calendar = Calendar.getInstance();
+			calendar.setFirstDayOfWeek(Calendar.MONDAY);
+			}
+		return calendar;
+	}
 
-	public static int[][] getDateMatrix(Calendar calendar) {
+	public static int[][] getDateMatrix(int month, int year) {
+		Calendar calendar = getCalendar();
+		calendar.set(Calendar.YEAR, year);
+		calendar.set(Calendar.MONTH, month);
 		calendar.set(Calendar.DAY_OF_MONTH, 1);
 		int numberOfRows = getNumberOfWeeksInMonth(calendar);
 		return createDateMatrix(numberOfRows, calendar);
 	}
 	
-	public static int[] getWeekListOfCurrentMonth(Calendar calendar) {
+	public static int[] getWeekListOfCurrentMonth(int month, int year) {
+		Calendar calendar = getCalendar();
+		calendar.set(Calendar.YEAR, year);
+		calendar.set(Calendar.MONTH, month);
 		calendar.set(Calendar.DAY_OF_MONTH, 1);
 		int startWeek = calendar.get(Calendar.WEEK_OF_YEAR);
 		int numberOfWeeks = getNumberOfWeeksInMonth(calendar);
@@ -61,7 +76,7 @@ public class CalendarDateConstructor {
 	}
 	
 	public static int[] getWeekDayDates(int week, int year) {
-		Calendar calendar = Calendar.getInstance();
+		Calendar calendar = getCalendar();
 		calendar.setFirstDayOfWeek(Calendar.MONDAY);
 		calendar.set(Calendar.YEAR, year);
 		calendar.set(Calendar.WEEK_OF_YEAR, week);
@@ -74,7 +89,11 @@ public class CalendarDateConstructor {
 		return dateNumberList;
 	}
 
-	public static String generateMonthString(Calendar calendar) {
+	public static String generateMonthString(int week, int year) {
+		Calendar calendar = getCalendar();
+		calendar.set(Calendar.YEAR, year);
+		calendar.set(Calendar.WEEK_OF_YEAR, week);
+		calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 		String monthString = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.UK);
 		int currentMonth = calendar.get(Calendar.MONTH);
 		calendar.add(Calendar.DAY_OF_MONTH, 6);

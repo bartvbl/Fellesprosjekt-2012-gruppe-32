@@ -74,11 +74,13 @@ public class NewMeetingController extends AbstractComponentController {
 		NewMeetingWindow.setFrameVisible(false);
 		
 		//lukk vinduet
+		//super.kill();
 		
 	}
 	
 	public void searchForMeetingRoom(){
 		
+//		ClientConnectionContext.getInstance().connectionHandler.sendMessage(message);
 		
 	}
 	

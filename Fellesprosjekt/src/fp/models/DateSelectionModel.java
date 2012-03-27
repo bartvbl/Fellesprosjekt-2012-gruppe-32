@@ -35,7 +35,7 @@ public class DateSelectionModel {
 	}
 	
 	public String getSelectedMonthString() {
-		return CalendarDateConstructor.generateMonthString(calendar);
+		return CalendarDateConstructor.generateMonthString(getSelectedWeekNumber(), getSelectedYear());
 	}
 	
 	public void setSelectedWeekNumber(int newWeekNumber, int yearNumber) {
