@@ -62,10 +62,10 @@ public class GetMeetingsInWeekHandler implements MessageHandler {
 			meetingElement.appendChild(element);
 		}
 		
-		System.out.println(meetingElement.toXML());
-		//Message result = new Message(MessageType.getMeetingsInWeek);
-		//result.addDataElement(meetingElement);
-		//clientContext.connectionHandler.sendMessage(result);
+		//System.out.println(meetingElement.toXML());
+		Message result = new Message(MessageType.getMeetingsInWeek);
+		result.addDataElement(meetingElement);
+		clientContext.connectionHandler.sendMessage(result);
 		
 	}
 	
