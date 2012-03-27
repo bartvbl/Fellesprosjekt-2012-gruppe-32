@@ -39,7 +39,7 @@ public class CalendarDateConstructor {
 
 	private static int getNumberOfWeeksInMonth(Calendar calendar) {
 		int daysInCurrentMonth = getDaysInCurrentMonth(calendar);
-		int dayOfWeek = getDayOfTheWeek(calendar);
+		int dayOfWeek = getDayOfTheWeek(calendar.get(Calendar.DAY_OF_WEEK));
 		return ((daysInCurrentMonth + dayOfWeek - 2) / 7) + 1;
 	}
 	
@@ -47,21 +47,25 @@ public class CalendarDateConstructor {
 		return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 	}
 	
-	private static int getDayOfTheWeek(Calendar calendar) {
-		int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-		if(dayOfWeek == Calendar.SUNDAY) { //workaround for Calendar's stupid setting that sunday is the start of the week
-			dayOfWeek = 7;
+	public static int getDayOfTheWeek(int calendarDayOfWeek) {
+		if(calendarDayOfWeek == Calendar.SUNDAY) { //workaround for Calendar's stupid setting that sunday is the start of the week
+			calendarDayOfWeek = 7;
 		} else {
-			dayOfWeek--;
+			calendarDayOfWeek--;
 		}
-		return dayOfWeek;
+		return calendarDayOfWeek;
+	}
+	
+	public static int convertDayOfWeekIndexToCalendarDayIndex(int dayOfWeek) {
+		if(dayOfWeek == 6) {return 0;}
+		return dayOfWeek++;
 	}
 	
 	private static int[][] createDateMatrix(int numberOfRows, Calendar calendar) {
 		int[][] matrix = new int[numberOfRows][7];
 		int counter = 0;
 		int daysInMonth = getDaysInCurrentMonth(calendar);
-		for(int j = getDayOfTheWeek(calendar)-1; j < 7; j++) {
+		for(int j = getDayOfTheWeek(calendar.get(Calendar.DAY_OF_WEEK))-1; j < 7; j++) {
 			counter++;
 			matrix[0][j] = counter;
 		}
